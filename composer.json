@@ -1,5 +1,5 @@
 {
-    "name": "j29/jlibrary",
+    "name": "j29/library",
     "description": "Boilerplate for Symfony apps",
     "type": "library",
     "require": {
