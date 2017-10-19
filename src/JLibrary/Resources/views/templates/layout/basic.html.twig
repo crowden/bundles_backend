@@ -18,10 +18,9 @@
         {% block stylesheets %}<link href="{{ asset(global_stylesheet) }}" rel="stylesheet">{% endblock %}
     </head>
     <body>
+        {% block header %}{% endblock %}
         {% block main_content %}{% endblock %}
-        {# {% block menu_top %}top menu{% endblock %}
-        <div class="main-content">{% block main_content %}{% endblock %}</div>
-        {% block footer %}footer file includes copyright/login{% endblock %} #}
+        {% block footer %}{% endblock %}
         {% block javascript %}<script src="{{ asset(global_javascript) }}"></script>{% endblock %}
     </body>
 </html>
