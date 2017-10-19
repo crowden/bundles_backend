@@ -1,0 +1,21 @@
+{% extends 'J29Bundle:layouts/admin:basic.html.twig' %}
+
+{% block main_content %}
+    <div class="page-admin-crud-action container">
+        <h1 class="page-title">{{ page_title }}</h1>
+
+        {# FLASHBAGS #}
+        {% include 'J29Bundle:components/admin:flashbags.html.twig' %}
+        
+        {# New/Edit Form #}
+        {{ form_start(form, {'attr': {'class': 'form-action ' ~ form_size}}) }}
+            <div class="form-controls">
+                {% block crud_form_controls %}{% endblock %}
+            </div>
+            <div class="form-submission-controls">
+                <button type="submit" name="save" class="form-control btn btn-success" formnovalidate>save</button>
+                <a href="{% block crud_cancel_path %}{% endblock %}" class="btn btn-default form-control">cancel</a>
+            </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

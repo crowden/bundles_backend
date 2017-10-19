@@ -1,0 +1,31 @@
+{% extends 'J29Bundle:layouts/admin:basic.html.twig' %}
+
+{% block main_content %}
+    <div class="page-admin-crud-index container">
+        <h1 class="page-title">{{ page_title }}</h1>
+        
+        {# FLASHBAGS #}
+        {% include 'J29Bundle:components/admin:flashbags.html.twig' %}
+
+        {# additional admin links #}
+        <div class="additional-admin-links">
+            <a href="{% block crud_new_path %}{% endblock %}" class="add-new-link btn btn-success">new</a>
+            <a href="{{ path('j29.admin.homepage') }}" class="admin-listing-link btn btn-primary">admin home</a>
+        </div>
+
+        {# table info #}
+        <div class="table-container">
+            <div class="table">
+                {# table header #}
+                <div class="table-row-header">
+                    {% block crud_table_header %}{% endblock %}
+                </div>
+                {% for entity in entities %}
+                    <div class="table-row-body">
+                        {% block crud_table_data %}{% endblock %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

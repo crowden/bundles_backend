@@ -1,0 +1,27 @@
+{#
+    Page Varialbles
+        - page_title [set in controller]
+        - page_description [set in controller]
+        - page_title_suffix [set in config]
+        - global_stylesheet [set in config]
+#}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="generator" content="Symfony" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="{{ page_description }}">
+        <title>{{ page_title }} | {{ page_title_suffix }}</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block stylesheets %}<link href="{{ asset(global_stylesheet) }}" rel="stylesheet">{% endblock %}
+    </head>
+    <body>
+        {% block main_content %}{% endblock %}
+        {# {% block menu_top %}top menu{% endblock %}
+        <div class="main-content">{% block main_content %}{% endblock %}</div>
+        {% block footer %}footer file includes copyright/login{% endblock %} #}
+        {% block javascript %}<script src="{{ asset(global_javascript) }}"></script>{% endblock %}
+    </body>
+</html>
