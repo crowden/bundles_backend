@@ -1,9 +1,9 @@
 <div class="copyright">
-        <p class="heading container">&copy; {{ 'now'|date('Y', timezone) }} {{ organization }}</p>
-        {% if app.user %}
-            <a class="admin-home" href="{{ path('j29.admin.homepage') }}" title="admin homepage"><i class="fa fa-home" aria-hidden="true"></i></a>
-            <a class="log-in-out logout" href="{{ path('j29.admin.logout') }}" title="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-        {% else %}
-            <a class="log-in-out login" href="{{ path('j29.admin.homepage') }}" title="login"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
-        {% endif %}
-    </div>
+    <p class="heading container">&copy; {{ 'now'|date('Y', timezone) }} {{ organization }}</p>
+    {% if app.user %}
+        <a class="admin-home" href="{{ path('j29.admin.homepage') }}" title="admin homepage"><i class="fa fa-home" aria-hidden="true"></i></a>
+        <a class="log-in-out logout" href="{{ path('j29.admin.logout') }}" title="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+    {% else %}
+        <a class="log-in-out login" href="{{ path('j29.admin.homepage') }}" title="login"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+    {% endif %}
+</div>

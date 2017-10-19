@@ -1,0 +1,26 @@
+{% extends 'JLibrary:templates/layout:basic.html.twig' %}
+
+{% block header %}HEADER{% endblock %}
+
+{% block main_content %}
+    <div class="page-admin-login main-content">
+        <div class="container">
+            {% if error %}
+                <p class="login-error-message">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+            {% endif %}
+            <form action="{{ path('j29.admin.login') }}" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="_username" value="{{ last_username }}" />
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="_password" />
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+
+                <button type="submit">login</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}FOOTER{% endblock %}
