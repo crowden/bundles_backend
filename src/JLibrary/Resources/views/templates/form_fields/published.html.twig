@@ -1,0 +1,19 @@
+{% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %}
+
+<div class="form-row">
+    {#------------ Errors ------------#}
+    <div class="field-error-container">{{ form_errors(form.published) }}</div>
+    
+    {#------------ Label ------------#}
+    {{ form_label(form.published, label ?? null, {'label_attr' : {'class' : 'inline'}}) }}
+    
+    {#------------ Form Control ------------#}
+    {% if creating_entity %}
+        {{ form_widget(form.published, {'attr': {'checked': 'checked', 'class': 'inline'}}) }}
+    {% else %}
+        {{ form_widget(form.published, {'attr': {'class': 'inline'}}) }}
+    {% endif %}
+    
+    {#------------ Sublabel ------------#}
+    {% include 'J29Bundle:components/form_sublabels:publish.html.twig' with {label_class: sublabel_class_present} %}
+</div>

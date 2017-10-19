@@ -1,0 +1,38 @@
+{#
+    /**
+     * Variables available in include:
+     *
+     * - [string] sublabel_class
+     * - [form variable] field
+     * - [string] label
+     * - [string] image_directory
+     * - [boolean] placeholder
+     */
+#}
+{% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %}
+{% set image_directory = (placeholder ?? false) ? 'images/' : 'images/crud/' ~ directory ~ '/' %}
+
+
+<div class="form-row image-row">
+    {#------------ Errors ------------#}
+    <div class="field-error-container basis100">{{ form_errors(field) }}</div>
+    
+    <div class="basis66 pod controls">
+        {#------------ Label ------------#}
+        {{ form_label(field, label ?? null) }}
+        
+        {#------------ Form Control ------------#}
+        {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+        
+        {# Only show if in edit stage #}
+        {% if not creating_entity %}
+            {% include 'J29Bundle:components/form_sublabels:document-replace-current.html.twig' with {label_class: sublabel_class_present} %}
+        {% endif %}
+    </div>
+
+    {% if show_image_preview %}
+        <div class="basis33 pod image">
+            <img class="thumbnail" src="{{ asset(image_directory ~ preview) }}">
+        </div>
+    {% endif %}
+</div>

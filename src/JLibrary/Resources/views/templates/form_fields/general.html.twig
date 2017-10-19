@@ -1,0 +1,29 @@
+{#
+    /**
+     * Variables available in include:
+     *
+     * - [string] sublabel_class
+     * - [form variable] field
+     * - [string] label
+     * - [string] sublabel_file
+     * - [string] custom_sublabel
+     * - [string] custom_sublabel_class
+     * - [string] row_class
+     */
+#}
+{% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %}
+{% set container_class = (row_class ?? false) ? 'form-row ' ~ row_class : 'form-row' %}
+
+<div class="{{ container_class }}">
+    {#------------ Label ------------#}
+    {{ form_label(field, label ?? null) }}
+
+    {#------------ Sublabel ------------#}
+    {% include 'J29Bundle:components/crud_fields:_inc-crud-sublabel.html.twig' %}
+    
+    {#------------ Errors ------------#}
+    <div class="field-error-container">{{ form_errors(field) }}</div>
+    
+    {#------------ Form Control ------------#}
+    {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+</div>
