@@ -2,6 +2,11 @@
     "name": "j29/library",
     "description": "Boilerplate for Symfony apps",
     "type": "library",
+    "autoload": {
+        "psr-4": {
+            "JLibrary\\": "src/JLibrary"
+        }
+    },
     "require": {
         "cebe/markdown": "^1.1",
         "doctrine/doctrine-migrations-bundle": "^1.2",
