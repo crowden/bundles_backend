@@ -1,34 +1,30 @@
-{% extends 'JLibrary:templates/layout:basic.html.twig' %}
+<div class="admin page-crud-action main-content">
+    <div class="container">
+        <h1 class="page-title">{{ page_title }}</h1>
 
-{% block main_content %}
-    <div class="page-admin-crud-action main-content">
-        <div class="container">
-            <h1 class="page-title">{{ page_title }}</h1>
-
-            {# FLASHBAGS #}
-            {% include 'JLibrary:templates/flashbags:flashbags.html.twig' %}
-            
-            {# Delete Form #}
-            {% if not creating_entity %}
-                {{ form_start(delete_form, { 'attr': {'class': 'form-delete'} }) }}
-                    <button type="submit" name="delete" class="form-control btn btn-danger">delete</button>
-                {{ form_end(delete_form) }}
-            {% endif %}
-            
-            {# New/Edit Form #}
-            {{ form_start(form, {'attr': {'class': 'form-action ' ~ form_size}}) }}
-                <div class="form-controls">
-                    {% block crud_form_controls %}{% endblock %}
-                </div>
-                <div class="form-submission-controls">
-                    {% if creating_entity %}
-                        <button type="submit" name="create" class="form-control btn btn-success" formnovalidate>create</button>
-                    {% else %}
-                        <button type="submit" name="update" class="form-control btn btn-warning" formnovalidate>update</button>
-                    {% endif %}
-                    <a href="{% block crud_cancel_path %}{% endblock %}" class="btn btn-default form-control">cancel</a>
-                </div>
-            {{ form_end(form) }}
-        </div>
+        {# FLASHBAGS #}
+        {% include 'JLibrary:templates/flashbags:flashbags.html.twig' %}
+        
+        {# Delete Form #}
+        {% if not creating_entity %}
+            {{ form_start(delete_form, { 'attr': {'class': 'form-delete'} }) }}
+                <button type="submit" name="delete" class="form-control btn btn-danger">delete</button>
+            {{ form_end(delete_form) }}
+        {% endif %}
+        
+        {# New/Edit Form #}
+        {{ form_start(form, {'attr': {'class': 'form-action ' ~ form_size}}) }}
+            <div class="form-controls">
+                {% block crud_form_controls %}{% endblock %}
+            </div>
+            <div class="form-submission-controls">
+                {% if creating_entity %}
+                    <button type="submit" name="create" class="form-control btn btn-success" formnovalidate>create</button>
+                {% else %}
+                    <button type="submit" name="update" class="form-control btn btn-warning" formnovalidate>update</button>
+                {% endif %}
+                <a href="{% block crud_cancel_path %}{% endblock %}" class="btn btn-default form-control">cancel</a>
+            </div>
+        {{ form_end(form) }}
     </div>
-{% endblock %}
+</div>

@@ -1,33 +1,29 @@
-{% extends 'JLibrary:templates/layout:basic.html.twig' %}
+<div class="admin page-crud-index main-content">
+    <div class="container">
+        <h1 class="page-title">{{ page_title }}</h1>
+        
+        {# FLASHBAGS #}
+        {% include 'JLibrary:templates/flashbags:flashbags.html.twig' %}
 
-{% block main_content %}
-    <div class="page-admin-crud-index main-content">
-        <div class="container">
-            <h1 class="page-title">{{ page_title }}</h1>
-            
-            {# FLASHBAGS #}
-            {% include 'JLibrary:templates/flashbags:flashbags.html.twig' %}
+        {# additional admin links #}
+        <div class="additional-admin-links">
+            <a href="{% block crud_new_path %}{% endblock %}" class="add-new-link btn btn-success">new</a>
+            <a href="{{ path('j29.admin.homepage') }}" class="admin-listing-link btn btn-primary">admin home</a>
+        </div>
 
-            {# additional admin links #}
-            <div class="additional-admin-links">
-                <a href="{% block crud_new_path %}{% endblock %}" class="add-new-link btn btn-success">new</a>
-                <a href="{{ path('j29.admin.homepage') }}" class="admin-listing-link btn btn-primary">admin home</a>
-            </div>
-
-            {# table info #}
-            <div class="table-container">
-                <div class="table">
-                    {# table header #}
-                    <div class="table-row-header">
-                        {% block crud_table_header %}{% endblock %}
-                    </div>
-                    {% for entity in entities %}
-                        <div class="table-row-body">
-                            {% block crud_table_data %}{% endblock %}
-                        </div>
-                    {% endfor %}
+        {# table info #}
+        <div class="table-container">
+            <div class="table">
+                {# table header #}
+                <div class="table-row-header">
+                    {% block crud_table_header %}{% endblock %}
                 </div>
+                {% for entity in entities %}
+                    <div class="table-row-body">
+                        {% block crud_table_data %}{% endblock %}
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-{% endblock %}
+</div>
