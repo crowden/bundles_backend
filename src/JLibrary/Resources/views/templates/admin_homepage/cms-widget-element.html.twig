@@ -1,7 +1,7 @@
 <div class="cms-element">
-    <h3 class="section-heading column basis30">{{ heading }}</h3>
-    <p class="section-subheading column basis40">{{ description }}</p>
-    <div class="actions-container column basis30">
+    <h3 class="heading column basis33">{{ heading }}</h3>
+    <p class="description column basis66">{{ description }}</p>
+    <div class="actions-container column basis100">
         {% if (path_new ?? false) %}
             <a href="{{ path(path_list) }}" class="btn btn-success">list all</a>
             <a href="{{ path(path_new) }}" class="quick-add btn btn-default">create new</a>
