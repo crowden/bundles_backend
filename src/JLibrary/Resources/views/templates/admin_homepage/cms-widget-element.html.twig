@@ -1,6 +1,7 @@
 <div class="cms-element">
-    <h3 class="heading column basis50">{{ heading }}</h3>
-    <div class="actions-container column basis50">
+    <h3 class="heading">{{ heading }}</h3>
+    <p class="description">{{ description }}</p>
+    <div class="actions-container">
         {% if (path_new ?? false) %}
             <a href="{{ path(path_list) }}" class="btn btn-success">list all</a>
             <a href="{{ path(path_new) }}" class="quick-add btn btn-default">create new</a>
@@ -8,5 +9,4 @@
             <a href="{{ path(path_manage) }}" class="quick-add btn btn-warning">manage</a>
         {% endif %}
     </div>
-    <p class="description column basis50">{{ description }}</p>
 </div>
