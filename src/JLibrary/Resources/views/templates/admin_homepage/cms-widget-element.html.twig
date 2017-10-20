@@ -3,6 +3,8 @@
     <p class="section-subheading column basis40">{{ description }}</p>
     <div class="actions-container column basis30">
         <a href="{{ path(path_list) }}" class="btn btn-success">list all</a>
-        <a href="{{ path(path_new) }}" class="quick-add btn btn-default">create new</a>
+        {% if (path_new ?? false) %}
+            <a href="{{ path(path_new) }}" class="quick-add btn btn-default">create new</a>
+        {% endif %}
     </div>
 </div>
