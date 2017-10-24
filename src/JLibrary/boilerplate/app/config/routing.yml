@@ -1,0 +1,10 @@
+NAMESPACE.global:
+  resource: '@BUNDLE/Controller/'
+  type: annotation
+
+NAMESPACE.admin.login:
+  resource: '@BUNDLE/Controller/login/SecurityController.php'
+  type: annotation
+
+NAMESPACE.admin.logout:
+  path: '/logout'

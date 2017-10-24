@@ -1,0 +1,24 @@
+services:
+  # file uploader service
+  NAMESPACE.single_image_manager:
+    class: BUNDLE\Service\JSingleImageManager
+    arguments:
+      container: '@service_container'
+  # Currently Being Used manager
+  NAMESPACE.manage_currently_used:
+    class: BUNDLE\Service\JManageCurrentlyUsed
+    arguments:
+      entity_manager: '@doctrine.orm.default_entity_manager'
+  # Custom sanatize functions
+  NAMESPACE.sanitizer:
+    class: BUNDLE\Service\JSanitize
+    arguments:
+      markdown_parser: '@NAMESPACE.markdown_parser'
+  # Markdown parser
+  NAMESPACE.markdown_parser:
+    class: BUNDLE\Service\JMarkdownParser
+
+  NAMESPACE.single_file_manager:
+    class: BUNDLE\Service\SingleFileManager
+    arguments:
+      upload_directories: [%base_upload_directory%, %upload_directories%]
