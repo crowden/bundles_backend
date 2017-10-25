@@ -50,13 +50,18 @@ class Sanitizer
                     break;
                 case 'markdown_extra':
                     $refactored = $this->returnMarkdownExtra($field_value);
-                    break;
+                    return true;
                 case 'markdown_general':
-                    $refactored = $this->returnMarkdownGeneral($field_value);
-                    break;
+                    $md_filtered = $this->returnPlainText($field_value);
+                    $md_parsed = $this->returnMarkdownGeneral($md_filtered);
+
+                    call_user_func(array($entity, 'set' . $value['rawHandler']), $md_filtered);
+                    call_user_func(array($entity, 'set' . $value['htmlHandler']), $md_parsed);
+                    
+                    return true;
                 case 'markdown_github':
                     $refactored = $this->returnMarkdownGithub($field_value);
-                    break;
+                    return true;
             }
 
             call_user_func(array($entity, 'set' . $key), $refactored);
@@ -82,7 +87,6 @@ class Sanitizer
     }
 
     private function returnMarkdownGeneral($value){
-        $no_tags = $this->returnPlainText($value);
         return $this->parser_general->parse($value);
     }
 

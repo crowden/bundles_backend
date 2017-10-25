@@ -44,23 +44,23 @@ trait ControllerTraits
      *     - toggle
      *     - upload
      */
-    protected function manageFile($entity, $case, $file = NULL, $current_file_name = NULL){
+    protected function manageFile($entity, $case, $handler, $file = NULL, $current_file_name = NULL){
         $file_manager = $this->get('j29.single_file_manager');
         $file_directory = $this->getParameter(self::UPLOAD_DIR)[self::FILE_DIR];
 
         switch($case){
             case 'file_present':
-                return $file_manager->fileIsNotNull($entity, self::FILE_HANDLER);
+                return $file_manager->fileIsNotNull($entity, $handler);
             case 'upload':
-                $file_manager->upload($entity, $file, $file_directory, self::FILE_HANDLER);
+                $file_manager->upload($entity, $file, $file_directory, $handler);
                 break;
             case 'toggle':
-                return $file_manager->toggleFileAndFilename($entity, $file_directory, self::FILE_HANDLER);
+                return $file_manager->toggleFileAndFilename($entity, $file_directory, $handler);
             case 'new_file':
-                $file_manager->handleNewFileUpload($entity, $current_file_name, $file_directory, self::FILE_HANDLER);
+                $file_manager->handleNewFileUpload($entity, $current_file_name, $file_directory, $handler);
                 break;
             case 'delete':
-                $file_manager->deleteFile($entity, $file_directory, self::FILE_HANDLER);
+                $file_manager->deleteFile($entity, $file_directory, $handler);
                 break;
         }
     }
