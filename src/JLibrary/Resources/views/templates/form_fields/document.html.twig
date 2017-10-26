@@ -1,14 +1,3 @@
-{#
-    /**
-     * Variables available in include:
-     *
-     * - [string] sublabel_class
-     * - [form variable] field
-     * - [string] label
-     * - [string] document_directory
-     * - [boolean] placeholder
-     */
-#}
 {% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %}
 {% set document_directory = (placeholder ?? false) ? 'images/' : directory ~ '/' %}
 
