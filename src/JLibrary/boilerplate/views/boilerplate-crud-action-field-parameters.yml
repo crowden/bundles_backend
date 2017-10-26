@@ -21,7 +21,7 @@ label:
 placeholder:
     type: boolean
     applies_to: images and documents
-    description: used when displaying a preview from the images dir, not uploaded image
+    description: used when displaying a preview from the images dir, not uploaded image. When using this, directory variable is not necessary!
 
 pod_class:
     type: [string]
