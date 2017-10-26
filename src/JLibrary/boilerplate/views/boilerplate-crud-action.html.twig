@@ -1,0 +1,46 @@
+{% extends 'JLibrary:templates/layout:basic.html.twig' %}
+
+{% block main_content %}
+    {% embed 'JLibrary:templates/layout:crud-action.html.twig' %}
+        {% block crud_form_controls %}
+            <fieldset>
+                <legend>Member Info</legend>
+                <div class="flex">
+                    {% include 'JLibrary:templates/form_fields:general.html.twig' with {field: form.firstName, row_class: 'basis50'} %}
+                    {% include 'JLibrary:templates/form_fields:general.html.twig' with {field: form.lastName, row_class: 'basis50'} %}
+                </div>
+                <div class="flex">
+                    {% include 'JLibrary:templates/form_fields:general.html.twig' with {field: form.credentials, row_class: 'basis33'} %}
+                    {% include 'JLibrary:templates/form_fields:general.html.twig' with {field: form.emailAddress, row_class: 'basis66'} %}
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Image</legend>
+                {% include 'JLibrary:templates/form_sublabels:provide-correct-image.html.twig' with {label_class: 'section-header'} %}
+                {% include 'JLibrary:templates/form_fields:image.html.twig' with 
+                    {
+                        directory: 'uploads/###',
+                        field: form.image,
+                        preview: image_preview ?? null
+                    } 
+                %}
+                {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+                    {
+                        field: form.imageAlt, 
+                        sublabel_file: 'image-alt'
+                    } 
+                %}
+            </fieldset>
+            <fieldset>
+                <legend>General</legend>
+                {% include 'JLibrary:templates/form_fields:general.html.twig' with {field: form.field} %}
+            </fieldset>
+            <fieldset>
+                <legend>Published</legend>
+                {% include 'JLibrary:templates/form_fields:published.html.twig' %}
+            </fieldset>
+        {% endblock %}
+
+        {% block crud_cancel_path %}{{ path('j29.admin.###.index') }}{% endblock %}
+    {% endembed %}
+{% endblock %}

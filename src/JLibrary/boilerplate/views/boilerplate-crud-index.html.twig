@@ -1,0 +1,24 @@
+{% extends 'JLibrary:templates/layout:basic.html.twig' %}
+
+{% block main_content %}
+    {% embed 'JLibrary:templates/layout:crud-index.html.twig' %}
+        {% block crud_new_path %}{{ path('j29.admin.###.new') }}{% endblock %}
+
+        {% block crud_table_header %}
+            <div class="header h2 basis##">Image</div>
+            <div class="header h2 basis##">Name</div>
+            <div class="header h2 basis## center-text">Published</div>
+            <div class="header h2 header-actions basis## center-text">Actions</div>
+        {% endblock %}
+
+        {% block crud_table_data %}
+            <div class="column basis##">
+                <img class="thumbnail" src="{{ asset('uploads/dir/' ~ entity.image) }}" width="150">
+            </div>
+            <div class="column basis##">{{ entity.field }}</div>
+            <div class="column basis## center-text">{% if entity.published %}&#128309;{% else %}&#9899;{% endif %}</div>
+            <div class="column column-actions basis##"><a href="{{ path('j29.admin.###.edit', {'id': entity.id}) }}" class="btn btn-danger">update / delete</a>
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
