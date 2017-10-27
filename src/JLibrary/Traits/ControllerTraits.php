@@ -5,36 +5,6 @@ namespace JLibrary\Traits;
 trait ControllerTraits
 {
     /**
-     * utility function for sanitizing and persisting entities to db.
-     * Method requires parent class to have an array of sanitize options for
-     * entity members.
-     *
-     * Allowed values for persisting must be one of the following:
-     *     - create
-     *     - edit
-     *     - delete
-     */
-    protected function sanitizeAndPersist($entity, $action){
-        $sanitizer = $this->get('j29.sanitizer');
-        $sanitizer->sanitize($entity, $this->sanitize_options);
-        
-        $entity_manager = $this->getDoctrine()->getManager();
-
-        switch($action){
-            case 'create':
-                $entity_manager->persist($entity);
-                break;
-            case 'edit':
-                break;
-            case 'delete':
-                $entity_manager->remove($entity);
-        } 
-
-        // shared by all entity manager functions
-        $entity_manager->flush();
-    }
-
-    /**
      * utility function for interacting with the single_file_manager service;
      *
      * Allowed values for @var $case include:
@@ -74,15 +44,80 @@ trait ControllerTraits
             ->setMethod('DELETE')
             ->getForm();
     }
+    
+    /**
+     * utility function for sanitizing and persisting entities to db.
+     * Method requires parent class to have an array of sanitize options for
+     * entity members.
+     *
+     * Allowed values for persisting must be one of the following:
+     *     - create
+     *     - edit
+     *     - delete
+     */
+    protected function sanitizeAndPersist($entity, $action){
+        $sanitizer = $this->get('j29.sanitizer');
+        $sanitizer->sanitize($entity, $this->sanitize_options);
+        
+        $entity_manager = $this->getDoctrine()->getManager();
+
+        switch($action){
+            case 'create':
+                $entity_manager->persist($entity);
+                break;
+            case 'edit':
+                break;
+            case 'delete':
+                $entity_manager->remove($entity);
+        } 
+
+        // shared by all entity manager functions
+        $entity_manager->flush();
+    }
 
     /**
-     * utility function to sort index page entries
-     * @Route("/sort/{sorted_by}", name="j29.admin.sort")
+     * utility function for sorting based on entity propertiy names.
+     *
+     * @param $sort_by [entity property name]
+     * @param $order [asc|desc]
      */
-    protected function sort(Request $request, $sort_by){
-        $entity_manager = $this->getDoctrine()->getManager();
-        $repository = $entity_manager->getRepository(self::ENTITY_NAMESPACE);
+    protected function sortEntities($request, $sort_by, $order, Array $build_variables){
+        // if they want to reset the view
+        if ($sort_by === 'reset') return $this->redirectToRoute(self::ROUTE_INDEX);
 
-        highlight_string("<?php\n\$request =\n" . var_export($request, true) . ";\n?>");
+        // sort by pattern matches entity property names, not ORM column names!
+        $pattern_sortby = '/^[a-zA-Z]+$/';
+        $pattern_order = '/^(asc|desc)$/';
+
+        if(preg_match($pattern_sortby, $sort_by) && preg_match($pattern_order, $order)){
+            $clean_sort_by = 'e.' . $sort_by;
+            $clean_order = $order;
+            
+            $repo = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository(self::ENTITY_NAMESPACE);
+
+            try {
+                $query = $repo->createQueryBuilder('e')
+                    ->orderBy($clean_sort_by, $clean_order)
+                    ->getQuery();
+
+                $build = [
+                    'page_title' => $build_variables['page_title'],
+                    'page_description' => $build_variables['page_description'],
+                    'entities' => $query->getResult(),
+                ];
+                
+                return $this->render(self::TMPL_INDEX, $build);
+            }
+            catch(\Doctrine\ORM\Query\QueryException $e){
+                $request->getSession()->getFlashBag()->add('warning', 'Can\'t find requested page');
+                return $this->redirectToRoute(self::ROUTE_INDEX);
+            }
+        } else {
+            $request->getSession()->getFlashBag()->add('warning', 'Can\'t find requested page');
+            return $this->redirectToRoute(self::ROUTE_INDEX);
+        }
     }
 }
