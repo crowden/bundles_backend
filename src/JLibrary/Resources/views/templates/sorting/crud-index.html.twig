@@ -4,13 +4,14 @@
         - paths
 #}
 
-{% set sorting_options = 
-    {
-        'base_url' : base_url,
-        'paths' : paths
-    }
-%}
 
 {% block sorting %}
+    {% set sorting_options = 
+        {
+            'base_url' : base_url,
+            'paths' : paths
+        }
+    %}
+    
     <div id="js-sorting" class="sorting" data-options="{{ sorting_options|json_encode|e('html_attr') }}"></div>
 {% endblock %}
