@@ -74,4 +74,15 @@ trait ControllerTraits
             ->setMethod('DELETE')
             ->getForm();
     }
+
+    /**
+     * utility function to sort index page entries
+     * @Route("/sort/{sorted_by}", name="j29.admin.sort")
+     */
+    protected function sort(Request $request, $sort_by){
+        $entity_manager = $this->getDoctrine()->getManager();
+        $repository = $entity_manager->getRepository(self::ENTITY_NAMESPACE);
+
+        highlight_string("<?php\n\$request =\n" . var_export($request, true) . ";\n?>");
+    }
 }
