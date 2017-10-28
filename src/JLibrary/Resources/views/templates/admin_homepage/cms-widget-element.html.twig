@@ -3,7 +3,7 @@
     <p class="description">{{ description }}</p>
     <div class="actions-container">
         {% if (path_new ?? false) %}
-            <a href="{{ path(path_list) }}" class="btn btn-success">list all</a>
+            <a href="{{ path(path_list) ~ sort_by ?? '' }}" class="btn btn-success">list all</a>
             <a href="{{ path(path_new) }}" class="quick-add btn btn-default">create new</a>
         {% else %}
             <a href="{{ path(path_manage) }}" class="quick-add btn btn-warning">manage</a>

@@ -78,6 +78,12 @@ trait ControllerTraits
     /**
      * utility function for sorting based on entity propertiy names.
      *
+     * Requirements:
+     *     Controller:
+     *         - sort(Request $request, $sort_by, $order)
+     *     Twig (index file)
+     *         - <div id="js-sorting" class="sorting" data-options="{{ sorting_options|json_encode|e('html_attr') }}"></div>
+     *
      * @param $sort_by [entity property name]
      * @param $order [asc|desc]
      */
