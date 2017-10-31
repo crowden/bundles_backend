@@ -1,4 +1,6 @@
 {% set class = (label_class ?? false) ? 'sublabel ' ~ label_class : 'sublabel' %}
 
-<p class="{{ class }}">This field will only accept markdown. Mardown is simply a way of writing plain text that will be turned into HTML markup. It allows the user to "create" HTML without having to know HTML.</p>
-<div id="md-syntax-helper-linebreaks"></div>
+<div class="{{ class }}">
+    <p>This field will only accept markdown. Mardown is simply a way of writing plain text that will be turned into HTML markup. It allows the user to "create" HTML without having to know HTML. Click the options below to see examples of each.</p>
+    <section id="js-md-help-popovers"></section>
+</div>
