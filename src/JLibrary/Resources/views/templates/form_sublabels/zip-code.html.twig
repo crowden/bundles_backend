@@ -1,3 +1,6 @@
 {% set class = (label_class ?? false) ? 'sublabel ' ~ label_class : 'sublabel' %}
 
-<p class="{{ class }}">5 digit zip code only.</p>
+<div class="sublabel-container">
+    <a href="#" class="js-expand-sublabel"><span class="plus">+</span></a>
+    <p class="{{ class }}">5 digit zip code only.</p>
+</div>

@@ -1,3 +1,6 @@
 {% set class = (label_class ?? false) ? 'sublabel ' ~ label_class : 'sublabel' %}
 
-<p class="{{ class }}">This is the text that is that appears when a user hovers over the item. This is very important as a tooltip explaining more about a thing. If it is a link, perhaps it tells where the link goes. If it's an image, perhaps it tells more about the image in general.</p>
+<div class="sublabel-container">
+    <a href="#" class="js-expand-sublabel"><span class="plus">+</span></a>
+    <p class="{{ class }}">This is the text that is that appears when a user hovers over the item. This is very important as a tooltip explaining more about a thing. If it is a link, perhaps it tells where the link goes. If it's an image, perhaps it tells more about the image in general.</p>
+</div>
