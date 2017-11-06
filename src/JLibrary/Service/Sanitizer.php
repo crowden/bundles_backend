@@ -55,6 +55,9 @@ class Sanitizer
                     $md_filtered = $this->returnPlainText($field_value);
                     $md_parsed = $this->returnMarkdownGeneral($md_filtered);
 
+                    /*Replace h1 with h2*/
+                    $md_parsed = preg_replace('@(?:(?<=<)|(?<=<\/))h1(?=>)@', 'h2', $md_parsed);
+
                     call_user_func(array($entity, 'set' . $value['rawHandler']), $md_filtered);
                     call_user_func(array($entity, 'set' . $value['htmlHandler']), $md_parsed);
                     
