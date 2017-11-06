@@ -4,7 +4,7 @@ namespace JLibrary\Twig;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class JExtension extends \Twig_Extension
+class JExtensions extends \Twig_Extension
 {
     protected $container;
     
