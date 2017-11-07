@@ -3,5 +3,10 @@
 {% endif %}
 
 {% if (custom_sublabel ?? false) %}
-    <p class="{{ (custom_sublabel_class ?? false) ? 'sublabel ' ~ custom_sublabel_class : 'sublabel' }}">{{ custom_sublabel }}</p>
+    <div class="js-wrapper-show-hide">
+        <a href="#" class="js-trigger-show-hide"><span>+</span></a>
+        <div class="js-toggle-show-hide">
+            <p class="{{ (custom_sublabel_class ?? false) ? 'sublabel ' ~ custom_sublabel_class : 'sublabel' }}">{{ custom_sublabel }}</p>
+        </div>
+    </div>
 {% endif %}
