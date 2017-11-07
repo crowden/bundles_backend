@@ -1,6 +1,8 @@
 {% set class = (label_class ?? false) ? 'sublabel ' ~ label_class : 'sublabel' %}
 
-<div class="sublabel-container">
-    <a href="#" class="js-expand-sublabel"><span class="plus">+</span></a>
-    <p class="{{ class }}">Only choose another document if you wish to replace the one that is currently here. Choosing a different document will delete the current one.</p>
+<div class="js-wrapper-show-hide">
+    <a href="#" class="js-trigger-show-hide"><span>+</span></a>
+    <div class="js-toggle-show-hide">
+        <p class="{{ class }}">Only choose another document if you wish to replace the one that is currently here. Choosing a different document will delete the current one.</p>
+    </div>
 </div>

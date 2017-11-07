@@ -1,6 +1,8 @@
 {% set class = (label_class ?? false) ? 'sublabel ' ~ label_class : 'sublabel' %}
 
-<div class="sublabel-container">
-    <a href="#" class="js-expand-sublabel"><span class="plus">+</span></a>
-    <p class="{{ class }}">It is necessary to provide both a desktop and mobile version of the photo. Desktop dimensions should be more landscape, while mobile dimensions should be more portrait.</p>
+<div class="js-wrapper-show-hide">
+    <a href="#" class="js-trigger-show-hide"><span>+</span></a>
+    <div class="js-toggle-show-hide">
+        <p class="{{ class }}">It is necessary to provide both a desktop and mobile version of the photo. Desktop dimensions should be more landscape, while mobile dimensions should be more portrait.</p>
+    </div>
 </div>

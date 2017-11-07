@@ -1,6 +1,8 @@
 {% set class = (label_class ?? false) ? 'sublabel ' ~ label_class : 'sublabel' %}
 
-<div class="sublabel-container">
-    <a href="#" class="js-expand-sublabel"><span class="plus">+</span></a>
-    <p class="{{ class }}">This is the text that is linked, and many times is underlined. This is very important for SEO, so be as descriptive as possible. </strong>The more keyword-rich you can make this, <strong>the better.</strong> Good link text would be something like <span class="example">an explanation of how photosynthesis works</span>, since these are the actual words people search for on Google. Bad link text would be something like <span class="example">click here</span>. This is very non-descriptive and unhelpful to both your viewers and Google.</p>
+<div class="js-wrapper-show-hide">
+    <a href="#" class="js-trigger-show-hide"><span>+</span></a>
+    <div class="js-toggle-show-hide">
+        <p class="{{ class }}">This is the text that is linked, and many times is underlined. This is very important for SEO, so be as descriptive as possible. </strong>The more keyword-rich you can make this, <strong>the better.</strong> Good link text would be something like <span class="example">an explanation of how photosynthesis works</span>, since these are the actual words people search for on Google. Bad link text would be something like <span class="example">click here</span>. This is very non-descriptive and unhelpful to both your viewers and Google.</p>
+    </div>
 </div>

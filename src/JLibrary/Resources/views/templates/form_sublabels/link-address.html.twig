@@ -1,6 +1,8 @@
 {% set class = (label_class ?? false) ? 'sublabel ' ~ label_class : 'sublabel' %}
 
-<div class="sublabel-container">
-    <a href="#" class="js-expand-sublabel"><span class="plus">+</span></a>
-    <p class="{{ class }}">This is the link address. If the link was for a page on this site, it would be formatted as <span class="example">about-us</span> or <span class="example">events/christmas-party</span>. If the link was for a webpage outside of this site, it needs to be fully formatted, such as <span class="example">http://www.example.com</span></p>
+<div class="js-wrapper-show-hide">
+    <a href="#" class="js-trigger-show-hide"><span>+</span></a>
+    <div class="js-toggle-show-hide">
+        <p class="{{ class }}">This is the link address. If the link was for a page on this site, it would be formatted as <span class="example">about-us</span> or <span class="example">events/christmas-party</span>. If the link was for a webpage outside of this site, it needs to be fully formatted, such as <span class="example">http://www.example.com</span></p>
+    </div>
 </div>

@@ -1,6 +1,8 @@
 {% set class = (label_class ?? false) ? 'sublabel ' ~ label_class : 'sublabel' %}
 
-<div class="sublabel-container">
-    <a href="#" class="js-expand-sublabel"><span class="plus">+</span></a>
-    <p class="{{ class }}">This would act as a decription for the image if someone had images turned off or was using a screen reader. This is very important for SEO!</p>
+<div class="js-wrapper-show-hide">
+    <a href="#" class="js-trigger-show-hide"><span>+</span></a>
+    <div class="js-toggle-show-hide">
+        <p class="{{ class }}">This would act as a decription for the image if someone had images turned off or was using a screen reader. This is very important for SEO!</p>
+    </div>
 </div>

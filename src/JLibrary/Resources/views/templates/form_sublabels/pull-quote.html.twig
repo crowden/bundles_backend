@@ -1,6 +1,8 @@
 {% set class = (label_class ?? false) ? 'sublabel ' ~ label_class : 'sublabel' %}
 
-<div class="sublabel-container">
-    <a href="#" class="js-expand-sublabel"><span class="plus">+</span></a>
-    <p class="{{ class }}">This pull quote will be used when this item appears with several others. It is relatively small in length, but sums up what the entire content peice is about.</p>
+<div class="js-wrapper-show-hide">
+    <a href="#" class="js-trigger-show-hide"><span>+</span></a>
+    <div class="js-toggle-show-hide">
+        <p class="{{ class }}">This pull quote will be used when this item appears with several others. It is relatively small in length, but sums up what the entire content peice is about.</p>
+    </div>
 </div>

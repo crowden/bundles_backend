@@ -1,9 +1,11 @@
 {% set class = (label_class ?? false) ? 'sublabel ' ~ label_class : 'sublabel' %}
 
-<div class="sublabel-container">
-    <a href="#" class="js-expand-sublabel"><span class="plus">+</span></a>
-    <div class="{{ class }}">
-        <p>This field will only accept markdown. Mardown is simply a way of writing plain text that will be turned into HTML markup. It allows the user to "create" HTML without having to know HTML. Click the options below to see examples of each.</p>
-        <section id="js-md-help-popovers"></section>
+<div class="js-wrapper-show-hide">
+    <a href="#" class="js-trigger-show-hide"><span>+</span></a>
+    <div class="js-toggle-show-hide">
+        <div class="{{ class }}">
+            <p>This field will only accept markdown. Mardown is simply a way of writing plain text that will be turned into HTML markup. It allows the user to "create" HTML without having to know HTML. Click the options below to see examples of each.</p>
+            <section id="js-md-help-popovers"></section>
+        </div>
     </div>
 </div>
