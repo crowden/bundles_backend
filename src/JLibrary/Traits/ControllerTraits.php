@@ -15,7 +15,7 @@ trait ControllerTraits
      *     - upload
      */
     protected function manageFile($entity, $case, $handler, $file = NULL, $current_file_name = NULL){
-        $file_manager = $this->get('j29.single_file_manager');
+        $file_manager = $this->get('JLibrary\Service\SingleFileManager');
         $file_directory = $this->getParameter(self::UPLOAD_DIR)[self::FILE_DIR];
 
         switch($case){
