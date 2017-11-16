@@ -8,6 +8,11 @@ services:
     resource: '../../src/J29Bundle/*'
     exclude: '../../src/J29Bundle/Entity'
 
+  J29Bundle\Controller\:
+    resource: '../../src/J29Bundle/Controller'
+    public: true
+    tags: ['controller.service_arguments']
+
   #---------- JLibrary ----------#
 
   JLibrary\Service\Sanitizer:
