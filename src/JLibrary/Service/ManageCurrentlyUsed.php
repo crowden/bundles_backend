@@ -2,13 +2,13 @@
 
 namespace JLibrary\Service;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class ManageCurrentlyUsed
 {
     private $entity_manager;
     
-    public function __construct(EntityManager $entity_manager){
+    public function __construct(EntityManagerInterface $entity_manager){
         $this->entity_manager = $entity_manager;
     }
 
