@@ -56,7 +56,7 @@ trait ControllerTraits
      *     - delete
      */
     protected function sanitizeAndPersist($entity, $action){
-        $sanitizer = $this->get('j29.sanitizer');
+        $sanitizer = $this->get('JLibrary\Service\Sanitizer');
         $sanitizer->sanitize($entity, $this->sanitize_options);
         
         $entity_manager = $this->getDoctrine()->getManager();
