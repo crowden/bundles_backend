@@ -1,0 +1,16 @@
+{
+    "autoload": {
+        "psr-4": {
+            "J29Bundle\\": "src/J29Bundle"
+        }
+    },
+    "repositories": [
+        {
+            "type":"vcs",
+            "url":"https://github.com/crowden/bundles_backend.git"
+        }
+    ],
+    "require": {
+        "j29/library": "dev-master",
+    }
+}

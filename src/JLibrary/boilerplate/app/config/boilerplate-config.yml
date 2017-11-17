@@ -6,11 +6,7 @@ parameters:
     
     # Upload Directories
     upload_directories:
-        board_members: '%kernel.root_dir%/../public_html/uploads/board_members/'
-
-framework:
-    #esi: ~
-    translator: { fallbacks: ['%locale%'] }
+        __DIR__: '%kernel.root_dir%/../public_html/uploads/__DIR__/'
 
 # Twig Configuration
 twig:

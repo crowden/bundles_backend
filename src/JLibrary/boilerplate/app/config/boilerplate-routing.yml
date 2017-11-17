@@ -1,10 +1,18 @@
-NAMESPACE.global:
-  resource: '@BUNDLE/Controller/'
+j29.admin.login:
+  resource: '@J29Bundle/Controller/admin/SecurityController.php'
   type: annotation
 
-NAMESPACE.admin.login:
-  resource: '@BUNDLE/Controller/login/SecurityController.php'
-  type: annotation
-
-NAMESPACE.admin.logout:
+j29.admin.logout:
   path: '/logout'
+
+j29.admin:
+  resource: '@J29Bundle/Controller/admin'
+  type: annotation
+
+j29.crud:
+  resource: '@J29Bundle/Controller/crud'
+  type: annotation
+
+j29.www:
+  resource: '@J29Bundle/Controller/www'
+  type: annotation
