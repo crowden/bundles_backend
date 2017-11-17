@@ -22,5 +22,5 @@ services:
     public: true
   
   JLibrary\Service\SingleFileManager:
-    arguments: [%upload_directories%]
+    arguments: ['%upload_directories%']
     public: true
