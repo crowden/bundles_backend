@@ -1,0 +1,43 @@
+{# Options for widget element:
+    - include: 'JLibrary:templates/admin_homepage:cms-widget-element.html.twig'
+    - heading: [string]
+    - description: [string]
+    - path_list: [string][route_index]
+    - path_new: [string][route_new]
+    - path_manage: [string][route_manage]
+    - sort_by: [string][url_path]
+#}
+
+{% extends 'JLibrary:templates/layout:basic.html.twig' %}
+
+{% block main_content %}
+    <div class="admin page-cms-homepage main-content">
+        <div class="cms-widgets">
+            <section class="cms-widget js-wrapper-show-hide">
+                <h2 class="heading">Admin Contact</h2>
+                <a href="#" class="js-trigger-show-hide"><span>+</span></a>
+                <div class="js-toggle-show-hide">
+                    {% include 'JLibrary:templates/admin_homepage:cms-widget-element.html.twig' with 
+                        {
+                            heading: 'Heading',
+                            description: 'Description',
+                            path_manage: 'j29.www.index'
+                        } 
+                    %}
+                </div>
+            </section>
+        </div>
+        <div class="ga-widgets">
+            {# FLASHBAGS #}
+            {% include 'JLibrary:templates/flashbags:flashbags.html.twig' %}
+            
+            <h1 class="page-title">{{ page_title }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {# necessary to trigger show/hide boxes #}
+    <script type="text/javascript">var j29_toggle_hidden_containers = true;</script>
+    {{ parent() }}
+{% endblock %}

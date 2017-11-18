@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 class IndexController extends Controller
 {
     /**
-     * @Route("/", name="j29.admin.index")
+     * @Route("/admin", name="j29.admin.index")
      */
     public function indexAction(Request $request){
         $build = array(
