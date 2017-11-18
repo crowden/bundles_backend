@@ -15,4 +15,15 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class Entity
 {
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+    /**
+     * @ORM\Column(name="published", type="boolean", nullable=true)
+     */
+    private $published;
 }
