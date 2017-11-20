@@ -67,7 +67,7 @@ class BoardMemberController extends Controller
         $form->handleRequest($request);
 
         // form submission
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isValid()){
             $image = $this->manageFile($entity, 'file_present', self::IMAGE_HANDLER);
             
             if($image){
@@ -77,12 +77,10 @@ class BoardMemberController extends Controller
                 $this->sanitizeAndPersist($entity, 'create');
                 return $this->redirectToRoute(self::ROUTE_INDEX);
             } else {
-                $request->getSession()->getFlashBag()->add('danger', 'You must upload an image!');
+                $this->addFlash('danger', 'You must upload an image!');
             }
-        }
-
-        if ($form->isSubmitted() && !$form->isValid()){
-            $request->getSession()->getFlashBag()->add('warning', 'You have errors with your form.');
+        } else {
+            $this->addFlash('warning', 'You have errors with your form.');
         }
 
         // template data
@@ -111,16 +109,14 @@ class BoardMemberController extends Controller
         
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isValid()){
             $this->manageFile($entity, 'new_file', self::IMAGE_HANDLER, null, $filename);
             
             // sanitize, persist, and redirect
             $this->sanitizeAndPersist($entity, 'edit');
             return $this->redirectToRoute(self::ROUTE_INDEX);
-        }
-
-        if ($form->isSubmitted() && !$form->isValid()){
-            $request->getSession()->getFlashBag()->add('warning', 'You have errors with your form.');
+        } else {
+            $this->addFlash('warning', 'You have errors with your form.');
         }
 
         // template data
@@ -149,8 +145,8 @@ class BoardMemberController extends Controller
         $form->handleRequest($request);
     
         // form submission
-        if ($form->isSubmitted() && $form->isValid()) {
-            $request->getSession()->getFlashBag()->add('success', 'Item successfully deleted');
+        if ($form->isValid()) {
+            $this->addFlash('success', 'Item successfully deleted');
 
             $this->manageFile($entity, 'delete', self::IMAGE_HANDLER);
             $this->sanitizeAndPersist($entity, 'delete');
