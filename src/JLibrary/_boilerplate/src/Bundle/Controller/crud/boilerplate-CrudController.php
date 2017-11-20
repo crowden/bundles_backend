@@ -15,7 +15,7 @@ use JLibrary\Traits;
  * Entity crud controller
  * @Route("/admin/entities")
  */
-class BoardMemberController extends Controller
+class EntityController extends Controller
 {
     use ControllerTraits;
     
