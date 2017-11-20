@@ -85,14 +85,14 @@ class BoardMemberController extends Controller
 
         // template data
         $build = [
-            'creating_entity' => '#',
+            'creating_entity' => #,
             'form' => $form->createView(),
             'form_size' => '#',
             'image_preview' => '#',
             'image_mobile_preview' => '#',
             'page_description' => 'Admin Page',
             'page_title' => '#',
-            'show_image_preview' => '#',
+            'show_image_preview' => #,
         ];
 
         return $this->render(self::TMPL_ACTION, $build);
@@ -121,7 +121,7 @@ class BoardMemberController extends Controller
 
         // template data
         $build = [
-            'creating_entity' => '#',
+            'creating_entity' => #,
             'delete_form' => $delete_form->createView(),
             'form' => $form->createView(),
             'form_size' => '#',
@@ -129,7 +129,7 @@ class BoardMemberController extends Controller
             'image_mobile_preview' => '#',
             'page_description' => 'Admin Page',
             'page_title' => '#',
-            'show_image_preview' => '#',
+            'show_image_preview' => #,
         ];
 
         return $this->render(self::TMPL_ACTION, $build);
