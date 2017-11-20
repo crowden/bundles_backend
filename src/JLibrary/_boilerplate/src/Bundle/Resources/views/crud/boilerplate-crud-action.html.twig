@@ -45,6 +45,16 @@
                 %}
             </fieldset>
             <fieldset>
+                <legend>Page Content</legend>
+                {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+                    {
+                        field: form.contentRaw,
+                        label: 'Content',
+                        sublabel_file: 'markdown'
+                    } 
+                %}
+            </fieldset>
+            <fieldset>
                 <legend>Published</legend>
                 {% include 'JLibrary:templates/form_fields:published.html.twig' %}
             </fieldset>
@@ -56,6 +66,9 @@
 
 {% block javascript %}
     {# necessary to trigger show/hide boxes #}
-    <script type="text/javascript">var j29_toggle_hidden_containers = true;</script>
+    <script type="text/javascript">
+        var j29_toggle_hidden_containers = true;
+        /*var j29_render_md_helper = true;*/
+    </script>
     {{ parent() }}
 {% endblock %}
