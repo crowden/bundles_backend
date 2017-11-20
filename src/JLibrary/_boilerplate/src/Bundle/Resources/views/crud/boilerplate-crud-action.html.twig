@@ -6,34 +6,29 @@
         type: [string]
     sublabel_class:
         type: [string]
-    row_class
-        type: [string]['basis##']
+    custom_sublabel:
+        type: [string]
+    custom_sublabel_class:
+        type: [string]
+    sublabel_file:
+        type: [string]
+[textboxes]
+    row_class:
+        type: [string]
+        use_example: flexbasis##
+        description: used when in <div class="flex">
 
-    [textboxes]
-        row_class:
-            type: [string]
-            use_example: flexbasis##
-            description: used when in <div class="flex">
-    
-    [checkbox_collections]
-        pod_class:
-            type: [string]
-            use_example: flexbasis##
-    
-    [image_document_publish]
-        custom_sublabel:
-            type: [string]
-        custom_sublabel_class:
-            type: [string]
-        sublabel_file:
-            type: [string]
-        
-        [image_document]
-            directory:
-                type: [string]
-            placeholder:
-                type: boolean
-                description: used when displaying a preview from the images dir, not uploaded image. When using this, directory variable is not necessary!
+[checkbox_collections]
+    pod_class:
+        type: [string]
+        use_example: flexbasis##
+
+[image_document]
+    directory:
+        type: [string]
+    placeholder:
+        type: boolean
+        description: used when displaying a preview from the images dir, not uploaded image. When using this, directory variable is not necessary!
 #}
 
 {% extends 'JLibrary:templates/layout:basic.html.twig' %}
