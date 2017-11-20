@@ -37,8 +37,8 @@
 
         {% block crud_table_data %}
             <div class="column basis50">{{ entity.name }}</div>
-            <div class="column center-textbasis25">{% if entity.published %}&#128309;{% else %}&#9899;{% endif %}</div>
-            <div class="column column-actions center-textbasis25"><a href="{{ path('j29.crud.###.edit', {'id': entity.id}) }}" class="btn btn-danger">update / delete</a>
+            <div class="column center-text basis25">{% if entity.published %}&#128309;{% else %}&#9899;{% endif %}</div>
+            <div class="column column-actions center-text basis25"><a href="{{ path('j29.crud.###.edit', {'id': entity.id}) }}" class="btn btn-danger">update / delete</a>
             </div>
         {% endblock %}
     {% endembed %}
