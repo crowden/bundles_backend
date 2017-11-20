@@ -56,3 +56,9 @@
         {% block crud_cancel_path %}{{ path('j29.crud.###.index') }}{% endblock %}
     {% endembed %}
 {% endblock %}
+
+{% block javascript %}
+    {# necessary to trigger show/hide boxes #}
+    <script type="text/javascript">var j29_toggle_hidden_containers = true;</script>
+    {{ parent() }}
+{% endblock %}

@@ -80,7 +80,7 @@ class BoardMemberController extends Controller
                 $this->addFlash('danger', 'You must upload an image!');
             }
         } else {
-            $this->addFlash('warning', 'You have errors with your form.');
+            if ($form->isSubmitted()) $this->addFlash('warning', 'You have errors with your form.');
         }
 
         // template data
@@ -116,7 +116,7 @@ class BoardMemberController extends Controller
             $this->sanitizeAndPersist($entity, 'edit');
             return $this->redirectToRoute(self::ROUTE_INDEX);
         } else {
-            $this->addFlash('warning', 'You have errors with your form.');
+            if ($form->isSubmitted()) $this->addFlash('warning', 'You have errors with your form.');
         }
 
         // template data
