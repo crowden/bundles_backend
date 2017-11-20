@@ -23,7 +23,7 @@ class Entity
     private $id;
     
     /**
-     * @ORM\Column(name="published", type="boolean", nullable=true)
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $published;
 }
