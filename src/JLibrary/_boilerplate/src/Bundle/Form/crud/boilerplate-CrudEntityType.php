@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use J29Bundle\crud\Entity;
+
 class EntityType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options){
@@ -19,7 +21,7 @@ class EntityType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver){
         $resolver->setDefaults(array(
-            'data_class' => 'entity_class',
+            'data_class' => Entity::class,
         ));
     }
 }
