@@ -2,23 +2,50 @@
 
 {% block main_content %}
     {% embed 'JLibrary:templates/layout:crud-index.html.twig' %}
-        {% block crud_new_path %}{{ path('j29.crud.###.new') }}{% endblock %}
+        {% block crud_new_path %}{{ path('j29.crud.###.new') }}{% endblock %}        
+
+        {% set sorting_options = 
+            {
+                'base_url' : path('j29.crud.###.index') ~ 'sort/',
+                'paths' : 
+                [
+                    {
+                        'name': '###',
+                        'url': '###'
+                    },
+                    {
+                        'name': 'published',
+                        'url': 'published/desc'
+                    },
+                    {
+                        'name': 'reset',
+                        'url': 'reset'
+                    }
+                ]
+            }
+        %}
+
+        {% block sorting %}
+            <div id="js-sorting" class="sorting" data-options="{{ sorting_options|json_encode|e('html_attr') }}"></div>
+        {% endblock %}
 
         {% block crud_table_header %}
-            <div class="header h2 basis##">Image</div>
-            <div class="header h2 basis##">Name</div>
-            <div class="header h2 basis## center-text">Published</div>
-            <div class="header h2 header-actions basis## center-text">Actions</div>
+            <div class="header h2 basis50">Name</div>
+            <div class="header h2 basis25 center-text">Published</div>
+            <div class="header h2 header-actions basis25 center-text">Actions</div>
         {% endblock %}
 
         {% block crud_table_data %}
-            <div class="column basis##">
-                <img class="thumbnail" src="{{ asset('uploads/dir/' ~ entity.image) }}" width="150">
-            </div>
-            <div class="column basis##">{{ entity.field }}</div>
-            <div class="column basis## center-text">{% if entity.published %}&#128309;{% else %}&#9899;{% endif %}</div>
-            <div class="column column-actions basis##"><a href="{{ path('j29.crud.###.edit', {'id': entity.id}) }}" class="btn btn-danger">update / delete</a>
+            <div class="column basis50">{{ entity.name }}</div>
+            <div class="column center-textbasis25">{% if entity.published %}&#128309;{% else %}&#9899;{% endif %}</div>
+            <div class="column column-actions center-textbasis25"><a href="{{ path('j29.crud.###.edit', {'id': entity.id}) }}" class="btn btn-danger">update / delete</a>
             </div>
         {% endblock %}
     {% endembed %}
+{% endblock %}
+
+{% block javascript %}
+    {# necessary to trigger show/hide boxes #}
+    <script type="text/javascript">var j29_sort_crud_index = true;</script>
+    {{ parent() }}
 {% endblock %}
