@@ -1,3 +1,39 @@
+{#
+[ALL]
+    field:
+        type: [form variable]
+    label:
+        type: [string]
+    sublabel_class:
+        type: [string]
+
+    [textboxes]
+        row_class:
+            type: [string]
+            use_example: flexbasis##
+            description: used when in <div class="flex">
+    
+    [checkbox_collections]
+        pod_class:
+            type: [string]
+            use_example: flexbasis##
+    
+    [image_document_publish]
+        custom_sublabel:
+            type: [string]
+        custom_sublabel_class:
+            type: [string]
+        sublabel_file:
+            type: [string]
+        
+        [image_document]
+            directory:
+                type: [string]
+            placeholder:
+                type: boolean
+                description: used when displaying a preview from the images dir, not uploaded image. When using this, directory variable is not necessary!
+#}
+
 {% extends 'JLibrary:templates/layout:basic.html.twig' %}
 
 {% block main_content %}
@@ -17,6 +53,6 @@
             </fieldset>
         {% endblock %}
 
-        {% block crud_cancel_path %}{{ path('j29.admin.###.index') }}{% endblock %}
+        {% block crud_cancel_path %}{{ path('j29.crud.###.index') }}{% endblock %}
     {% endembed %}
 {% endblock %}

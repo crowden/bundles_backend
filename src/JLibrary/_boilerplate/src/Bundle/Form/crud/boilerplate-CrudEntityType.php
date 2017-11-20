@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-use J29Bundle\crud\Entity;
+use J29Bundle\Entity\crud\Entity;
 
 class EntityType extends AbstractType
 {
