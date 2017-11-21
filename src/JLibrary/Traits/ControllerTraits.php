@@ -136,6 +136,6 @@ trait ControllerTraits
         $query_builder->select('COUNT(' . $alias . '.id)');
         $query_builder->from($namespace, $alias);
 
-        return int() ($query_builder->getQuery()->getSingleScalarResult());
+        return (int)$query_builder->getQuery()->getSingleScalarResult();
     }
 }
