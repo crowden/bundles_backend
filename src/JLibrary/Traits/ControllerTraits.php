@@ -131,12 +131,11 @@ trait ControllerTraits
         $query_builder = $this
             ->getDoctrine()
             ->getManager()
-            ->createQueryBuilder()
-        ;
+            ->createQueryBuilder();
 
         $query_builder->select('COUNT(' . $alias . '.id)');
         $query_builder->from($namespace, $alias);
 
-        return int() $query_builder->getQuery()->getSingleScalarResult();
+        return int()$query_builder->getQuery()->getSingleScalarResult();
     }
 }
