@@ -127,7 +127,7 @@ trait ControllerTraits
         }
     }
 
-/*    protected function getEntityCount($namespace, $alias){
+    protected function countEntities($namespace, $alias){
         $query_builder = $this
             ->getDoctrine()
             ->getManager()
@@ -138,5 +138,5 @@ trait ControllerTraits
         $query_builder->from($namespace, $alias);
 
         return int() $query_builder->getQuery()->getSingleScalarResult();
-    }*/
+    }
 }
