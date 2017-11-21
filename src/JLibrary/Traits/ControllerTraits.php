@@ -126,4 +126,17 @@ trait ControllerTraits
             return $this->redirectToRoute(self::ROUTE_INDEX);
         }
     }
+
+    protected function getEntityCount($namespace, $alias){
+        $query_builder = $this
+            ->getDoctrine()
+            ->getManager()
+            ->createQueryBuilder()
+        ;
+
+        $query_builder->select('COUNT(' . $alias . '.id)');
+        $query_builder->from($namespace, $alias);
+
+        return int() $query_builder->getQuery()->getSingleScalarResult();
+    }
 }
