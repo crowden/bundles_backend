@@ -133,6 +133,6 @@ trait ControllerTraits
         $query_builder->select('COUNT(ns.id)');
         $query_builder->from($namespace, 'ns');
 
-        return $query_builder->getQuery()->getSingleScalarResult();
+        return (int)$query_builder->getQuery()->getSingleScalarResult();
     }
 }
