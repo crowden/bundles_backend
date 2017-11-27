@@ -8,6 +8,10 @@ j29.admin.logout:
 j29.admin:
   resource: '@J29Bundle/Controller/admin'
   type: annotation
+  
+j29.category:
+ resource: '@J29Bundle/Controller/category'
+ type: annotation
 
 j29.crud:
   resource: '@J29Bundle/Controller/crud'

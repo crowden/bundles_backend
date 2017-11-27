@@ -1,36 +1,36 @@
 <?php 
 
-namespace J29Bundle\Controller\crud;
+namespace J29Bundle\Controller\category;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-use J29Bundle\Entity\crud\Entity;
-use J29Bundle\Form\crud\EntityType;
+use J29Bundle\Entity\category\Entity;
+use J29Bundle\Form\category\EntityType;
 use JLibrary\Traits\ControllerTraits;
 
 /**
- * Entity crud controller
+ * Entity category controller
  * @Route("/admin/entities")
  */
 class EntityController extends Controller
 {
     use ControllerTraits;
     
-    const ENTITY_NAMESPACE = 'J29Bundle:crud\Entity';
+    const ENTITY_NAMESPACE = 'J29Bundle:category\Entity';
     
     const UPLOAD_DIR = 'upload_directories';
     const FILE_DIR = 'entity_dir';
     
     const IMAGE_HANDLER = 'Image';
 
-    const TMPL_INDEX = 'J29Bundle:crud:crud-index-entity.html.twig';
-    const TMPL_ACTION = 'J29Bundle:crud:crud-action-entity.html.twig';
+    const TMPL_INDEX = 'J29Bundle:category:category-index-entity.html.twig';
+    const TMPL_ACTION = 'J29Bundle:category:category-action-entity.html.twig';
 
-    const ROUTE_INDEX = 'j29.crud.entity.index';
-    const ROUTE_DELETE = 'j29.crud.entity.delete';
+    const ROUTE_INDEX = 'j29.category.entity.index';
+    const ROUTE_DELETE = 'j29.category.entity.delete';
 
     // type:[plain_text][url][url_validated][email_address][markdown_general]
     private $sanitize_options = array(
@@ -41,7 +41,7 @@ class EntityController extends Controller
     );
 
     /**
-     * @Route("/", name="j29.crud.entity.index")
+     * @Route("/", name="j29.category.entity.index")
      * @Method("GET")
      */
     public function indexAction(){
@@ -57,7 +57,7 @@ class EntityController extends Controller
     }
 
     /**
-     * @Route("/new", name="j29.crud.entity.new")
+     * @Route("/new", name="j29.category.entity.new")
      */
     public function newAction(Request $request){
         $entity = new Entity();
@@ -103,7 +103,7 @@ class EntityController extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="j29.crud.entity.edit", requirements={"id" = "\d+"})
+     * @Route("/{id}/edit", name="j29.category.entity.edit", requirements={"id" = "\d+"})
      */
     public function editAction(Request $request, Entity $entity){
         $filename = $this->manageFile($entity, 'toggle', self::IMAGE_HANDLER);
@@ -140,7 +140,7 @@ class EntityController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="j29.crud.entity.delete", requirements={"id" = "\d+"})
+     * @Route("/{id}", name="j29.category.entity.delete", requirements={"id" = "\d+"})
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Entity $entity){

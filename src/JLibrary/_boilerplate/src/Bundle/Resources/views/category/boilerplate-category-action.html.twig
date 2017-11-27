@@ -1,0 +1,74 @@
+{#
+[ALL]
+    field:
+        type: [form variable]
+    label:
+        type: [string]
+    sublabel_class:
+        type: [string]
+    custom_sublabel:
+        type: [string]
+    custom_sublabel_class:
+        type: [string]
+    sublabel_file:
+        type: [string]
+[textboxes]
+    row_class:
+        type: [string]
+        use_example: flexbasis##
+        description: used when in <div class="flex">
+
+[checkbox_collections]
+    pod_class:
+        type: [string]
+        use_example: flexbasis##
+
+[image_document]
+    directory:
+        type: [string]
+    placeholder:
+        type: boolean
+        description: used when displaying a preview from the images dir, not uploaded image. When using this, directory variable is not necessary!
+#}
+
+{% extends 'JLibrary:templates/layout:basic.html.twig' %}
+
+{% block main_content %}
+    {% embed 'JLibrary:templates/layout:crud-action.html.twig' %}
+        {% block crud_form_controls %}
+            <fieldset>
+                <legend>General</legend>
+                {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+                    {
+                        field: form.field
+                    } 
+                %}
+            </fieldset>
+            <fieldset>
+                <legend>Page Content</legend>
+                {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+                    {
+                        field: form.contentRaw,
+                        label: 'Content',
+                        sublabel_file: 'markdown'
+                    } 
+                %}
+            </fieldset>
+            <fieldset>
+                <legend>Published</legend>
+                {% include 'JLibrary:templates/form_fields:published.html.twig' %}
+            </fieldset>
+        {% endblock %}
+
+        {% block crud_cancel_path %}{{ path('j29.category.###.index') }}{% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block javascript %}
+    {# necessary to trigger show/hide boxes #}
+    <script type="text/javascript">
+        var j29_toggle_hidden_containers = true;
+        /*var j29_render_md_helper = true;*/
+    </script>
+    {{ parent() }}
+{% endblock %}

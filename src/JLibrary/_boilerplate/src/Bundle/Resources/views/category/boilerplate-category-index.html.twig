@@ -1,0 +1,51 @@
+{% extends 'JLibrary:templates/layout:basic.html.twig' %}
+
+{% block main_content %}
+    {% embed 'JLibrary:templates/layout:crud-index.html.twig' %}
+        {% block crud_new_path %}{{ path('j29.category.###.new') }}{% endblock %}        
+
+        {% set sorting_options = 
+            {
+                'base_url' : path('j29.category.###.index') ~ 'sort/',
+                'paths' : 
+                [
+                    {
+                        'name': '###',
+                        'url': '###'
+                    },
+                    {
+                        'name': 'published',
+                        'url': 'published/desc'
+                    },
+                    {
+                        'name': 'reset',
+                        'url': 'reset'
+                    }
+                ]
+            }
+        %}
+
+        {% block sorting %}
+            <div id="js-sorting" class="sorting" data-options="{{ sorting_options|json_encode|e('html_attr') }}"></div>
+        {% endblock %}
+
+        {% block crud_table_header %}
+            <div class="header h2 basis50">Name</div>
+            <div class="header h2 basis25 center-text">Published</div>
+            <div class="header h2 header-actions basis25 center-text">Actions</div>
+        {% endblock %}
+
+        {% block crud_table_data %}
+            <div class="column basis50">{{ entity.name }}</div>
+            <div class="column center-text basis25">{% if entity.published %}&#128309;{% else %}&#9899;{% endif %}</div>
+            <div class="column column-actions center-text basis25"><a href="{{ path('j29.category.###.edit', {'id': entity.id}) }}" class="btn btn-danger">update / delete</a>
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block javascript %}
+    {# necessary to trigger show/hide boxes #}
+    <script type="text/javascript">var j29_sort_crud_index = true;</script>
+    {{ parent() }}
+{% endblock %}
