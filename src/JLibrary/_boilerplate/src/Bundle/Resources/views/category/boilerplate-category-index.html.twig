@@ -10,12 +10,8 @@
                 'paths' : 
                 [
                     {
-                        'name': '###',
-                        'url': '###'
-                    },
-                    {
-                        'name': 'published',
-                        'url': 'published/desc'
+                        'name': 'title',
+                        'url': 'title'
                     },
                     {
                         'name': 'reset',
@@ -30,14 +26,12 @@
         {% endblock %}
 
         {% block crud_table_header %}
-            <div class="header h2 basis50">Name</div>
-            <div class="header h2 basis25 center-text">Published</div>
+            <div class="header h2 basis50">Title</div>
             <div class="header h2 header-actions basis25 center-text">Actions</div>
         {% endblock %}
 
         {% block crud_table_data %}
-            <div class="column basis50">{{ entity.name }}</div>
-            <div class="column center-text basis25">{% if entity.published %}&#128309;{% else %}&#9899;{% endif %}</div>
+            <div class="column basis50">{{ entity.title }}</div>
             <div class="column column-actions center-text basis25"><a href="{{ path('j29.category.###.edit', {'id': entity.id}) }}" class="btn btn-danger">update / delete</a>
             </div>
         {% endblock %}

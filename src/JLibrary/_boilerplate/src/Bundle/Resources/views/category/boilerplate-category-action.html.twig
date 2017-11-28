@@ -36,28 +36,11 @@
 {% block main_content %}
     {% embed 'JLibrary:templates/layout:crud-action.html.twig' %}
         {% block crud_form_controls %}
-            <fieldset>
-                <legend>General</legend>
-                {% include 'JLibrary:templates/form_fields:general.html.twig' with 
-                    {
-                        field: form.field
-                    } 
-                %}
-            </fieldset>
-            <fieldset>
-                <legend>Page Content</legend>
-                {% include 'JLibrary:templates/form_fields:general.html.twig' with 
-                    {
-                        field: form.contentRaw,
-                        label: 'Content',
-                        sublabel_file: 'markdown'
-                    } 
-                %}
-            </fieldset>
-            <fieldset>
-                <legend>Published</legend>
-                {% include 'JLibrary:templates/form_fields:published.html.twig' %}
-            </fieldset>
+            {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+                {
+                    field: form.title
+                } 
+            %}
         {% endblock %}
 
         {% block crud_cancel_path %}{{ path('j29.category.###.index') }}{% endblock %}

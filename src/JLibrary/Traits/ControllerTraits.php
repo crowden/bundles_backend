@@ -15,22 +15,21 @@ trait ControllerTraits
      *     - upload
      */
     protected function manageFile($entity, $case, $handler, $file = NULL, $current_file_name = NULL){
-        $file_manager = $this->get('JLibrary\Service\SingleFileManager');
         $file_directory = $this->getParameter(self::UPLOAD_DIR)[self::FILE_DIR];
 
         switch($case){
             case 'file_present':
-                return $file_manager->fileIsNotNull($entity, $handler);
+                return $this->file_manager->fileIsNotNull($entity, $handler);
             case 'upload':
-                $file_manager->upload($entity, $file, $file_directory, $handler);
+                $this->file_manager->upload($entity, $file, $file_directory, $handler);
                 break;
             case 'toggle':
-                return $file_manager->toggleFileAndFilename($entity, $file_directory, $handler);
+                return $this->file_manager->toggleFileAndFilename($entity, $file_directory, $handler);
             case 'new_file':
-                $file_manager->handleNewFileUpload($entity, $current_file_name, $file_directory, $handler);
+                $this->file_manager->handleNewFileUpload($entity, $current_file_name, $file_directory, $handler);
                 break;
             case 'delete':
-                $file_manager->deleteFile($entity, $file_directory, $handler);
+                $this->file_manager->deleteFile($entity, $file_directory, $handler);
                 break;
         }
     }

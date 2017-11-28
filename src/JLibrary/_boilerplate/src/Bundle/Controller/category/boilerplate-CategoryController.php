@@ -34,7 +34,7 @@ class EntityController extends Controller
 
     // type:[plain_text][url][url_validated][email_address][markdown_general]
     private $sanitize_options = array(
-        'PrivateProperty' => [
+        'Title' => [
             'type' => 'plain_text',
             'optional' => false,
         ]
