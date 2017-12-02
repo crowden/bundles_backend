@@ -1,0 +1,8 @@
+{% set class = (label_class ?? false) ? 'sublabel ' ~ label_class : 'sublabel' %}
+
+<div class="js-wrapper-show-hide">
+    <a href="#" class="js-trigger-show-hide"><span>+</span></a>
+    <div class="js-toggle-show-hide">
+        <p class="{{ class }}">Checking this</p>
+    </div>
+</div>

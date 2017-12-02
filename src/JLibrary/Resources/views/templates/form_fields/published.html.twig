@@ -4,6 +4,9 @@
     {#------------ Errors ------------#}
     <div class="field-error-container">{{ form_errors(form.published) }}</div>
     
+    {#------------ Sublabel ------------#}
+    {% include 'JLibrary:templates/form_sublabels:publish.html.twig' with {label_class: sublabel_class_present} %}
+    
     {#------------ Label ------------#}
     {{ form_label(form.published, label ?? null, {'label_attr' : {'class' : 'inline'}}) }}
     
@@ -13,7 +16,4 @@
     {% else %}
         {{ form_widget(form.published, {'attr': {'class': 'inline'}}) }}
     {% endif %}
-    
-    {#------------ Sublabel ------------#}
-    {% include 'JLibrary:templates/form_sublabels:publish.html.twig' with {label_class: sublabel_class_present} %}
 </div>

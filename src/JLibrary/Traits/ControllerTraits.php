@@ -5,36 +5,6 @@ namespace JLibrary\Traits;
 trait ControllerTraits
 {
     /**
-     * utility function for interacting with the single_file_manager service;
-     *
-     * Allowed values for @var $case include:
-     *     - delete
-     *     - file_present
-     *     - new_file
-     *     - toggle
-     *     - upload
-     */
-    protected function manageFile($entity, $case, $handler, $file = NULL, $current_file_name = NULL){
-        $file_directory = $this->getParameter(self::UPLOAD_DIR)[self::FILE_DIR];
-
-        switch($case){
-            case 'file_present':
-                return $this->file_manager->fileIsNotNull($entity, $handler);
-            case 'upload':
-                $this->file_manager->upload($entity, $file, $file_directory, $handler);
-                break;
-            case 'toggle':
-                return $this->file_manager->toggleFileAndFilename($entity, $file_directory, $handler);
-            case 'new_file':
-                $this->file_manager->handleNewFileUpload($entity, $current_file_name, $file_directory, $handler);
-                break;
-            case 'delete':
-                $this->file_manager->deleteFile($entity, $file_directory, $handler);
-                break;
-        }
-    }
-
-    /**
      * dynamically creates delete form shared by all controllers
      */
     protected function renderDeleteForm($entity){
@@ -126,6 +96,9 @@ trait ControllerTraits
         }
     }
 
+    /**
+     * Simple utitlity to count rows present in database for given entity
+     */
     protected function getEntityCount($namespace){
         $query_builder = $this->getDoctrine()->getManager()->createQueryBuilder();
         
