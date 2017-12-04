@@ -9,6 +9,7 @@
 
 {# {% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %} #}
 {% set image_directory = (placeholder ?? false) ? 'images/' : directory ~ '/' %}
+{% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %}
 
 {#------------ Sublabel ------------#}
 {% include 'JLibrary:templates/form_fields:_inc-crud-sublabel.html.twig' %}
