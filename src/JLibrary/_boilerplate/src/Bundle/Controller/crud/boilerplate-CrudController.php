@@ -47,6 +47,12 @@ class EntityController extends Controller
         ]
     );
 
+    private $template_vars = array(
+        'form_size' => '###',
+        'page_description' => 'Admin Page',
+        'file_required' => ###,
+    );
+
     /**
      * @Route("/", name="j29.crud.entity.index")
      * @Method("GET")
@@ -94,17 +100,7 @@ class EntityController extends Controller
             if ($form->isSubmitted()) $this->addFlash('warning', 'You have errors with your form.');
         }
 
-        // template data
-        $build = [
-            'creating_entity' => #,
-            'form' => $form->createView(),
-            'form_size' => '#',
-            'image_preview' => '#',
-            'image_mobile_preview' => '#',
-            'page_description' => 'Admin Page',
-            'page_title' => '#',
-            'show_image_preview' => #,
-        ];
+        // build array
 
         return $this->render(self::TMPL_ACTION, $build);
     }
@@ -130,18 +126,7 @@ class EntityController extends Controller
             if ($form->isSubmitted()) $this->addFlash('warning', 'You have errors with your form.');
         }
 
-        // template data
-        $build = [
-            'creating_entity' => #,
-            'delete_form' => $delete_form->createView(),
-            'form' => $form->createView(),
-            'form_size' => '#',
-            'image_preview' => '#',
-            'image_mobile_preview' => '#',
-            'page_description' => 'Admin Page',
-            'page_title' => '#',
-            'show_image_preview' => #,
-        ];
+        // build array
 
         return $this->render(self::TMPL_ACTION, $build);
     }
