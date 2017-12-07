@@ -26,8 +26,8 @@ class **Entity**Controller extends Controller
     const TMPL_INDEX = 'J29Bundle:crud:crud-index-entity**.html.twig';
     const TMPL_ACTION = 'J29Bundle:crud:crud-action-entity**.html.twig';
 
-    const ROUTE_INDEX = 'j29.crud.entity._-*index';
-    const ROUTE_DELETE = 'j29.crud.entity._-*delete';
+    const ROUTE_INDEX = 'j29.crud.entity__&&.index';
+    const ROUTE_DELETE = 'j29.crud.entity__&&.delete';
 
     private $jOrderer;
 
@@ -56,7 +56,7 @@ class **Entity**Controller extends Controller
     }
 
     /**
-     * @Route("/", name="j29.crud.entity._-*index")
+     * @Route("/", name="j29.crud.entity__&&.index")
      * @Method("GET")
      */
     public function indexAction(){
@@ -72,7 +72,7 @@ class **Entity**Controller extends Controller
     }
 
     /**
-     * @Route("/new", name="j29.crud.entity._-*new")
+     * @Route("/new", name="j29.crud.entity__&&.new")
      */
     public function newAction(Request $request){
         $entity = new Entity---*();
@@ -116,7 +116,7 @@ class **Entity**Controller extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="j29.crud.entity._-*edit", requirements={"id" = "\d+"})
+     * @Route("/{id}/edit", name="j29.crud.entity__&&.edit", requirements={"id" = "\d+"})
      */
     public function editAction(Request $request, Entity---* $entity){
         $form_options['order_choices'] = $this->jOrderer->getOrderChoices(array(
@@ -159,7 +159,7 @@ class **Entity**Controller extends Controller
     }
 
     /**
-     * @Route("/{id}", name="j29.crud.entity._-*delete", requirements={"id" = "\d+"})
+     * @Route("/{id}", name="j29.crud.entity__&&.delete", requirements={"id" = "\d+"})
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Entity---* $entity){
