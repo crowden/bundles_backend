@@ -56,7 +56,7 @@ class *Entity*Controller extends Controller
 
         // template data
         $build = array_merge([
-            'page_title' => '###',
+            'page_title' => '### Categories',
             'entities' => $entity_manager->getRepository(self::ENTITY_NAMESPACE)->findAll(),
         ], $this->template_vars);
 
@@ -85,7 +85,7 @@ class *Entity*Controller extends Controller
         // template data
         $build = array_merge([
             'creating_entity' => true,
-            'page_title' => '###',
+            'page_title' => 'New ### Category',
             'form' => $form->createView(),
         ], $this->template_vars);
 
@@ -112,7 +112,7 @@ class *Entity*Controller extends Controller
         // template data
         $build = array_merge([
             'creating_entity' => false,
-            'page_title' => '###',
+            'page_title' => 'Edit ### Category',
             'form' => $form->createView(),
             'delete_form' => $delete_form->createView(),
         ], $this->template_vars);
@@ -143,7 +143,7 @@ class *Entity*Controller extends Controller
      */
     public function sort(Request $request, $sort_by, $order){
         $build_variables = [
-            'page_title' => '#',
+            'page_title' => '### Categories',
             'page_description' => 'Admin Page',
         ];
 
