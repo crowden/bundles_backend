@@ -1,0 +1,27 @@
+{% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %}
+{% set document_directory = (placeholder ?? false) ? 'images/' : directory ~ '/' %}
+
+
+<div class="form-row document-row">
+    {#------------ Errors ------------#}
+    <div class="field-error-container basis100">{{ form_errors(field) }}</div>
+    
+    <div class="basis66 pod controls">
+        {#------------ Label ------------#}
+        {{ form_label(field, label ?? null) }}
+        
+        {#------------ Form Control ------------#}
+        {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+        
+        {# Only show if in edit stage #}
+        {% if not creating_entity %}
+            {% include 'JLibrary:templates/form_sublabels:document-replace-current.html.twig' with {label_class: sublabel_class_present} %}
+        {% endif %}
+    </div>
+
+    {% if show_image_preview %}
+        <div class="basis33 pod image">
+            <img class="thumbnail" src="{{ asset(document_directory ~ preview) }}">
+        </div>
+    {% endif %}
+</div>

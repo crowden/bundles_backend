@@ -6,7 +6,6 @@
     - file_description_label
  #}
 
-{# {% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %} #}
 {% set image_directory = (placeholder ?? false) ? 'images/' : directory ~ '/' %}
 {% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %}
 
@@ -50,25 +49,3 @@
         </div>
     </div>
 </div>
-
-
-
-{# <div class="form-row image-row">
-    <div class="field-error-container basis100">{{ form_errors(field) }}</div>
-    
-    <div class="basis66 pod controls">
-        {{ form_label(field, label ?? null) }}
-        
-        {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
-        
-        {% if not creating_entity %}
-            {% include 'JLibrary:templates/form_sublabels:image-replace-current.html.twig' with {label_class: sublabel_class_present} %}
-        {% endif %}
-    </div>
-
-    {% if show_image_preview %}
-        <div class="basis33 pod image">
-            <img class="thumbnail" src="{{ asset(image_directory ~ preview) }}">
-        </div>
-    {% endif %}
-</div> #}

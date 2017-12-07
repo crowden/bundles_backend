@@ -85,7 +85,7 @@ class **Entity**Controller extends Controller
         // template data
         $build = array_merge([
             'creating_entity' => true,
-            'page_title' => '###',
+            'page_title' => 'New ###',
             'form' => $form->createView(),
         ], $this->template_vars);
 
@@ -112,7 +112,7 @@ class **Entity**Controller extends Controller
         // template data
         $build = array_merge([
             'creating_entity' => false,
-            'page_title' => '###',
+            'page_title' => 'Edit ###',
             'form' => $form->createView(),
             'delete_form' => $delete_form->createView(),
         ], $this->template_vars);
@@ -143,7 +143,7 @@ class **Entity**Controller extends Controller
      */
     public function sort(Request $request, $sort_by, $order){
         $build_variables = [
-            'page_title' => '#',
+            'page_title' => '###',
             'page_description' => 'Admin Page',
         ];
 

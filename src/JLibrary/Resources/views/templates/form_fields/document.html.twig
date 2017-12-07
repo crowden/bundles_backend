@@ -1,27 +1,51 @@
+{# Needs:
+    - directory | placeholder
+    - image_preview
+    - file
+    - file_description
+    - file_description_label
+ #}
+
+{% set image_directory = (placeholder ?? false) ? 'images' : directory %}
 {% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %}
-{% set document_directory = (placeholder ?? false) ? 'images/' : directory ~ '/' %}
+
+{#------------ Sublabel ------------#}
+{% include 'JLibrary:templates/form_fields:_inc-crud-sublabel.html.twig' %}
 
 
-<div class="form-row document-row">
-    {#------------ Errors ------------#}
-    <div class="field-error-container basis100">{{ form_errors(field) }}</div>
-    
-    <div class="basis66 pod controls">
-        {#------------ Label ------------#}
-        {{ form_label(field, label ?? null) }}
-        
-        {#------------ Form Control ------------#}
-        {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
-        
-        {# Only show if in edit stage #}
-        {% if not creating_entity %}
-            {% include 'JLibrary:templates/form_sublabels:document-replace-current.html.twig' with {label_class: sublabel_class_present} %}
+<div class="flex file-container">
+    <div class="basis33 file-preview-container">
+        {% if image_preview %}
+            <img class="thumbnail" src="{{ asset(image_directory ~ '/' ~ image_preview) }}">
         {% endif %}
     </div>
-
-    {% if show_image_preview %}
-        <div class="basis33 pod image">
-            <img class="thumbnail" src="{{ asset(document_directory ~ preview) }}">
+    <div class="basis66">
+        <div class="error-container">
+            <div class="field-error-container">{{ form_errors(file) }}</div>
+            <div class="field-error-container">{{ form_errors(file_description) }}</div>
         </div>
-    {% endif %}
+        
+        <div class="alt-container">
+            {{ form_label(file_description, file_description_label) }}
+            {{ form_widget(file_description, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="flex">
+            <div class="basis50 control-container">
+                <label class="file-label">
+                    {{ form_widget(file) }}
+                    {% if creating_entity %}
+                        <span>upload</span>
+                    {% else %}
+                        <span>update</span>
+                    {% endif %}
+                </label>
+            </div>
+            <div class="basis50 control-container">
+                <label class="file-delete-label">
+                    {{ form_widget(form.delete_file) }}
+                    <span>remove file</span>
+                </label>
+            </div>
+        </div>
+    </div>
 </div>
