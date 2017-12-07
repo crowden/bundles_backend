@@ -7,27 +7,27 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-use J29Bundle\Entity\crud\Entity;
-use J29Bundle\Form\crud\EntityType;
+use J29Bundle\Entity\crud\**Entity**;
+use J29Bundle\Form\crud\**Entity**Type;
 use JLibrary\Traits\ControllerTraits;
 
 use JLibrary\Service\SingleFileManager;
 
 /**
- * Entity crud controller
+ * **Entity** crud controller
  * @Route("/admin/entities")
  */
-class EntityController extends Controller
+class **Entity**Controller extends Controller
 {
     use ControllerTraits;
     
-    const ENTITY_NAMESPACE = 'J29Bundle:crud\Entity';
+    const ENTITY_NAMESPACE = 'J29Bundle:crud\**Entity**';
 
-    const TMPL_INDEX = 'J29Bundle:crud:crud-index-entity.html.twig';
-    const TMPL_ACTION = 'J29Bundle:crud:crud-action-entity.html.twig';
+    const TMPL_INDEX = 'J29Bundle:crud:crud-index-**entity.html.twig';
+    const TMPL_ACTION = 'J29Bundle:crud:crud-action-**entity.html.twig';
 
-    const ROUTE_INDEX = 'j29.crud.entity.index';
-    const ROUTE_DELETE = 'j29.crud.entity.delete';
+    const ROUTE_INDEX = 'j29.crud.entity_-*.index';
+    const ROUTE_DELETE = 'j29.crud.entity_-*.delete';
 
     private $file_manager;
 
@@ -63,7 +63,7 @@ class EntityController extends Controller
     }
 
     /**
-     * @Route("/", name="j29.crud.entity.index")
+     * @Route("/", name="j29.crud.entity_-*.index")
      * @Method("GET")
      */
     public function indexAction(){
@@ -79,14 +79,14 @@ class EntityController extends Controller
     }
 
     /**
-     * @Route("/new", name="j29.crud.entity.new")
+     * @Route("/new", name="j29.crud.entity_-*.new")
      */
     public function newAction(Request $request){
-        $entity = new Entity();
+        $entity = new *Entity---();
 
         // form creation
         $form = $this->createForm(
-            EntityType::class, 
+            *Entity---Type::class, 
             $entity, 
             ['disable_file_delete' => $this->template_vars['file_required']]
         );
@@ -126,9 +126,9 @@ class EntityController extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="j29.crud.entity.edit", requirements={"id" = "\d+"})
+     * @Route("/{id}/edit", name="j29.crud.entity_-*.edit", requirements={"id" = "\d+"})
      */
-    public function editAction(Request $request, Entity $entity){
+    public function editAction(Request $request, *Entity--- $entity){
         $file = $this->file_manager->manage([
             'mode' => 'toggle',
             'entity' => $entity,
@@ -139,7 +139,7 @@ class EntityController extends Controller
 
         $delete_form = $this->renderDeleteForm($entity);
         $form = $this->createForm(
-            EntityType::class, 
+            *Entity---Type::class, 
             $entity, 
             ['disable_file_delete' => $this->template_vars['file_required']]
         );
@@ -182,10 +182,10 @@ class EntityController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="j29.crud.entity.delete", requirements={"id" = "\d+"})
+     * @Route("/{id}", name="j29.crud.entity_-*.delete", requirements={"id" = "\d+"})
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Entity $entity){
+    public function deleteAction(Request $request, *Entity--- $entity){
         // form creation
         $form = $this->renderDeleteForm($entity);
         $form->handleRequest($request);

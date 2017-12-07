@@ -7,27 +7,34 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-use J29Bundle\Entity\category\Entity;
-use J29Bundle\Form\category\EntityType;
+use J29Bundle\Entity\category\*Entity*;
+use J29Bundle\Form\category\*Entity*Type;
 use JLibrary\Traits\ControllerTraits;
 
 /**
- * Entity category controller
+ * *Entity* category controller
  * @Route("/admin/entities")
  */
-class EntityController extends Controller
+class *Entity*Controller extends Controller
 {
     use ControllerTraits;
     
-    const ENTITY_NAMESPACE = 'J29Bundle:category\Entity';
+    const ENTITY_NAMESPACE = 'J29Bundle:category\*Entity*';
 
-    const TMPL_INDEX = 'J29Bundle:category:category-index-entity.html.twig';
-    const TMPL_ACTION = 'J29Bundle:category:category-action-entity.html.twig';
+    const TMPL_INDEX = 'J29Bundle:category:category-index-**entity.html.twig';
+    const TMPL_ACTION = 'J29Bundle:category:category-action-**entity.html.twig';
 
-    const ROUTE_INDEX = 'j29.category.entity.index';
-    const ROUTE_DELETE = 'j29.category.entity.delete';
+    const ROUTE_INDEX = 'j29.category.entity**.index';
+    const ROUTE_DELETE = 'j29.category.entity**.delete';
 
-    // type:[plain_text][url][url_validated][email_address][markdown_general]
+    /**
+     * types include:
+     *     - plain_text
+     *     - url
+     *     - url_validated
+     *     - email_address
+     *     - markdown_general
+     */
     private $sanitize_options = array(
         'Title' => [
             'type' => 'plain_text',
@@ -41,7 +48,7 @@ class EntityController extends Controller
     );
 
     /**
-     * @Route("/", name="j29.category.entity.index")
+     * @Route("/", name="j29.category.entity**.index")
      * @Method("GET")
      */
     public function indexAction(){
@@ -57,13 +64,13 @@ class EntityController extends Controller
     }
 
     /**
-     * @Route("/new", name="j29.category.entity.new")
+     * @Route("/new", name="j29.category.entity**.new")
      */
     public function newAction(Request $request){
-        $entity = new Entity();
+        $entity = new __Entity--();
 
         // form creation
-        $form = $this->createForm(EntityType::class, $entity);
+        $form = $this->createForm(__Entity--Type::class, $entity);
         $form->handleRequest($request);
 
         // form submission
@@ -86,11 +93,11 @@ class EntityController extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="j29.category.entity.edit", requirements={"id" = "\d+"})
+     * @Route("/{id}/edit", name="j29.category.entity**.edit", requirements={"id" = "\d+"})
      */
-    public function editAction(Request $request, Entity $entity){
+    public function editAction(Request $request, __Entity-- $entity){
         $delete_form = $this->renderDeleteForm($entity);
-        $form = $this->createForm(EntityType::class, $entity);
+        $form = $this->createForm(__Entity--Type::class, $entity);
         
         $form->handleRequest($request);
 
@@ -114,10 +121,10 @@ class EntityController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="j29.category.entity.delete", requirements={"id" = "\d+"})
+     * @Route("/{id}", name="j29.category.entity**.delete", requirements={"id" = "\d+"})
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Entity $entity){
+    public function deleteAction(Request $request, __Entity-- $entity){
         // form creation
         $form = $this->renderDeleteForm($entity);
         $form->handleRequest($request);

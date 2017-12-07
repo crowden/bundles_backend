@@ -7,27 +7,27 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-use J29Bundle\Entity\crud\Entity;
-use J29Bundle\Form\crud\EntityType;
+use J29Bundle\Entity\crud\**Entity**;
+use J29Bundle\Form\crud\**Entity**Type;
 use JLibrary\Traits\ControllerTraits;
 
 use JLibrary\Service\Orderer;
 
 /**
- * Entity crud controller
+ * **Entity** crud controller
  * @Route("/admin/entities")
  */
-class EntityController extends Controller
+class **Entity**Controller extends Controller
 {
     use ControllerTraits;
     
-    const ENTITY_NAMESPACE = 'J29Bundle:crud\Entity';
+    const ENTITY_NAMESPACE = 'J29Bundle:crud\**Entity**';
 
-    const TMPL_INDEX = 'J29Bundle:crud:crud-index-sponsorship-level.html.twig';
-    const TMPL_ACTION = 'J29Bundle:crud:crud-action-sponsorship-level.html.twig';
+    const TMPL_INDEX = 'J29Bundle:crud:crud-index-entity**.html.twig';
+    const TMPL_ACTION = 'J29Bundle:crud:crud-action-entity**.html.twig';
 
-    const ROUTE_INDEX = 'j29.crud.entity.index';
-    const ROUTE_DELETE = 'j29.crud.entity.delete';
+    const ROUTE_INDEX = 'j29.crud.entity._-*index';
+    const ROUTE_DELETE = 'j29.crud.entity._-*delete';
 
     private $jOrderer;
 
@@ -56,7 +56,7 @@ class EntityController extends Controller
     }
 
     /**
-     * @Route("/", name="j29.crud.entity.index")
+     * @Route("/", name="j29.crud.entity._-*index")
      * @Method("GET")
      */
     public function indexAction(){
@@ -72,10 +72,10 @@ class EntityController extends Controller
     }
 
     /**
-     * @Route("/new", name="j29.crud.entity.new")
+     * @Route("/new", name="j29.crud.entity._-*new")
      */
     public function newAction(Request $request){
-        $entity = new SponsorshipLevel();
+        $entity = new Entity---*();
         
         $form_options['order_choices'] = $this->jOrderer->getOrderChoices(array(
             'current_entity' => $entity,
@@ -84,7 +84,7 @@ class EntityController extends Controller
         ));
 
         // form creation
-        $form = $this->createForm(SponsorshipLevelType::class, $entity, $form_options);
+        $form = $this->createForm(Entity---*Type::class, $entity, $form_options);
         $form->handleRequest($request);
 
 
@@ -116,9 +116,9 @@ class EntityController extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="j29.crud.entity.edit", requirements={"id" = "\d+"})
+     * @Route("/{id}/edit", name="j29.crud.entity._-*edit", requirements={"id" = "\d+"})
      */
-    public function editAction(Request $request, SponsorshipLevel $entity){
+    public function editAction(Request $request, Entity---* $entity){
         $form_options['order_choices'] = $this->jOrderer->getOrderChoices(array(
             'current_entity' => $entity,
             'namespace' => self::ENTITY_NAMESPACE,
@@ -126,7 +126,7 @@ class EntityController extends Controller
         ));
         
         $delete_form = $this->renderDeleteForm($entity);
-        $form = $this->createForm(SponsorshipLevelType::class, $entity, $form_options);
+        $form = $this->createForm(Entity---*Type::class, $entity, $form_options);
         
         $form->handleRequest($request);
 
@@ -159,10 +159,10 @@ class EntityController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="j29.crud.entity.delete", requirements={"id" = "\d+"})
+     * @Route("/{id}", name="j29.crud.entity._-*delete", requirements={"id" = "\d+"})
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, SponsorshipLevel $entity){
+    public function deleteAction(Request $request, Entity---* $entity){
         // form creation
         $form = $this->renderDeleteForm($entity);
         $form->handleRequest($request);

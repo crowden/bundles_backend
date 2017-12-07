@@ -17,7 +17,7 @@
 <div class="flex file-container">
     <div class="basis33 file-preview-container">
         {% if image_preview %}
-            <img class="thumbnail" src="{{ asset('uploads/event_sponsors/' ~ image_preview) }}">
+            <img class="thumbnail" src="{{ asset(directory ~ '/' ~ image_preview) }}">
         {% endif %}
     </div>
     <div class="basis66">
