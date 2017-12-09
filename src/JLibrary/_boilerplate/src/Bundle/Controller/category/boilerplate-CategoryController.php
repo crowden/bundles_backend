@@ -87,7 +87,7 @@ class **NAMESPACE**Controller extends Controller
 
         // form submission
         if ($form->isValid()){
-            $this->machine_name_maker->generateName($entity);
+            $this->machine_name_maker->generateName($entity, 'category');
             // sanitize, persist, and redirect
             $this->sanitizeAndPersist($entity, 'create');
             return $this->redirectToRoute(self::ROUTE_INDEX);
