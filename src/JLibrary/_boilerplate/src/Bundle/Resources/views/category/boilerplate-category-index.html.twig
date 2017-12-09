@@ -2,7 +2,7 @@
 
 {% block main_content %}
     {% embed 'JLibrary:templates/layout:crud-index.html.twig' %}
-        {% block crud_new_path %}{{ path('j29.category.###.new') }}{% endblock %}        
+        {% block crud_new_path %}{{ path('j29.category.###.new') }}{% endblock %}
 
         {% set sorting_options = 
             {
@@ -10,8 +10,12 @@
                 'paths' : 
                 [
                     {
-                        'name': 'title',
-                        'url': 'title'
+                        'name': 'title > asc',
+                        'url': 'title/asc'
+                    },
+                    {
+                        'name': 'title > desc',
+                        'url': 'title/desc'
                     },
                     {
                         'name': 'reset',
@@ -20,26 +24,26 @@
                 ]
             }
         %}
-
+        
         {% block sorting %}
             <div id="js-sorting" class="sorting" data-options="{{ sorting_options|json_encode|e('html_attr') }}"></div>
         {% endblock %}
 
         {% block crud_table_header %}
-            <div class="header h2 basis50">Title</div>
-            <div class="header h2 header-actions basis25 center-text">Actions</div>
+            <div class="header h2 basis85">Title</div>
+            <div class="header h2 header-actions basis15 center-text">Actions</div>
         {% endblock %}
 
         {% block crud_table_data %}
-            <div class="column basis50">{{ entity.title }}</div>
-            <div class="column column-actions center-text basis25"><a href="{{ path('j29.category.###.edit', {'id': entity.id}) }}" class="btn btn-danger">update / delete</a>
+            <div class="column basis85">{{ entity.title }}</div>
+            <div class="column column-actions basis15"><a href="{{ path('j29.category.###.edit', {'id': entity.id}) }}" class="btn btn-danger">update / delete</a>
             </div>
         {% endblock %}
     {% endembed %}
 {% endblock %}
 
 {% block javascript %}
-    {# necessary to trigger show/hide boxes #}
+    {# necessary to trigger sorting options #}
     <script type="text/javascript">var j29_sort_crud_index = true;</script>
     {{ parent() }}
 {% endblock %}

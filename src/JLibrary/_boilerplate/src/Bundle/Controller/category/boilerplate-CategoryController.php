@@ -7,25 +7,29 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-use J29Bundle\Entity\category\*Entity*;
-use J29Bundle\Form\category\*Entity*Type;
+use J29Bundle\Entity\category\**NAMESPACE**;
+use J29Bundle\Form\category\**NAMESPACE**Type;
 use JLibrary\Traits\ControllerTraits;
 
+use JLibrary\Service\MachineNameGenerator;
+
 /**
- * *Entity* category controller
- * @Route("/admin/entities")
+ * **NAMESPACE** category controller
+ * @Route("/admin/###-PLURAL-###")
  */
-class *Entity*Controller extends Controller
+class **NAMESPACE**Controller extends Controller
 {
     use ControllerTraits;
     
-    const ENTITY_NAMESPACE = 'J29Bundle:category\*Entity*';
+    const ENTITY_NAMESPACE = 'J29Bundle:category\**NAMESPACE**';
 
-    const TMPL_INDEX = 'J29Bundle:category:category-index-**entity.html.twig';
-    const TMPL_ACTION = 'J29Bundle:category:category-action-**entity.html.twig';
+    const TMPL_INDEX = 'J29Bundle:category:category-index-**SINGLE_ENTITY**.html.twig';
+    const TMPL_ACTION = 'J29Bundle:category:category-action-**SINGLE_ENTITY**.html.twig';
 
-    const ROUTE_INDEX = 'j29.category.entity**.index';
-    const ROUTE_DELETE = 'j29.category.entity**.delete';
+    const ROUTE_INDEX = 'j29.category.**ENTITY_ROUTING**.index';
+    const ROUTE_DELETE = 'j29.category.**ENTITY_ROUTING**.delete';
+
+    private $machine_name_maker;
 
     /**
      * types include:
@@ -39,16 +43,24 @@ class *Entity*Controller extends Controller
         'Title' => [
             'type' => 'plain_text',
             'optional' => false,
+        ],
+        'MachineName' => [
+            'type' => 'plain_text',
+            'optional' => true,
         ]
     );
 
     private $template_vars = array(
-        'form_size' => '###',
+        'form_size' => 'large',
         'page_description' => 'Admin Page',
     );
 
+    public function __construct(MachineNameGenerator $machine_name_maker){
+        $this->machine_name_maker = $machine_name_maker;
+    }
+
     /**
-     * @Route("/", name="j29.category.entity**.index")
+     * @Route("/", name="j29.category.**ENTITY_ROUTING**.index")
      * @Method("GET")
      */
     public function indexAction(){
@@ -56,7 +68,7 @@ class *Entity*Controller extends Controller
 
         // template data
         $build = array_merge([
-            'page_title' => '### Categories',
+            'page_title' => '###',
             'entities' => $entity_manager->getRepository(self::ENTITY_NAMESPACE)->findAll(),
         ], $this->template_vars);
 
@@ -64,17 +76,18 @@ class *Entity*Controller extends Controller
     }
 
     /**
-     * @Route("/new", name="j29.category.entity**.new")
+     * @Route("/new", name="j29.category.**ENTITY_ROUTING**.new")
      */
     public function newAction(Request $request){
-        $entity = new __Entity--();
+        $entity = new **ENTITY_IN_CONTROLLER**();
 
         // form creation
-        $form = $this->createForm(__Entity--Type::class, $entity);
+        $form = $this->createForm(**ENTITY_IN_CONTROLLER**Type::class, $entity);
         $form->handleRequest($request);
 
         // form submission
         if ($form->isValid()){
+            $this->machine_name_maker->generateName($entity);
             // sanitize, persist, and redirect
             $this->sanitizeAndPersist($entity, 'create');
             return $this->redirectToRoute(self::ROUTE_INDEX);
@@ -85,7 +98,7 @@ class *Entity*Controller extends Controller
         // template data
         $build = array_merge([
             'creating_entity' => true,
-            'page_title' => 'New ### Category',
+            'page_title' => 'Create ##-##',
             'form' => $form->createView(),
         ], $this->template_vars);
 
@@ -93,11 +106,15 @@ class *Entity*Controller extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="j29.category.entity**.edit", requirements={"id" = "\d+"})
+     * @Route("/{id}/edit", name="j29.category.**ENTITY_ROUTING**.edit", requirements={"id" = "\d+"})
      */
-    public function editAction(Request $request, __Entity-- $entity){
+    public function editAction(Request $request, **ENTITY_IN_CONTROLLER** $entity){
         $delete_form = $this->renderDeleteForm($entity);
-        $form = $this->createForm(__Entity--Type::class, $entity);
+        $form = $this->createForm(
+            **ENTITY_IN_CONTROLLER**Type::class, 
+            $entity,
+            ['machine_name_disabled' => true]
+        );
         
         $form->handleRequest($request);
 
@@ -112,7 +129,7 @@ class *Entity*Controller extends Controller
         // template data
         $build = array_merge([
             'creating_entity' => false,
-            'page_title' => 'Edit ### Category',
+            'page_title' => 'Edit ##-##',
             'form' => $form->createView(),
             'delete_form' => $delete_form->createView(),
         ], $this->template_vars);
@@ -121,10 +138,10 @@ class *Entity*Controller extends Controller
     }
 
     /**
-     * @Route("/{id}", name="j29.category.entity**.delete", requirements={"id" = "\d+"})
+     * @Route("/{id}", name="j29.category.**ENTITY_ROUTING**.delete", requirements={"id" = "\d+"})
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, __Entity-- $entity){
+    public function deleteAction(Request $request, **ENTITY_IN_CONTROLLER** $entity){
         // form creation
         $form = $this->renderDeleteForm($entity);
         $form->handleRequest($request);
@@ -143,7 +160,7 @@ class *Entity*Controller extends Controller
      */
     public function sort(Request $request, $sort_by, $order){
         $build_variables = [
-            'page_title' => '### Categories',
+            'page_title' => '###',
             'page_description' => 'Admin Page',
         ];
 
