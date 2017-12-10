@@ -107,4 +107,13 @@ trait ControllerTraits
 
         return (int)$query_builder->getQuery()->getSingleScalarResult();
     }
+
+    protected function entityDeletionAllowed($repo_namespace, $join_column_property_name)
+        $repo = $this->getDoctrine()->getManager()->getRepository($repo_namespace);
+
+        $query = $repo->createQueryBuilder('ns')
+            ->select('COUNT(ns.id)')
+            ->where('ns.' . $join_column_property_name . ' = ' . $entity->getId());
+
+        return (int)$query->getQuery()->getSingleScalarResult();
 }
