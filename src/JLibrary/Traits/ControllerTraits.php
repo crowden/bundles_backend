@@ -108,7 +108,7 @@ trait ControllerTraits
         return (int)$query_builder->getQuery()->getSingleScalarResult();
     }
 
-    protected function entityDeletionAllowed($repo_namespace, $join_column_property_name){
+    protected function entityDeletionAllowed($entity, $repo_namespace, $join_column_property_name){
         $repo = $this->getDoctrine()->getManager()->getRepository($repo_namespace);
 
         $query = $repo->createQueryBuilder('ns')
