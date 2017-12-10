@@ -115,6 +115,11 @@ trait ControllerTraits
             ->select('COUNT(ns.id)')
             ->where('ns.' . $join_column_property_name . ' = ' . $entity->getId());
 
-        return (int)$query->getQuery()->getSingleScalarResult();
+        $result = (int)$query->getQuery()->getSingleScalarResult();
+
+        // if entities are tied to this entity
+        if ($result > 0) return false;
+
+        return true;
     }
 }
