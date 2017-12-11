@@ -156,7 +156,7 @@ class **NAMESPACE**Controller extends Controller
                 $this->sanitizeAndPersist($entity, 'delete');
             } else {
                 $this->addFlash('danger', 'Cannont delete item: <strong><em>' . $entity->getTitle() . '</em></strong>');
-                $this->addFlash('warning', 'There are items that are using what you\'re trying to delete. If you want to delete this item, first go and disconnect it from the other items it is linked to.');
+                $this->addFlash('warning', 'There are items that are using what you\'re trying to delete. If you want to delete this item, first go and disconnect it from the other items it is linked to. <br><br><strong>NOTE:</strong> Deleting this item could cause other areas of this site to break!');
                 return $this->redirectToRoute(self::ROUTE_EDIT, ['id' => $entity->getId()]);
             }
 
