@@ -27,6 +27,7 @@ class **NAMESPACE**Controller extends Controller
     const TMPL_ACTION = 'J29Bundle:category:category-action-**SINGLE_ENTITY**.html.twig';
 
     const ROUTE_INDEX = 'j29.category.**ENTITY_ROUTING**.index';
+    const ROUTE_EDIT = 'j29.category.**ENTITY_ROUTING**.edit';
     const ROUTE_DELETE = 'j29.category.**ENTITY_ROUTING**.delete';
 
     private $machine_name_maker;
@@ -148,8 +149,17 @@ class **NAMESPACE**Controller extends Controller
     
         // form submission
         if ($form->isValid()) {
-            $this->addFlash('success', 'Item successfully deleted');
-            $this->sanitizeAndPersist($entity, 'delete');
+            $allowed_to_delete = $this->entityDeletionAllowed($entity, 'entity_namespace', 'entity_join_property');
+            
+            if ($allowed_to_delete){
+                $this->addFlash('success', 'Item successfully deleted');
+                $this->sanitizeAndPersist($entity, 'delete');
+            } else {
+                $this->addFlash('danger', 'Cannont delete item: <strong><em>' . $entity->getTitle() . '</em></strong>');
+                $this->addFlash('warning', 'There are items that are using what you\'re trying to delete. If you want to delete this item, first go and disconnect it from the other items it is linked to.');
+                return $this->redirectToRoute(self::ROUTE_EDIT, ['id' => $entity->getId()]);
+            }
+
         }
     
         return $this->redirectToRoute(self::ROUTE_INDEX);
