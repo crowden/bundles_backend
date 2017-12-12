@@ -1,65 +1,106 @@
-{#
-[ALL]
-    field:
-        type: [form variable]
-    label:
-        type: [string]
-    sublabel_class:
-        type: [string]
-    custom_sublabel:
-        type: [string]
-    custom_sublabel_class:
-        type: [string]
-    sublabel_file:
-        type: [string]
-[textboxes]
-    row_class:
-        type: [string]
-        use_example: flexbasis##
-        description: used when in <div class="flex">
+{######### Form Field Templates #########}
 
-[checkbox_collections]
-    pod_class:
-        type: [string]
-        use_example: flexbasis##
-
-[image_document]
-    directory:
-        type: [string]
-    placeholder:
-        type: boolean
-        description: used when displaying a preview from the images dir, not uploaded image. When using this, directory variable is not necessary!
+{# checkbox-collection 
+    {% include 'JLibrary:templates/form_fields:checkbox-collection.html.twig' with 
+        {
+            field: form.###, 
+            sublabel_file: 'check-several',
+            pod_class: 'basis20'
+        } 
+    %}
 #}
+
+{# date-time 
+    {% include 'JLibrary:templates/form_fields:date-time.html.twig' with {
+        field: form.issueDate
+    } %}
+#}
+
+{# document 
+    <fieldset>
+        <legend>Document</legend>
+        {% include 'JLibrary:templates/form_fields:document.html.twig' with {
+            placeholder: 'document-icon.png',
+            file: form.###,
+            file_description: form.###,
+            file_description_label: 'Document Description'
+        } %}
+    </fieldset>
+#}
+
+{# general 
+    {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+        {
+            field: form.###, 
+            label: 'Page Title',
+            sublabel_file: 'page-title'
+        } 
+    %}
+    {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+        {
+            field: form.###, 
+            label: 'Page Description',
+            sublabel_file: 'page-description'
+        } 
+    %}
+    {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+        {
+            field: form.###, 
+            label: 'Page URL',
+            sublabel_file: 'link-address'
+        } 
+    %}
+#}
+
+{# image 
+    <fieldset>
+        <legend>Image</legend>
+        {% include 'JLibrary:templates/form_fields:image.html.twig' with {
+            directory: 'uploads/###s',
+            file: form.###,
+            file_description: form.###,
+            file_description_label: 'Alt Description',
+            sublabel_file: 'images'
+        } %}
+    </fieldset>
+#}
+
+{# inline-checkbox 
+    {% include 'JLibrary:templates/form_fields:inline-checkbox.html.twig' with 
+        {
+            field: form.###,
+            label: '###',
+            custom_sublabel: '###'
+        } 
+    %}
+#}
+
+{# markdown 
+    <fieldset>
+        <legend>###</legend>
+        {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+            {
+                field: form.###Raw,
+                label: '###',
+                sublabel_file: 'markdown'
+            } 
+        %}
+    </fieldset>
+#}
+
 
 {% extends 'JLibrary:templates/layout:basic.html.twig' %}
 
 {% block main_content %}
     {% embed 'JLibrary:templates/layout:crud-action.html.twig' %}
         {% block crud_form_controls %}
-            <fieldset>
-                <legend>General</legend>
-                {% include 'JLibrary:templates/form_fields:general.html.twig' with 
-                    {
-                        field: form.field
-                    } 
-                %}
-            </fieldset>
-            <fieldset>
-                <legend>Page Content</legend>
-                {% include 'JLibrary:templates/form_fields:general.html.twig' with 
-                    {
-                        field: form.contentRaw,
-                        label: 'Content',
-                        sublabel_file: 'markdown'
-                    } 
-                %}
-            </fieldset>
+            {# BEGIN - Form Fields #}
             <fieldset>
                 <legend>Published</legend>
                 {% include 'JLibrary:templates/form_fields:published.html.twig' %}
             </fieldset>
+            {# END - Form Fields #}
         {% endblock %}
-
         {% block crud_cancel_path %}{{ path('j29.crud.###.index') }}{% endblock %}
     {% endembed %}
 {% endblock %}
