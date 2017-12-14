@@ -7,13 +7,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
- * Entity
+ * **Entity**
  *
  * @ORM\Entity
  * @ORM\Table(name="crud_entity")
  */
 
-class Entity
+class **Entity**
 {
     /**
      * @ORM\Column(name="id", type="integer")

@@ -1,0 +1,47 @@
+{% extends 'JLibrary:templates/layout:basic.html.twig' %}
+
+{% block header %}{% include 'J29Bundle:inc:menu-top.html.twig' %}{% endblock %}
+
+{% block main_content %}
+    {% embed 'JLibrary:templates/layout:crud-action.html.twig' %}
+        {% block crud_form_controls %}
+            {% include 'JLibrary:templates/form_fields:general.html.twig' with {field: form.documentName} %}
+            <fieldset>
+                <legend>Document</legend>
+                {% include 'JLibrary:templates/form_fields:document.html.twig' with {
+                    placeholder: 'document-icon.png',
+                    file: form.document,
+                    file_description: form.documentDescription,
+                    file_description_label: 'Document Description'
+                } %}
+            </fieldset>
+            <fieldset>
+                <legend>Category</legend>
+                {% include 'JLibrary:templates/form_fields:general.html.twig' with {field: form.documentCategory} %}
+            </fieldset>
+            <fieldset>
+                <legend>Link Attributes</legend>
+                {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+                    {
+                        field: form.linkText,
+                        sublabel_file: 'link-text'
+                    } 
+                %}
+            </fieldset>
+            <fieldset>
+                <legend>Published</legend>
+                {% include 'JLibrary:templates/form_fields:published.html.twig' %}
+            </fieldset>
+        {% endblock %}
+
+        {% block crud_cancel_path %}{{ path('j29.crud.document.index') }}{% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block footer %}{% include 'J29Bundle:inc:footer.html.twig' %}{% endblock %}
+
+{% block javascript %}
+    {# necessary to trigger show/hide boxes #}
+    <script type="text/javascript">var j29_toggle_hidden_containers = true;</script>
+    {{ parent() }}
+{% endblock %}

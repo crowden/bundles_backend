@@ -53,7 +53,7 @@ class **Entity**Controller extends Controller
     private $template_vars = array(
         'form_size' => '###',
         'page_description' => 'Admin Page',
-        'file_handler' => '###',
+        'file_handler' => 'file',
         'file_required' => true | false,
         'file_directory' => '###',
     );
@@ -164,7 +164,6 @@ class **Entity**Controller extends Controller
                 $this->sanitizeAndPersist($entity, 'edit');
                 return $this->redirectToRoute(self::ROUTE_INDEX);
             }
-            
         } else {
             if ($form->isSubmitted()) $this->addFlash('warning', 'You have errors with your form.');
         }

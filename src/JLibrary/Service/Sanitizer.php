@@ -99,6 +99,14 @@ class Sanitizer
     }
 
     private function returnPlainText($value){
+        if (is_array($value)){
+            foreach($value as $item){
+                $item = strip_tags(trim($item));       
+            }
+
+            return $value;
+        }
+        
         return strip_tags(trim($value));
     }
 
