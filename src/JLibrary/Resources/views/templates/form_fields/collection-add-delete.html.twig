@@ -11,6 +11,8 @@
     {#------------ Errors ------------#}
     <div class="field-error-container">{{ form_errors(field) }}</div>
 
+    <a href="#" id="crud-add-{{ trigger-add-id }}"></a>
+
     <ul id="wishlist-fields-list" data-prototype="{{ form_widget(field.vars.prototype)|e }}">
         {% for item in field %}
             <li>
