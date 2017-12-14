@@ -15,7 +15,7 @@
         <a href="#" id="crud-add-{{ trigger_add_id }}" class="crud-add">add</a>
     </div>
 
-    <ul id="wishlist-fields-list" data-prototype="{{ form_widget(field.vars.prototype)|e }}">
+    <ul id="{{ array_container_id }}-fields-list" data-prototype="{{ form_widget(field.vars.prototype)|e }}">
         {% for item in field %}
             <li>
                 {{ form_errors(item) }}
