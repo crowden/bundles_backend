@@ -1,5 +1,5 @@
 {% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %}
-{% set container_class = (row_class ?? false) ? 'form-row ' ~ row_class : 'form-row' %}
+{% set container_class = (row_class ?? false) ? 'form-row collection-add-delete' ~ row_class : 'form-row' %}
 
 <div class="{{ container_class }}">
     {#------------ Sublabel ------------#}
@@ -11,7 +11,7 @@
     {#------------ Errors ------------#}
     <div class="field-error-container">{{ form_errors(field) }}</div>
 
-    <a href="#" id="crud-add-{{ trigger_add_id }}">add</a>
+    <a href="#" id="crud-add-{{ trigger_add_id }}" class="crud-add">add</a>
 
     <ul id="wishlist-fields-list" data-prototype="{{ form_widget(field.vars.prototype)|e }}">
         {% for item in field %}
