@@ -100,8 +100,8 @@ class Sanitizer
 
     private function returnPlainText($value){
         if (is_array($value)){
-            foreach($value as $item){
-                $item = strip_tags(trim($item));       
+            foreach($value as $key => $single){
+                $value[$key] = strip_tags(trim($single));
             }
 
             return $value;
