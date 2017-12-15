@@ -99,7 +99,6 @@ class Sanitizer
     }
 
     private function returnPlainText($value){
-        var_dump($value);
         if (is_array($value)){
             echo 'is array';
             
@@ -107,10 +106,12 @@ class Sanitizer
                 $item = strip_tags(trim($item));       
             }
 
+            var_dump($value);
             return $value;
         }
 
         echo 'not array';
+        var_dump($value);
         
         return strip_tags(trim($value));
     }
