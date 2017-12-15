@@ -99,7 +99,7 @@ class Sanitizer
     }
 
     private function returnPlainText($value){
-        var_dump($value);die;
+        var_dump($value);
         if (is_array($value)){
             echo 'is array'; die;
             foreach($value as $item){
