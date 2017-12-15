@@ -100,19 +100,13 @@ class Sanitizer
 
     private function returnPlainText($value){
         if (is_array($value)){
-            echo 'is array';
-            
             foreach($value as $item){
                 $item = strip_tags(trim($item));       
             }
 
-            var_dump($value);
             return $value;
         }
 
-        echo 'not array';
-        var_dump($value);
-        
         return strip_tags(trim($value));
     }
 
