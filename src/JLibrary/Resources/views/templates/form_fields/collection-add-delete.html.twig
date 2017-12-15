@@ -20,7 +20,7 @@
             <li>
                 {{ form_errors(item) }}
                 {#------------ Form Control ------------#}
-                {{ form_widget(item, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(item) }}
             </li>
         {% else %}
             {% do field.setRendered %} 
