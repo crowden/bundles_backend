@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  * **Entity**
  *
  * @ORM\Entity
- * @ORM\Table(name="crud_entity")
+ * @ORM\Table(name="crud_###'s")
  */
 
 class **Entity**
