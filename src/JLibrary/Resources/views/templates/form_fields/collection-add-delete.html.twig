@@ -1,8 +1,8 @@
-{% import _self as collectionTextMacro %}
+{# {% import _self as collectionTextMacro %}
 
 {% macro printCollectionTextFields(item) %}
 <li>{{ form_errors(item) }}{{ form_widget(item) }}</li>
-{% endmacro %}
+{% endmacro %} #}
 
 
 {% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %}
@@ -22,9 +22,9 @@
         <a href="#" id="crud-add-{{ trigger_add_id }}" class="crud-add">add</a>
     </div>
 
-    <ul id="{{ array_container_id }}-fields-list" data-prototype="{{ collectionTextMacro.printCollectionTextFields(field.vars.prototype)|e('html_attr') }}">
+    <ul id="{{ array_container_id }}-fields-list" data-prototype="{{ form_widget(field.vars.prototype)|e('html_attr') }}">
         {% for item in field %}
-            {{ collectionTextMacro.printCollectionTextFields(item) }}
+            <li>{{ form_errors(item) }}{{ form_widget(item) }}</li>
         {% else %}
             {% do field.setRendered %} 
         {% endfor %}
