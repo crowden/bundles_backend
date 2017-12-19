@@ -18,7 +18,7 @@
     <ul id="{{ array_container_id }}-fields-list" data-prototype="{{ form_widget(field.vars.prototype)|e('html_attr') }}">
         {% for item in field %}
             <li>
-                {{ form_errors(item) }}
+                <div class="field-error-container">{{ form_errors(item) }}</div>
                 {{ form_widget(item) }}
                 <a class="close js-crud-collection-delete">
                     <i class="fa fa-times-circle icon" aria-hidden="true"></i>
