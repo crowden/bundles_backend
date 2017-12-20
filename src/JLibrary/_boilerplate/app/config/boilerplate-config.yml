@@ -14,3 +14,10 @@ twig:
         page_title_suffix: '%site_organization%'
         global_stylesheet: 'dist/j29-styles.css'
         global_javascript: 'dist/j29-scripts.js'
+
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            sluggable: true
+            timestampable: true
