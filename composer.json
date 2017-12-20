@@ -10,6 +10,7 @@
     "require": {
         "cebe/markdown": "^1.1",
         "doctrine/doctrine-migrations-bundle": "^1.2",
+        "stof/doctrine-extensions-bundle": "^1.2",
         "egulias/email-validator": "^2.1"
     },
     "license": "MIT",
