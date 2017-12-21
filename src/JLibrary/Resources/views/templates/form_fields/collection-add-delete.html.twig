@@ -1,3 +1,9 @@
+{% import _self as macro_collectionGeneral %}
+
+{% macro collectionGeneral(item) %}
+<li><div class="field-error-container">{{ form_errors(item) }}</div>{{ form_widget(item) }}<a class="close js-crud-collection-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a></li>
+{% endmacro %}
+
 {% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %}
 {% set container_class = (row_class ?? false) ? 'form-row collection-add-delete' ~ row_class : 'form-row collection-add-delete' %}
 
@@ -15,15 +21,16 @@
         <a href="#" id="crud-add-{{ trigger_add_id }}" class="crud-add">add</a>
     </div>
 
-    <ul id="{{ array_container_id }}-fields-list" data-prototype="{{ form_widget(field.vars.prototype)|e('html_attr') }}">
+    <ul id="{{ array_container_id }}-fields-list" data-prototype="{{ collectionGeneral(field.vars.prototype)|e('html_attr') }}">
         {% for item in field %}
-            <li>
+            {{ collectionGeneral(item) }}
+{#             <li>
                 <div class="field-error-container">{{ form_errors(item) }}</div>
                 {{ form_widget(item) }}
                 <a class="close js-crud-collection-delete">
                     <i class="fa fa-times-circle icon" aria-hidden="true"></i>
                 </a>
-            </li>
+            </li> #}
         {% else %}
             {% do field.setRendered %} 
         {% endfor %}
