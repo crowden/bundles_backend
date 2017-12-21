@@ -1,113 +1,19 @@
-{######### Form Field Templates #########}
-
-{# collection-add-delete (text field) 
-    {% include 'JLibrary:templates/form_fields:collection-add-delete.html.twig' with 
-        {
-            field: form.###,
-            label: ###,
-        } 
-    %}
-#}
-
-{# checkbox-collection 
-    {% include 'JLibrary:templates/form_fields:checkbox-collection.html.twig' with 
-        {
-            field: form.###, 
-            sublabel_file: 'check-several',
-            pod_class: 'basis20'
-        } 
-    %}
-#}
-
-{# date-time 
-    {% include 'JLibrary:templates/form_fields:date-time.html.twig' with {
-        field: form.issueDate
-    } %}
-#}
-
-{# document 
-    <fieldset>
-        <legend>Document</legend>
-        {% include 'JLibrary:templates/form_fields:document.html.twig' with {
-            placeholder: 'document-icon.png',
-            file: form.###,
-            file_description: form.###,
-            file_description_label: 'Document Description'
-        } %}
-    </fieldset>
-#}
-
-{# general 
-    {% include 'JLibrary:templates/form_fields:general.html.twig' with 
-        {
-            field: form.###, 
-            label: 'Page Title',
-            sublabel_file: 'page-title'
-        } 
-    %}
-    {% include 'JLibrary:templates/form_fields:general.html.twig' with 
-        {
-            field: form.###, 
-            label: 'Page Description',
-            sublabel_file: 'page-description'
-        } 
-    %}
-    {% include 'JLibrary:templates/form_fields:general.html.twig' with 
-        {
-            field: form.###, 
-            label: 'Page URL',
-            sublabel_file: 'link-address'
-        } 
-    %}
-#}
-
-{# image 
-    <fieldset>
-        <legend>Image</legend>
-        {% include 'JLibrary:templates/form_fields:image.html.twig' with {
-            directory: 'uploads/###s',
-            file: form.###,
-            file_description: form.###,
-            file_description_label: 'Alt Description',
-            sublabel_file: 'images'
-        } %}
-    </fieldset>
-#}
-
-{# inline-checkbox 
-    {% include 'JLibrary:templates/form_fields:inline-checkbox.html.twig' with 
-        {
-            field: form.###,
-            label: '###',
-            custom_sublabel: '###'
-        } 
-    %}
-#}
-
-{# markdown 
-    <fieldset>
-        <legend>###</legend>
-        {% include 'JLibrary:templates/form_fields:general.html.twig' with 
-            {
-                field: form.###Raw,
-                label: '###',
-                sublabel_file: 'markdown'
-            } 
-        %}
-    </fieldset>
-#}
-
-
 {% extends 'JLibrary:templates/layout:basic.html.twig' %}
 
 {% block main_content %}
     {% embed 'JLibrary:templates/layout:crud-action.html.twig' %}
         {% block crud_form_controls %}
             {# BEGIN - Form Fields #}
+            
+
+
             <fieldset>
                 <legend>Published</legend>
                 {% include 'JLibrary:templates/form_fields:published.html.twig' %}
             </fieldset>
+            
+
+
             {# END - Form Fields #}
         {% endblock %}
         {% block crud_cancel_path %}{{ path('j29.crud.###.index') }}{% endblock %}
@@ -122,3 +28,142 @@
     </script>
     {{ parent() }}
 {% endblock %}
+
+
+
+{########      ###      #########}
+{########   Templates   #########}
+{########      ###      #########}
+
+
+
+
+
+{########   Categories   #########}
+<div class="flex">
+    <div class="basis50">{% include 'JLibrary:templates/form_fields:general.html.twig' with {field: form.title} %}</div>
+    <div class="basis50">{% include 'JLibrary:templates/form_fields:general.html.twig' with {field: form.machineName} %}</div>
+</div>
+
+
+
+{########   Collections(text)   #########}
+{% include 'JLibrary:templates/form_fields:collection-add-delete.html.twig' with 
+    {
+        field: form.###,
+        label: ###,
+    } 
+%}
+
+
+
+{########   Collections(checkboxes)   #########}
+{% include 'JLibrary:templates/form_fields:checkbox-collection.html.twig' with 
+    {
+        field: form.###, 
+        sublabel_file: 'check-several',
+        pod_class: 'basis20'
+    } 
+%}
+
+
+
+{########   Date/Time   #########}
+{% include 'JLibrary:templates/form_fields:date-time.html.twig' with {field: form.dateTime} %}
+
+
+
+
+
+
+
+{########   Documents   #########}
+{% include 'JLibrary:templates/form_fields:general.html.twig' with {field: form.documentName} %}
+<fieldset>
+    <legend>Document</legend>
+    {% include 'JLibrary:templates/form_fields:document.html.twig' with {
+        placeholder: 'document-icon.png',
+        file: form.document,
+        file_description: form.documentDescription,
+        file_description_label: 'Document Description'
+    } %}
+</fieldset>
+<fieldset>
+    <legend>Category</legend>
+    {% include 'JLibrary:templates/form_fields:general.html.twig' with {field: form.documentCategory} %}
+</fieldset>
+<fieldset>
+    <legend>Link Attributes</legend>
+    {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+        {
+            field: form.documentLinkText,
+            sublabel_file: 'link-text'
+        } 
+    %}
+</fieldset>
+
+
+
+
+
+
+
+{########   General   #########}
+{% include 'JLibrary:templates/form_fields:general.html.twig' with 
+    {
+        field: form.###, 
+        label: '###',
+        sublabel_file: '###'
+    } 
+%}
+
+
+
+
+
+
+
+{########   Images   #########}
+<fieldset>
+    <legend>Image</legend>
+    {% include 'JLibrary:templates/form_fields:image.html.twig' with {
+        directory: 'uploads/###s',
+        file: form.###,
+        file_description: form.###,
+        file_description_label: 'Alt Description',
+        sublabel_file: 'images'
+    } %}
+</fieldset>
+
+
+
+
+
+
+
+{########   Inline Checkbox   #########}
+{% include 'JLibrary:templates/form_fields:inline-checkbox.html.twig' with 
+    {
+        field: form.###,
+        label: '###',
+        custom_sublabel: '###'
+    } 
+%}
+
+
+
+
+
+
+
+{########   Markdown   #########}
+<fieldset>
+    <legend>###</legend>
+    {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+        {
+            field: form.###Raw,
+            label: '###',
+            sublabel_file: 'markdown'
+        } 
+    %}
+</fieldset>

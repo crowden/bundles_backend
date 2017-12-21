@@ -1,36 +1,31 @@
 <?php 
 
-namespace J29Bundle\Controller\category;
+namespace J29Bundle\Controller\**ENTITY_TYPE**;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-use J29Bundle\Entity\category\**NAMESPACE**;
-use J29Bundle\Form\category\**NAMESPACE**Type;
+use J29Bundle\Entity\**ENTITY_TYPE**\**Entity**;
+use J29Bundle\Form\**ENTITY_TYPE**\**Entity**Type;
 use JLibrary\Traits\ControllerTraits;
 
-use JLibrary\Service\MachineNameGenerator;
-
 /**
- * **NAMESPACE** category controller
- * @Route("/admin/###-PLURAL-###")
+ * **Entity** **ENTITY_TYPE** controller
+ * @Route("/admin/entities")
  */
-class **NAMESPACE**Controller extends Controller
+class **Entity**Controller extends Controller
 {
     use ControllerTraits;
     
-    const ENTITY_NAMESPACE = 'J29Bundle:category\**NAMESPACE**';
+    const ENTITY_NAMESPACE = 'J29Bundle:**ENTITY_TYPE**\**Entity**';
 
-    const TMPL_INDEX = 'J29Bundle:category:category-index-**SINGLE_ENTITY**.html.twig';
-    const TMPL_ACTION = 'J29Bundle:category:category-action-**SINGLE_ENTITY**.html.twig';
+    const TMPL_INDEX = 'J29Bundle:**ENTITY_TYPE**:**ENTITY_TYPE**-index-**single-entity**.html.twig';
+    const TMPL_ACTION = 'J29Bundle:**ENTITY_TYPE**:**ENTITY_TYPE**-action-**single-entity**.html.twig';
 
-    const ROUTE_INDEX = 'j29.category.**ENTITY_ROUTING**.index';
-    const ROUTE_EDIT = 'j29.category.**ENTITY_ROUTING**.edit';
-    const ROUTE_DELETE = 'j29.category.**ENTITY_ROUTING**.delete';
-
-    private $machine_name_maker;
+    const ROUTE_INDEX = 'j29.**ENTITY_TYPE**.single_entity.index';
+    const ROUTE_DELETE = 'j29.**ENTITY_TYPE**.single_entity.delete';
 
     /**
      * types include:
@@ -41,27 +36,19 @@ class **NAMESPACE**Controller extends Controller
      *     - markdown_general
      */
     private $sanitize_options = array(
-        'Title' => [
+        'EntityPrivateProperty' => [
             'type' => 'plain_text',
             'optional' => false,
-        ],
-        'MachineName' => [
-            'type' => 'plain_text',
-            'optional' => true,
         ]
     );
 
     private $template_vars = array(
-        'form_size' => 'large',
+        'form_size' => '###',
         'page_description' => 'Admin Page',
     );
 
-    public function __construct(MachineNameGenerator $machine_name_maker){
-        $this->machine_name_maker = $machine_name_maker;
-    }
-
     /**
-     * @Route("/", name="j29.category.**ENTITY_ROUTING**.index")
+     * @Route("/", name="j29.**ENTITY_TYPE**.single_entity.index")
      * @Method("GET")
      */
     public function indexAction(){
@@ -77,18 +64,17 @@ class **NAMESPACE**Controller extends Controller
     }
 
     /**
-     * @Route("/new", name="j29.category.**ENTITY_ROUTING**.new")
+     * @Route("/new", name="j29.**ENTITY_TYPE**.single_entity.new")
      */
     public function newAction(Request $request){
-        $entity = new **ENTITY_IN_CONTROLLER**();
+        $entity = new **Entity--();
 
         // form creation
-        $form = $this->createForm(**ENTITY_IN_CONTROLLER**Type::class, $entity);
+        $form = $this->createForm(**Entity--Type::class, $entity);
         $form->handleRequest($request);
 
         // form submission
         if ($form->isValid()){
-            $this->machine_name_maker->generateName($entity, 'category');
             // sanitize, persist, and redirect
             $this->sanitizeAndPersist($entity, 'create');
             return $this->redirectToRoute(self::ROUTE_INDEX);
@@ -99,7 +85,7 @@ class **NAMESPACE**Controller extends Controller
         // template data
         $build = array_merge([
             'creating_entity' => true,
-            'page_title' => 'Create ##-##',
+            'page_title' => 'New ###',
             'form' => $form->createView(),
         ], $this->template_vars);
 
@@ -107,15 +93,11 @@ class **NAMESPACE**Controller extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="j29.category.**ENTITY_ROUTING**.edit", requirements={"id" = "\d+"})
+     * @Route("/{id}/edit", name="j29.**ENTITY_TYPE**.single_entity.edit", requirements={"id" = "\d+"})
      */
-    public function editAction(Request $request, **ENTITY_IN_CONTROLLER** $entity){
+    public function editAction(Request $request, **Entity-- $entity){
         $delete_form = $this->renderDeleteForm($entity);
-        $form = $this->createForm(
-            **ENTITY_IN_CONTROLLER**Type::class, 
-            $entity,
-            ['machine_name_disabled' => true]
-        );
+        $form = $this->createForm(**Entity--Type::class, $entity);
         
         $form->handleRequest($request);
 
@@ -130,7 +112,7 @@ class **NAMESPACE**Controller extends Controller
         // template data
         $build = array_merge([
             'creating_entity' => false,
-            'page_title' => 'Edit ##-##',
+            'page_title' => 'Edit ###',
             'form' => $form->createView(),
             'delete_form' => $delete_form->createView(),
         ], $this->template_vars);
@@ -139,19 +121,19 @@ class **NAMESPACE**Controller extends Controller
     }
 
     /**
-     * @Route("/{id}", name="j29.category.**ENTITY_ROUTING**.delete", requirements={"id" = "\d+"})
+     * @Route("/{id}", name="j29.**ENTITY_TYPE**.single_entity.delete", requirements={"id" = "\d+"})
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, **ENTITY_IN_CONTROLLER** $entity){
+    public function deleteAction(Request $request, **Entity-- $entity){
         // form creation
         $form = $this->renderDeleteForm($entity);
         $form->handleRequest($request);
     
         // form submission
         if ($form->isValid()) {
-            $allowed_to_delete = $this->entityDeletionAllowed($entity, 'entity_namespace', 'entity_join_property');
+            /*$allowed_to_delete = $this->entityDeletionAllowed($entity, 'entity_namespace', 'entity_join_property');*/
             
-            if ($allowed_to_delete){
+            if (true){
                 $this->addFlash('success', 'Item successfully deleted');
                 $this->sanitizeAndPersist($entity, 'delete');
             } else {

@@ -1,7 +1,61 @@
 {% extends 'JLibrary:templates/layout:basic.html.twig' %}
 
 {% block main_content %}
-    <div class="page-### main-content">
-        <article>###</article>
+    <div class="page-### page-www-form main-content">
+        <h1 class="page-title">{{ page_title }}</h1>
+
+        <div class="container form-container">
+            {# FLASHBAGS #}
+            {% include 'JLibrary:templates/flashbags:flashbags.html.twig' %}
+            
+            {{ form_start(form, {'attr': {'class': 'www-form ' ~ form_size}}) }}
+                {# GLOBAL ERRORS #}
+                <div class="form-global-errors-container">
+                    {{ form_errors(form) }}
+                </div>
+                
+                {# FORM FIELDS #}
+                <div class="form-controls">
+                    <fieldset>
+                        <legend>###</legend>
+                        {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+                            {
+                                field: form.###, 
+                                label: '###'
+                            } 
+                        %}
+                    </fieldset>
+                    <fieldset>
+                        <legend>TEXT_BOX</legend>
+                            {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+                                {
+                                    field: form.contentRaw,
+                                    label: '###',
+                                } 
+                            %}
+                    </fieldset>
+                    <fieldset class="file-upload-container">
+                        <legend>Document</legend>
+                            <div class="field-error-container">{{ form_errors(form.file) }}</div>
+
+                            <p class="sublabel">Allowed file types are <strong><em>'.pdf'</em></strong>, <strong><em>'.docx'</em></strong>, and <strong><em>'.doc'</em></strong>. The max file size is <strong><em>2.5 megabytes</em></strong>.</p>
+                            
+                            <label class="file-label">{{ form_widget(form.file) }}<span>upload</span></label>
+                    </fieldset>
+                    <div class="j29-form-code">{{ form_row(form.j29FormCode) }}</div>
+                </div>
+                
+                {# FORM SUBMISSION #}
+                <div class="form-submission-controls">
+                    <button type="submit" name="send" class="form-control btn btn-success" formnovalidate>###</button>
+                    <a href="{{ path('j29.www.index') }}" class="btn btn-default form-control">cancel</a>
+                </div>
+            {{ form_end(form) }}
+        </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">var j29_toggle_hidden_containers = true;</script>
+    {{ parent() }}
 {% endblock %}

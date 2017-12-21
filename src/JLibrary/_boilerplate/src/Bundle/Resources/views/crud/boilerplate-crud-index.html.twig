@@ -30,13 +30,13 @@
         {% endblock %}
 
         {% block crud_table_header %}
-            <div class="header h2 basis50">Name</div>
+            <div class="header h2 basis50">Title</div>
             <div class="header h2 basis25 center-text">Published</div>
             <div class="header h2 header-actions basis25 center-text">Actions</div>
         {% endblock %}
 
         {% block crud_table_data %}
-            <div class="column basis50">{{ entity.name }}</div>
+            <div class="column basis50">{{ entity.title }}</div>
             <div class="column center-text basis25">{% if entity.published %}&#128309;{% else %}&#9899;{% endif %}</div>
             <div class="column column-actions center-text basis25"><a href="{{ path('j29.crud.###.edit', {'id': entity.id}) }}" class="btn btn-danger">update / delete</a>
             </div>
@@ -49,3 +49,50 @@
     <script type="text/javascript">var j29_sort_crud_index = true;</script>
     {{ parent() }}
 {% endblock %}
+
+
+
+{########      ###      #########}
+{########   Templates   #########}
+{########      ###      #########}
+
+
+
+
+
+{########   Images   #########}
+<div class="header h2 basis15">Image</div>
+
+<div class="column basis15">
+    <img class="thumbnail" src="{{ asset('uploads/board_members/' ~ entity.image) }}" width="150">
+</div>
+
+
+
+
+
+
+
+{########   Documents   #########}
+<div class="header h2 basis20">Document</div>
+<div class="header h2 basis20">Category</div>
+<div class="header h2 basis20">Description</div>
+<div class="header h2 basis10 center-text">Link</div>
+
+<div class="column basis20">{{ entity.documentName }}</div>
+<div class="column basis20">{{ entity.documentCategory.title }}</div>
+<div class="column basis20">{{ entity.documentDescription }}</div>
+<div class="column basis10 center-text"><a target="_blank" href="{{ asset('uploads/documents/' ~ entity.document) }}">view</a></div>
+
+
+
+
+
+
+
+{########   Content Pages   #########}
+<div class="header h2 basis45">Page Title</div>
+<div class="header h2 basis25">URL</div>
+
+<div class="column basis45">{{ entity.pageTitle }}</div>
+<div class="column basis25"><a href="/{{ entity.urlSlug }}" target="_blank">{{ entity.urlSlug }}</a></div>

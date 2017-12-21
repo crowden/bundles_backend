@@ -1,13 +1,3 @@
-{# Options for widget element:
-    - include: 'JLibrary:templates/admin_homepage:cms-widget-element.html.twig'
-    - heading: [string]
-    - description: [string]
-    - path_list: [string][route_index]
-    - path_new: [string][route_new]
-    - path_manage: [string][route_manage]
-    - sort_by: [string][url_path]
-#}
-
 {% extends 'JLibrary:templates/layout:basic.html.twig' %}
 
 {% block main_content %}
@@ -21,7 +11,10 @@
                         {
                             heading: '###',
                             description: '###',
-                            path_manage: 'j29.www.index'
+                            path_list: 'j29.www.index',
+                            path_new: 'j29.www.index',
+                            path_manage: 'j29.www.index',
+                            sort_by: 'propertyName/desc',
                         } 
                     %}
                 </div>
