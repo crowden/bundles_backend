@@ -129,7 +129,7 @@ class Sanitizer
                 
         try {
             if ($validated === false) throw new \Exception('Problem validating URL');
-            return $validated;
+            return 'ERROR: Link Not Valid';
         }
         catch (\Exception $e){
             echo $e->getMessage();        
