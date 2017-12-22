@@ -44,6 +44,15 @@ class _Variations extends Controller
             'type' => 'plain_text',
             'optional' => false,
         ],
+        //////////////
+        // Markdown //
+        //////////////
+        'MarkdownRaw' => [
+            'type' => 'markdown_general',
+            'optional' => false,
+            'rawHandler' => 'MarkdownRaw',
+            'htmlHandler' => 'MarkdownHtml',
+        ],
     );
 
     private $template_vars = array(

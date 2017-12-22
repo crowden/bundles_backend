@@ -26,8 +26,6 @@ class **Entity**
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $published;
-
-
 }
 
 
@@ -44,106 +42,118 @@ class **Entity**
 //         General          //
 //////////////////////////////
 
-/**
- * @ORM\Column(type="json_array")
- * @Assert\All({
- *     @Assert\###()
- * })
- * @Assert\NotNull()
- */
-private $array_json_NOT_NULL('collection') = array('add an item');
+    /**
+     * @ORM\Column(type="json_array")
+     * @Assert\All({
+     *     @Assert\###()
+     * })
+     * @Assert\NotNull()
+     */
+    private $array_json_NOT_NULL('collection') = array('add an item');
 
-/**
- * @ORM\Column(type="boolean", nullable=true)
- */
-private $checkBox;
-    
-/**
- * @ORM\Column(type="string", length=255)
- * @Assert\Choice({"c1", "c2", "c3"})
- */
-private $choices;
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $checkBox;
+        
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Choice({"c1", "c2", "c3"})
+     */
+    private $choices;
 
-/**
- * @ORM\Column(type="datetime")
- * 
- * @Assert\Date()
- */
-private $dateTime;
+    /**
+     * @ORM\Column(type="datetime")
+     * 
+     * @Assert\Date()
+     */
+    private $dateTime;
 
-/**
- * @ORM\Column(type="string", length=255)
- * 
- * @Assert\Length(
- *     max=255, 
- *     maxMessage="This field can only contain 255 characters"
- * )
- * 
- * @Assert\Email(
- *     strict = true, 
- *     message = "The email '{{ value }}' does not appear to be a valid email."
- * )
- */
-private $emailAddress;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\Length(
+     *     max=255, 
+     *     maxMessage="This field can only contain 255 characters"
+     * )
+     * 
+     * @Assert\Email(
+     *     strict = true, 
+     *     message = "The email '{{ value }}' does not appear to be a valid email."
+     * )
+     */
+    private $emailAddress;
 
-/**
- * @ORM\Column(type="integer")
- * @Assert\Type(type="integer")
- */
-private $integer;
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\Type(type="integer")
+     */
+    private $integer;
 
-/**
- * @ORM\Column(type="string", length=255)
- * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
- */
-private $machineName;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
+     */
+    private $machineName;
 
-/**
- * @ORM\Column(type="integer")
- */
-private $order;
+    /**
+     * @ORM\Column(type="decimal")
+     * @Assert\Type("number")
+     */
+    private $number;
 
-/**
- * @ORM\Column(type="string", length=14)
- * 
- * @Assert\Length(
- *     max=14,
- *     maxMessage="This field can only contain 14 characters"
- * )
- * 
- * @Assert\Regex(
- *     pattern="/^\(?\d{3}\)?[- \.]?\d{3}[- \.]?\d{4}$/",
- *     message="Please format phone/fax numbers as (###) ###-#### with no spaces at the beginning or end."
- * )
- */
-private $phoneNumber;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $order;
 
-/**
- * @ORM\Column(type="string", length=2)
- * 
- * @Assert\Length(
- *     max=2, 
- *     maxMessage="This field can only contain 2 characters. Please format states as 2 uppercase letters only."
- * )
- */
-private $state;
+    /**
+     * @ORM\Column(type="string", length=14)
+     * 
+     * @Assert\Length(
+     *     max=14,
+     *     maxMessage="This field can only contain 14 characters"
+     * )
+     * 
+     * @Assert\Regex(
+     *     pattern="/^\(?\d{3}\)?[- \.]?\d{3}[- \.]?\d{4}$/",
+     *     message="Please format phone/fax numbers as (###) ###-#### with no spaces at the beginning or end."
+     * )
+     */
+    private $phoneNumber;
 
-/**
- * @ORM\Column(type="string", length=255)
- * @Assert\NotBlank()
- * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
- */
-private $string;
+    /**
+     * @ORM\Column(type="string", length=2)
+     * 
+     * @Assert\Length(
+     *     max=2, 
+     *     maxMessage="This field can only contain 2 characters. Please format states as 2 uppercase letters only."
+     * )
+     */
+    private $state;
 
-/**
- * @ORM\Column(type="string", length=255, unique=true)
- * 
- * @Assert\Regex(
- *     pattern="/^[a-z0-9][-a-z0-9]*[a-z0-9]{1}$/",
- *     message="URL's can only be letters, numbers, and hyphens. Also, URL's can only start and finish with letters or numbers and must be between 2-255 characters in length."
- * )
- */
-private $urlSlug;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
+     */
+    private $string_NOT_BLANK;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
+     */
+    private $string_NULLABLE;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     * 
+     * @Assert\Regex(
+     *     pattern="/^[a-z0-9][-a-z0-9]*[a-z0-9]{1}$/",
+     *     message="URL's can only be letters, numbers, and hyphens. Also, URL's can only start and finish with letters or numbers and must be between 2-255 characters in length."
+     * )
+     */
+    private $urlSlug;
 
 
 
@@ -153,15 +163,15 @@ private $urlSlug;
 //         Blocks            //
 ///////////////////////////////
 
-/**
- * @ORM\Column(name="id", type="string", length=255)
- * @ORM\Id
- * @ORM\GeneratedValue(strategy="NONE")
- */
-private $id;
+    /**
+     * @ORM\Column(name="id", type="string", length=255)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $id;
 
-public function getId(){}
-public function setId($id){}
+    public function getId(){}
+    public function setId($id){}
 
 
 
@@ -171,18 +181,18 @@ public function setId($id){}
 //         Categories            //
 ///////////////////////////////////
 
-/**
- * @ORM\Column(type="string", length=255)
- * @Assert\NotBlank()
- * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
- */
-private $title;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
+     */
+    private $title;
 
-/**
- * @ORM\Column(type="string", length=255)
- * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
- */
-private $machineName;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
+     */
+    private $machineName;
 
 
 
@@ -192,23 +202,23 @@ private $machineName;
 //         Joins           //
 /////////////////////////////
 
-use J29Bundle\Entity\category\EntityNotInCurrentDir;
+    use J29Bundle\Entity\category\EntityNotInCurrentDir;
 
-/**
- * @ORM\ManyToOne(targetEntity="ENTITY_IN_CURRENT_DIR")
- * @ORM\JoinColumn(nullable=false)
- * @Assert\NotNull(message="value required")
- */
-private $join_IN_DIR;
+    /**
+     * @ORM\ManyToOne(targetEntity="ENTITY_IN_CURRENT_DIR")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull(message="value required")
+     */
+    private $join_IN_DIR;
 
-/**
- * @ORM\ManyToOne(targetEntity="\ENITY\NOT\IN_CURRENT\DIR")
- * @ORM\JoinColumn(nullable=false)
- * @Assert\NotNull(message="This value cannont be empty.")
- */
-private $join_NOT_IN_DIR;
+    /**
+     * @ORM\ManyToOne(targetEntity="\ENITY\NOT\IN_CURRENT\DIR")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull(message="This value cannont be empty.")
+     */
+    private $join_NOT_IN_DIR;
 
-public function notNullEntityJoin(ENTITY $entity = null){}
+    public function notNullEntityJoin(ENTITY $entity = null){}
 
 
 
@@ -218,16 +228,16 @@ public function notNullEntityJoin(ENTITY $entity = null){}
 //         Markdown           //
 ////////////////////////////////
 
-/**
- * @ORM\Column(type="text")
- */
-private $contentHtml;
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $contentHtml;
 
-/**
- * @ORM\Column(type="text")
- * @Assert\NotBlank()
- */
-private $contentRaw;
+    /**
+     * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     */
+    private $contentRaw;
 
 
 
@@ -237,19 +247,19 @@ private $contentRaw;
 //         Slug/Timestamp           //
 //////////////////////////////////////
 
-use Gedmo\Mapping\Annotation as Gedmo;
+    use Gedmo\Mapping\Annotation as Gedmo;
 
-/**
- * @Gedmo\Slug(fields={"title"})
- * @ORM\Column(type="string")
- */
-private $slug;
+    /**
+     * @Gedmo\Slug(fields={"slug"})
+     * @ORM\Column(type="string")
+     */
+    private $slug;
 
-/**
- * @Gedmo\Timestampable(on="create")
- * @ORM\Column(type="datetime")
- */
-private $createdAt;
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
 
 
@@ -259,26 +269,26 @@ private $createdAt;
 //         Files/Images            //
 /////////////////////////////////////
 
-/**
- * @ORM\Column(type="string", length=255)
- * @Assert\File(
- *     maxSize = "500k",
- *     mimeTypes = {
- *         "image/jpeg", 
- *         "image/png"
- *     },
- *     binaryFormat = false,
- *     mimeTypesMessage = "Please upload only .jpg and .png files"
- * )
- */
-private $file;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\File(
+     *     maxSize = "500k",
+     *     mimeTypes = {
+     *         "image/jpeg", 
+     *         "image/png"
+     *     },
+     *     binaryFormat = false,
+     *     mimeTypesMessage = "Please upload only .jpg and .png files"
+     * )
+     */
+    private $file;
 
-/**
- * @ORM\Column(type="string", length=255)
- * @Assert\NotBlank()
- * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
- */
-private $fileDescription;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
+     */
+    private $fileDescription;
 
 
 
@@ -290,51 +300,51 @@ private $fileDescription;
 
 use J29Bundle\Entity\category\DocumentCategory;
 
-/**
- * @ORM\Column(type="string", length=255)
- * @Assert\NotBlank()
- * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
- */
-private $documentName;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
+     */
+    private $documentName;
 
-/**
- * @ORM\Column(type="string", length=255)
- * @Assert\File(
- *     maxSize = "2500k",
- *     mimeTypes = {
- *         "application/pdf",
- *         "application/x-pdf",
- *         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
- *         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
- *         "application/msword",
- *         "application/vnd.ms-excel"
- *     },
- *     binaryFormat = false,
- *     mimeTypesMessage = "Allowed file types are '.pdf', '.docx', '.doc', '.xls', and '.xlsx'."
- * )
- */
-private $document;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\File(
+     *     maxSize = "2500k",
+     *     mimeTypes = {
+     *         "application/pdf",
+     *         "application/x-pdf",
+     *         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+     *         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+     *         "application/msword",
+     *         "application/vnd.ms-excel"
+     *     },
+     *     binaryFormat = false,
+     *     mimeTypesMessage = "Allowed file types are '.pdf', '.docx', '.doc', '.xls', and '.xlsx'."
+     * )
+     */
+    private $document;
 
-/**
- * @ORM\ManyToOne(targetEntity="\J29Bundle\Entity\category\DocumentCategory")
- * @ORM\JoinColumn(nullable=false)
- * @Assert\NotNull(message="This value cannont be empty.")
- */
-private $documentCategory;
+    /**
+     * @ORM\ManyToOne(targetEntity="\J29Bundle\Entity\category\DocumentCategory")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull(message="This value cannont be empty.")
+     */
+    private $documentCategory;
 
-/**
- * @ORM\Column(type="string", length=255)
- * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
- * @Assert\NotBlank()
- */
-private $documentDescription;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
+     * @Assert\NotBlank()
+     */
+    private $documentDescription;
 
-/**
- * @ORM\Column(type="string", length=255)
- * @Assert\NotBlank()
- * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
- */
-private $documentLinkText;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
+     */
+    private $documentLinkText;
 
 
 
@@ -346,7 +356,22 @@ private $documentLinkText;
 
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-/**
- * @Assert\Callback
- */
-public function CALLBACK(ExecutionContextInterface $context){}
+    /**
+     * @Assert\Callback
+     */
+    public function validateTicketLinkText(ExecutionContextInterface $context){
+        $this->checkTetheredFields(
+            $context, 
+            $field_not_null, 
+            $field_null, 
+            $property
+        );
+    }
+
+    private function checkTetheredFields($context, $field_not_null, $field_null, $property){
+        if(($field_not_null !== null) && ($field_null === null)){
+            $context->buildViolation('You must provide a value for this field.')
+                ->atPath($property)
+                ->addViolation();
+        }
+    }

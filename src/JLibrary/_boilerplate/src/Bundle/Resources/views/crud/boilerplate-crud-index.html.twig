@@ -63,9 +63,11 @@
 {########   Images   #########}
 <div class="header h2 basis15">Image</div>
 
-<div class="column basis15">
-    <img class="thumbnail" src="{{ asset('uploads/board_members/' ~ entity.image) }}" width="150">
-</div>
+{% if entity.image %}
+    <div class="column basis15">
+        <img class="thumbnail" src="{{ asset('uploads/board_members/' ~ entity.image) }}" width="150">
+    </div>
+{% endif %}
 
 
 

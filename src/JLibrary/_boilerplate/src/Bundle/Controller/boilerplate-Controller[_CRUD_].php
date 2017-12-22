@@ -24,8 +24,8 @@ class **Entity**Controller extends Controller
     const TMPL_INDEX = 'J29Bundle:**ENTITY_TYPE**:**ENTITY_TYPE**-index-**single-entity**.html.twig';
     const TMPL_ACTION = 'J29Bundle:**ENTITY_TYPE**:**ENTITY_TYPE**-action-**single-entity**.html.twig';
 
-    const ROUTE_INDEX = 'j29.**ENTITY_TYPE**.single_entity.index';
-    const ROUTE_DELETE = 'j29.**ENTITY_TYPE**.single_entity.delete';
+    const ROUTE_INDEX = 'j29.**ENTITY_TYPE**.***single_entity***.index';
+    const ROUTE_DELETE = 'j29.**ENTITY_TYPE**.***single_entity***.delete';
 
     /**
      * types include:
@@ -39,7 +39,7 @@ class **Entity**Controller extends Controller
         'EntityPrivateProperty' => [
             'type' => 'plain_text',
             'optional' => false,
-        ]
+        ],
     );
 
     private $template_vars = array(
@@ -48,7 +48,7 @@ class **Entity**Controller extends Controller
     );
 
     /**
-     * @Route("/", name="j29.**ENTITY_TYPE**.single_entity.index")
+     * @Route("/", name="j29.**ENTITY_TYPE**.***single_entity***.index")
      * @Method("GET")
      */
     public function indexAction(){
@@ -56,7 +56,7 @@ class **Entity**Controller extends Controller
 
         // template data
         $build = array_merge([
-            'page_title' => '###',
+            'page_title' => '**TITLE_ENTITITEIS_PLURAL**',
             'entities' => $entity_manager->getRepository(self::ENTITY_NAMESPACE)->findAll(),
         ], $this->template_vars);
 
@@ -64,7 +64,7 @@ class **Entity**Controller extends Controller
     }
 
     /**
-     * @Route("/new", name="j29.**ENTITY_TYPE**.single_entity.new")
+     * @Route("/new", name="j29.**ENTITY_TYPE**.***single_entity***.new")
      */
     public function newAction(Request $request){
         $entity = new **Entity--();
@@ -85,7 +85,7 @@ class **Entity**Controller extends Controller
         // template data
         $build = array_merge([
             'creating_entity' => true,
-            'page_title' => 'New ###',
+            'page_title' => 'New **TITLE_ENTITY_SINGLE**',
             'form' => $form->createView(),
         ], $this->template_vars);
 
@@ -93,7 +93,7 @@ class **Entity**Controller extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="j29.**ENTITY_TYPE**.single_entity.edit", requirements={"id" = "\d+"})
+     * @Route("/{id}/edit", name="j29.**ENTITY_TYPE**.***single_entity***.edit", requirements={"id" = "\d+"})
      */
     public function editAction(Request $request, **Entity-- $entity){
         $delete_form = $this->renderDeleteForm($entity);
@@ -112,7 +112,7 @@ class **Entity**Controller extends Controller
         // template data
         $build = array_merge([
             'creating_entity' => false,
-            'page_title' => 'Edit ###',
+            'page_title' => 'Edit **TITLE_ENTITY_SINGLE**',
             'form' => $form->createView(),
             'delete_form' => $delete_form->createView(),
         ], $this->template_vars);
@@ -121,7 +121,7 @@ class **Entity**Controller extends Controller
     }
 
     /**
-     * @Route("/{id}", name="j29.**ENTITY_TYPE**.single_entity.delete", requirements={"id" = "\d+"})
+     * @Route("/{id}", name="j29.**ENTITY_TYPE**.***single_entity***.delete", requirements={"id" = "\d+"})
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, **Entity-- $entity){
@@ -152,7 +152,7 @@ class **Entity**Controller extends Controller
      */
     public function sort(Request $request, $sort_by, $order){
         $build_variables = [
-            'page_title' => '###',
+            'page_title' => '**TITLE_ENTITITEIS_PLURAL**',
             'page_description' => 'Admin Page',
         ];
 
