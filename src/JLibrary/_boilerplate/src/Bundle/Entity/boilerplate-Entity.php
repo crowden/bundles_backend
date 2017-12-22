@@ -149,9 +149,27 @@ private $urlSlug;
 
 
 
-//////////////////////////////////////////
-//         Categories/Blocks            //
-//////////////////////////////////////////
+///////////////////////////////
+//         Blocks            //
+///////////////////////////////
+
+/**
+ * @ORM\Column(name="id", type="string", length=255)
+ * @ORM\Id
+ * @ORM\GeneratedValue(strategy="NONE")
+ */
+private $id;
+
+public function getId(){}
+public function setId($id){}
+
+
+
+
+
+///////////////////////////////////
+//         Categories            //
+///////////////////////////////////
 
 /**
  * @ORM\Column(type="string", length=255)

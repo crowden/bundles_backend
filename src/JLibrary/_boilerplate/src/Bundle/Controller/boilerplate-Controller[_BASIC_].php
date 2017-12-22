@@ -6,7 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class **ACTION**Controller extends Controller
+class _***_Controller extends Controller
 {
     /**
      * @Route("/###", name="j29.**ENTITY_TYPE**.###")
