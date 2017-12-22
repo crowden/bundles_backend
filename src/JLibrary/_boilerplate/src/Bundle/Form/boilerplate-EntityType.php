@@ -30,14 +30,6 @@ class **ENTITY_NAME**Type extends AbstractType
 
 
 
-########      ###      #########
-########   Templates   #########
-########      ###      #########
-
-
-
-
-
 /////////////////////////////////////////////
 //         Optional File/Image             //
 /////////////////////////////////////////////
@@ -56,10 +48,6 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 ])
 
 'disable_file_delete' => null,
-
-
-
-
 
 /////////////////////////////////
 //         Document            //
@@ -84,10 +72,6 @@ use J29Bundle\Entity\category\DocumentCategory;
 
 'disable_file_delete' => null,
 
-
-
-
-
 ///////////////////////////////////
 //         Ordering              //
 ///////////////////////////////////
@@ -103,10 +87,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 'order_choices' => null,
 
-
-
-
-
 ///////////////////////////////////
 //         MachineName           //
 ///////////////////////////////////
@@ -119,3 +99,29 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 'machine_name_disabled' => false,
 
+/////////////////////////////////
+//         DateTime            //
+/////////////////////////////////
+
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
+->add('dateEnd', DateType::class, [
+    'widget' => 'choice',
+    'placeholder' => [
+        'year' => 'Year',
+        'month' => 'Month',
+        'day' => 'Day',
+    ]
+])
+
+//////////////////////////////
+//         Time             //
+//////////////////////////////
+
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
+->add('timeEnd', TimeType::class, [
+    'placeholder' => [
+        'hour' => 'hour',
+        'minute' => 'minute',
+    ]
+])

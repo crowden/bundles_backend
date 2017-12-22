@@ -31,21 +31,11 @@
 
 
 
-{########      ###      #########}
-{########   Templates   #########}
-{########      ###      #########}
-
-
-
-
-
 {########   Categories   #########}
 <div class="flex">
     <div class="basis50">{% include 'JLibrary:templates/form_fields:general.html.twig' with {field: form.title} %}</div>
     <div class="basis50">{% include 'JLibrary:templates/form_fields:general.html.twig' with {field: form.machineName} %}</div>
 </div>
-
-
 
 {########   Collections(text)   #########}
 {% include 'JLibrary:templates/form_fields:collection-add-delete.html.twig' with 
@@ -54,8 +44,6 @@
         label: ###,
     } 
 %}
-
-
 
 {########   Collections(checkboxes)   #########}
 {% include 'JLibrary:templates/form_fields:checkbox-collection.html.twig' with 
@@ -66,16 +54,8 @@
     } 
 %}
 
-
-
 {########   Date/Time   #########}
 {% include 'JLibrary:templates/form_fields:date-time.html.twig' with {field: form.dateTime} %}
-
-
-
-
-
-
 
 {########   Documents   #########}
 {% include 'JLibrary:templates/form_fields:general.html.twig' with {field: form.documentName} %}
@@ -102,12 +82,6 @@
     %}
 </fieldset>
 
-
-
-
-
-
-
 {########   General   #########}
 {% include 'JLibrary:templates/form_fields:general.html.twig' with 
     {
@@ -116,12 +90,6 @@
         sublabel_file: '###'
     } 
 %}
-
-
-
-
-
-
 
 {########   Images   #########}
 <fieldset>
@@ -135,12 +103,6 @@
     } %}
 </fieldset>
 
-
-
-
-
-
-
 {########   Inline Checkbox   #########}
 {% include 'JLibrary:templates/form_fields:inline-checkbox.html.twig' with 
     {
@@ -149,12 +111,6 @@
         custom_sublabel: '###'
     } 
 %}
-
-
-
-
-
-
 
 {########   Markdown   #########}
 <fieldset>

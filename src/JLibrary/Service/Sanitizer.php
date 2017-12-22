@@ -131,7 +131,7 @@ class Sanitizer
             if ($validated === false) throw new Exception('Problem validating URL');
             return $validated;
         }
-        catch (Exception $e){
+        catch (\Exception $e){
             echo $e->getMessage();        
         }
     }

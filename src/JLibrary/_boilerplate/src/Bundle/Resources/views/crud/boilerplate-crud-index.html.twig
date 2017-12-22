@@ -52,14 +52,6 @@
 
 
 
-{########      ###      #########}
-{########   Templates   #########}
-{########      ###      #########}
-
-
-
-
-
 {########   Images   #########}
 <div class="header h2 basis15">Image</div>
 
@@ -68,12 +60,6 @@
         <img class="thumbnail" src="{{ asset('uploads/board_members/' ~ entity.image) }}" width="150">
     </div>
 {% endif %}
-
-
-
-
-
-
 
 {########   Documents   #########}
 <div class="header h2 basis20">Document</div>
@@ -85,12 +71,6 @@
 <div class="column basis20">{{ entity.documentCategory.title }}</div>
 <div class="column basis20">{{ entity.documentDescription }}</div>
 <div class="column basis10 center-text"><a target="_blank" href="{{ asset('uploads/documents/' ~ entity.document) }}">view</a></div>
-
-
-
-
-
-
 
 {########   Content Pages   #########}
 <div class="header h2 basis45">Page Title</div>

@@ -30,14 +30,6 @@ class **Entity**
 
 
 
-########      ###      #########
-########   Templates   #########
-########      ###      #########
-
-
-
-
-
 //////////////////////////////
 //         General          //
 //////////////////////////////
@@ -68,6 +60,12 @@ class **Entity**
      * @Assert\Date()
      */
     private $dateTime;
+
+    /**
+     * @ORM\Column(type="decimal", nullable=true, precision=20, scale=6)
+     * @Assert\Type("numeric")
+     */
+    private $decimal;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -155,10 +153,6 @@ class **Entity**
      */
     private $urlSlug;
 
-
-
-
-
 ///////////////////////////////
 //         Blocks            //
 ///////////////////////////////
@@ -172,10 +166,6 @@ class **Entity**
 
     public function getId(){}
     public function setId($id){}
-
-
-
-
 
 ///////////////////////////////////
 //         Categories            //
@@ -193,10 +183,6 @@ class **Entity**
      * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
      */
     private $machineName;
-
-
-
-
 
 /////////////////////////////
 //         Joins           //
@@ -220,10 +206,6 @@ class **Entity**
 
     public function notNullEntityJoin(ENTITY $entity = null){}
 
-
-
-
-
 ////////////////////////////////
 //         Markdown           //
 ////////////////////////////////
@@ -238,10 +220,6 @@ class **Entity**
      * @Assert\NotBlank()
      */
     private $contentRaw;
-
-
-
-
 
 //////////////////////////////////////
 //         Slug/Timestamp           //
@@ -260,10 +238,6 @@ class **Entity**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
-
-
-
-
 
 /////////////////////////////////////
 //         Files/Images            //
@@ -289,10 +263,6 @@ class **Entity**
      * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
      */
     private $fileDescription;
-
-
-
-
 
 /////////////////////////////////
 //         Documents           //
@@ -345,10 +315,6 @@ use J29Bundle\Entity\category\DocumentCategory;
      * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
      */
     private $documentLinkText;
-
-
-
-
 
 /////////////////////////////////
 //         Callbacks           //
