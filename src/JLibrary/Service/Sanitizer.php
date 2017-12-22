@@ -128,7 +128,7 @@ class Sanitizer
         $validated = filter_var($sanitized, FILTER_VALIDATE_URL);
                 
         try {
-            if ($validated === false) throw new Exception('Problem validating URL');
+            if ($validated === false) throw new \Exception('Problem validating URL');
             return $validated;
         }
         catch (\Exception $e){
