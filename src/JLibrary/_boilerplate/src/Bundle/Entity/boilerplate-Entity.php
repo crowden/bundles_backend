@@ -144,6 +144,13 @@ class **Entity**
     private $string_NULLABLE;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
+     * @Assert\Url()
+     */
+    private $urlAbsolute;
+
+    /**
      * @ORM\Column(type="string", length=255, unique=true)
      * 
      * @Assert\Regex(
