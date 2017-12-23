@@ -1,9 +1,15 @@
 <?php 
 
+use Symfony\Component\HttpFoundation\Response;
 use JLibrary\Service\SingleFileManager; // Files
 use JLibrary\Service\Orderer; // Ordering
 use JLibrary\Service\MachineNameGenerator; // Categories
+use Symfony\Component\HttpFoundation\BinaryFileResponse; // serve file
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security; // restrict controller/class
 
+/**
+ * @Security("has_role('ROLE_ADMIN')")
+ */
 class _Variations extends Controller
 {
     private $file_manager; // Files

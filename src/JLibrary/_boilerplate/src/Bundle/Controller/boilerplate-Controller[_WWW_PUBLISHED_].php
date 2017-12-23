@@ -26,8 +26,8 @@ class InteriorBasicController extends Controller
         ];
         
         // custom templates must match slug in naming
-        $template_custom = 'J29Bundle:**ENTITY_TYPE**:' . $entity->getUrlSlug() . '.html.twig';
-        $template_general = 'J29Bundle:**ENTITY_TYPE**:###.html.twig';
+        $template_custom = 'J29Bundle:**ENTITY_TYPE**/**BASE_TEMPLATE**:' . $entity->getUrlSlug() . '.html.twig';
+        $template_general = 'J29Bundle:**ENTITY_TYPE**:**BASE-TEMPLATE**.html.twig';
         $template_unauthorized = 'JLibrary:templates/unpublished:unauthorized.html.twig';
         
         // dynamically set template
