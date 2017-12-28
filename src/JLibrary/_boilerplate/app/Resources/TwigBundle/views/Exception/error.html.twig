@@ -1,0 +1,15 @@
+{% extends 'JLibrary:templates/layout:basic.html.twig' %}
+
+{% block main_content %}
+    <div class="page-error main-content">
+        <div class="container">
+            {% if status_code == 404 %}
+                {% include 'JLibrary:templates/errors:error-404.html.twig' %}
+            {% elseif status_code == 403 %}
+                {% include 'JLibrary:templates/errors:error-403.html.twig' %}
+            {% else %}
+                {% include 'JLibrary:templates/errors:error-generic.html.twig' %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
