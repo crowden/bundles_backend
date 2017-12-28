@@ -1,9 +1,13 @@
 <div class="copyright">
-    <p class="heading container">&copy; {{ 'now'|date('Y', timezone) }} {{ organization }}</p>
+    <p class="heading">&copy; {{ 'now'|date('Y', timezone) }} {{ organization }}</p>
     {% if is_granted('ROLE_ADMIN') %}
-        <a class="admin-home" href="{{ path('j29.admin.index') }}" title="admin homepage"><i class="fa fa-home" aria-hidden="true"></i></a>
-        <a class="log-in-out logout" href="{{ path('j29.admin.logout') }}" title="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+        <div class="admin-access-links">
+            <a class="admin-home link" href="{{ path('j29.admin.index') }}" title="admin homepage"><i class="fa fa-home" aria-hidden="true"></i></a>
+            <a class="log-in-out logout link" href="{{ path('j29.admin.logout') }}" title="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+        </div>
     {% else %}
-        <a class="log-in-out login" href="{{ path('j29.admin.index') }}" title="login"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+        <div class="admin-access-links">
+            <a class="log-in-out login link" href="{{ path('j29.admin.index') }}" title="login"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+        </div>
     {% endif %}
 </div>
