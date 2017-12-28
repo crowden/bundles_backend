@@ -14,6 +14,12 @@ class **ENTITY_NAME**Type extends AbstractType
         $builder
             ->add('title')
             ->add('published')
+            /*->add('j29FormCode', TextType::class, [
+                'mapped' => false,
+                'label' => 'J29 Form Code',
+                'required' => false,
+                'trim' => false,
+            ])*/
 
         ;
     }
@@ -29,6 +35,16 @@ class **ENTITY_NAME**Type extends AbstractType
 }
 
 
+///////////////////////////////////
+//         Honeypot              //
+///////////////////////////////////
+
+->add('j29FormCode', TextType::class, [
+    'mapped' => false,
+    'label' => 'J29 Form Code',
+    'required' => false,
+    'trim' => false,
+])
 
 /////////////////////////////////////////////
 //         Optional File/Image             //
