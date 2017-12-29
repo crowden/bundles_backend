@@ -12,7 +12,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="{{ page_description }}">
-        <title>{{ page_title }} | {{ page_title_suffix }}</title>
+        <title>{% block title_tag %}{{ page_title }} | {{ page_title_suffix }}{% endblock %}</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         {% block stylesheets %}<link href="{{ asset(global_stylesheet) }}" rel="stylesheet">{% endblock %}
     </head>
