@@ -67,10 +67,10 @@ class **Entity**Controller extends Controller
      * @Route("/new", name="j29.**ENTITY_TYPE**.***single_entity***.new")
      */
     public function newAction(Request $request){
-        $entity = new **Entity--();
+        $entity = new **Entity**();
 
         // form creation
-        $form = $this->createForm(**Entity--Type::class, $entity);
+        $form = $this->createForm(**Entity**Type::class, $entity);
         $form->handleRequest($request);
 
         // form submission
@@ -95,9 +95,9 @@ class **Entity**Controller extends Controller
     /**
      * @Route("/{id}/edit", name="j29.**ENTITY_TYPE**.***single_entity***.edit", requirements={"id" = "\d+"})
      */
-    public function editAction(Request $request, **Entity-- $entity){
+    public function editAction(Request $request, **Entity** $entity){
         $delete_form = $this->renderDeleteForm($entity);
-        $form = $this->createForm(**Entity--Type::class, $entity);
+        $form = $this->createForm(**Entity**Type::class, $entity);
         
         $form->handleRequest($request);
 
@@ -124,7 +124,7 @@ class **Entity**Controller extends Controller
      * @Route("/{id}", name="j29.**ENTITY_TYPE**.***single_entity***.delete", requirements={"id" = "\d+"})
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, **Entity-- $entity){
+    public function deleteAction(Request $request, **Entity** $entity){
         // form creation
         $form = $this->renderDeleteForm($entity);
         $form->handleRequest($request);
