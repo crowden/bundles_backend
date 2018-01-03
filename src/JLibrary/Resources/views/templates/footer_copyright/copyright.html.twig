@@ -2,6 +2,10 @@
     <p class="heading">&copy; {{ 'now'|date('Y', timezone) }} {{ organization }}</p>
     {% if is_granted('ROLE_ADMIN') %}
         <div class="admin-access-links">
+            {% if additional_admin_links ?? false %}
+                {% include additional_admin_links %}
+            {% endif %}
+            
             <a class="admin-home link" href="{{ path('j29.admin.index') }}" title="admin homepage"><i class="fa fa-home" aria-hidden="true"></i></a>
             <a class="log-in-out logout link" href="{{ path('j29.admin.logout') }}" title="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
         </div>
