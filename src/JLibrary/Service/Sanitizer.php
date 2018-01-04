@@ -111,7 +111,8 @@ class Sanitizer
     }
 
     private function returnUrl($value){
-        $sanitized = filter_var(trim($value), FILTER_SANITIZE_URL);
+        $value_no_tags = $this->returnPlainText($value);
+        $sanitized = filter_var(trim($value_no_tags), FILTER_SANITIZE_URL);
 
         try {
             if ($sanitized === false){
@@ -128,7 +129,8 @@ class Sanitizer
     }
 
     private function returnUrlValidated($value){
-        $sanitized = $this->returnUrl($value);
+        $value_no_tags = $this->returnPlainText($value);
+        $sanitized = $this->returnUrl($value_no_tags);
         $validated = filter_var($sanitized, FILTER_VALIDATE_URL);
                 
         try {
