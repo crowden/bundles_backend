@@ -131,7 +131,7 @@ class **Entity**Controller extends Controller
     
         // form submission
         if ($form->isValid()) {
-            /*$allowed_to_delete = $this->entityDeletionAllowed($entity, 'entity_namespace', 'entity_join_property');*/
+            /*$allowed_to_delete = $this->entityDeletionAllowed($entity, 'dependant_entity_namespace', 'dependant_entity_join_property');*/
             
             if (true){
                 $this->addFlash('success', 'Item successfully deleted');
@@ -141,7 +141,6 @@ class **Entity**Controller extends Controller
                 $this->addFlash('warning', 'There are items that are using what you\'re trying to delete. If you want to delete this item, first go and disconnect it from the other items it is linked to. <br><br><strong>NOTE:</strong> Deleting this item could cause other areas of this site to break!');
                 return $this->redirectToRoute(self::ROUTE_EDIT, ['id' => $entity->getId()]);
             }
-
         }
     
         return $this->redirectToRoute(self::ROUTE_INDEX);

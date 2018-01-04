@@ -15,7 +15,7 @@ use JLibrary\Traits\ControllerTraits;
 /**
  * **ENTITY**
  * 
- * @Route("/###")
+ * @Route("/admin")
  */
 class _***_Controller extends Controller
 {
@@ -46,7 +46,7 @@ class _***_Controller extends Controller
     );
     
     /**
-     * @Route("/^^ENTITY_TYPE^^/__SINGLE-ENTITY__", name="j29.^^ENTITY_TYPE^^.**SINGLE_ENTITY**.manage")
+     * @Route("/^^ENTITY_TYPE^^s/__SINGLE-ENTITY__", name="j29.^^ENTITY_TYPE^^.**SINGLE_ENTITY**.manage")
      * @Security("has_role('ROLE_ADMIN')")
      */
     public function manageAction(Request $request){

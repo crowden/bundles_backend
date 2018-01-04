@@ -1,0 +1,27 @@
+{% extends 'JLibrary:templates/layout:basic.html.twig' %}
+
+{% block main_content %}
+    {% embed 'JLibrary:templates/layout:crud-action-single.html.twig' %}
+        {# BEGIN - Form Fields #}
+        
+
+        {% block crud_form_controls %}
+            {% include 'JLibrary:templates/form_fields:general.html.twig' with 
+                {
+                    field: form.title, 
+                    label: 'Title',
+                } 
+            %}
+        {% endblock %}
+        
+
+        {# END - Form Fields #}
+        {% block crud_cancel_path %}{{ path('j29.admin.index') }}{% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block javascript %}
+    {# necessary to trigger show/hide boxes #}
+    <script type="text/javascript">var j29_toggle_hidden_containers = true;</script>
+    {{ parent() }}
+{% endblock %}

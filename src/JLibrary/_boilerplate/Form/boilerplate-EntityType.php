@@ -20,7 +20,6 @@ class **ENTITY_NAME**Type extends AbstractType
                 'required' => false,
                 'trim' => false,
             ])*/
-
         ;
     }
 
