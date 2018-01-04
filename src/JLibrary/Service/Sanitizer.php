@@ -114,12 +114,16 @@ class Sanitizer
         $sanitized = filter_var(trim($value), FILTER_SANITIZE_URL);
 
         try {
-            if ($sanitized === false) throw new Exception('Problem handling URL');
-            return $sanitized;
+            if ($sanitized === false){
+                throw new Exception('Problem handling URL');
+            } else {
+                return $sanitized;
+            }
         }
         // catch sanitization error
         catch (Exception $e){
-            echo $e->getMessage();
+            echo $e->getMessage();        
+            return 'ERROR: Link Not Valid';
         }
     }
 
@@ -128,12 +132,15 @@ class Sanitizer
         $validated = filter_var($sanitized, FILTER_VALIDATE_URL);
                 
         try {
-            if ($validated === false) throw new \Exception('Problem validating URL');
+            if ($validated === false){
+                throw new \Exception('Problem validating URL');
+            } else {
+                return $validated;
+            }
         }
         catch (\Exception $e){
-            /*echo $e->getMessage();        
-            return 'ERROR: Link Not Valid';*/
-            die($e->getMessage());
+            echo $e->getMessage();        
+            return 'ERROR: Link Not Valid';
         }
     }
 }
