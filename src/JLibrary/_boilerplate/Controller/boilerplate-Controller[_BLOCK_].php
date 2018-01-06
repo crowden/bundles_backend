@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use J29Bundle\Entity\^^ENTITY_TYPE^^\**ENTITY**;
 use J29Bundle\Form\^^ENTITY_TYPE^^\**ENTITY**Type;
@@ -47,12 +46,10 @@ class _***_Controller extends Controller
     
     /**
      * @Route("/^^ENTITY_TYPE^^s/__SINGLE-ENTITY__", name="j29.^^ENTITY_TYPE^^.**SINGLE_ENTITY**.manage")
-     * @Security("has_role('ROLE_ADMIN')")
      */
     public function manageAction(Request $request){
         $entity = $this
             ->getDoctrine()
-            ->getManager()
             ->getRepository(self::ENTITY_NAMESPACE)
             ->find(self::UNIQUE_NAME);
 
@@ -84,6 +81,6 @@ class _***_Controller extends Controller
             'form' => $form->createView(),
         ], $this->template_vars);
 
-        return $this->render('J29Bundle:^^ENTITY_TYPE^^:###.html.twig', $build);
+        return $this->render(self::TEMPLATE, $build);
     }
 }
