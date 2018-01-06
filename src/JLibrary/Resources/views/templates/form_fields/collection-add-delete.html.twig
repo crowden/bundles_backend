@@ -1,7 +1,13 @@
 {% import _self as macroCollections %}
 
 {% macro generalCL(item) %}
-<li class="form-controls-box"><div class="field-error-container">{{ form_errors(item) }}</div>{{ form_widget(item) }}<a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a></li>
+<li class="dynamic-insert">
+    <div class="form-controls-box">
+        <div class="field-error-container">{{ form_errors(item) }}</div>
+        {{ form_widget(item) }}
+    </div>
+    <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
+</li>
 {% endmacro %}
 
 {% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %}
