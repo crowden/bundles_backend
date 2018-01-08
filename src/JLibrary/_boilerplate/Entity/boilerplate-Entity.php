@@ -344,7 +344,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
     private function checkTetheredFields($context, $field_not_null, $field_null, $property){
         if(($field_not_null !== null) && ($field_null === null)){
             $context->buildViolation('You must provide a value for this field.')
-                ->atPath($property)
+                ->atPath('$property')
                 ->addViolation();
         }
     }

@@ -1,6 +1,6 @@
-{% import _self as macroCollections %}
+{% import 'JLibrary:macros:collection-prototypes.html.twig' as jmacs %}
 
-{% macro generalCL(item) %}
+{# {% macro generalCL(item) %}
 <li class="dynamic-insert">
     <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
     <div class="form-controls-box">
@@ -10,7 +10,7 @@
         </div>
     </div>
 </li>
-{% endmacro %}
+{% endmacro %} #}
 
 {% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %}
 {% set container_class = (row_class ?? false) ? 'form-row collection-add-delete' ~ row_class : 'form-row collection-add-delete' %}
@@ -29,9 +29,9 @@
         <a href="#" id="{{ id_add }}" class="add-trigger">add</a>
     </div>
 
-    <ul id="{{ id_list }}" data-prototype="{{ macroCollections.generalCL(field.vars.prototype)|e('html_attr') }}">
+    <ul id="{{ id_list }}" data-prototype="{{ jmacs.cpText(field.vars.prototype)|e('html_attr') }}">
         {% for item in field %}
-            {{ macroCollections.generalCL(item) }}
+            {{ jmacs.cpText(item) }}
         {% else %}
             {% do field.setRendered %} 
         {% endfor %}
