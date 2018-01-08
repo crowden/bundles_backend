@@ -1,0 +1,34 @@
+{% import 'JLibrary:templates/macros:collection-prototypes.html.twig' as jmacs %}
+
+
+<div class="form-row collection-add-delete">
+    {# Sublabel #}
+    {% include 'JLibrary:templates/form_fields:_inc-crud-sublabel.html.twig' %}
+    
+    {# Erros #}
+    <div class="field-error-container">{{ form_errors(form_field) }}</div>
+    
+    {# Add button #}
+    <div class="add-container"><a href="#" id="{{ id_add }}" class="add-trigger">add</a></div>
+
+    <div id="{{ id_list }}" data-prototype="{{ mac.fcsSingleImage(form_field.vars.prototype)|e('html_attr') }}">
+        {% for item in form_field %}
+            {{ mac.fcsSingleImage(item) }}
+        {% else %}
+            {% do form_field.setRendered %} 
+        {% endfor %}
+    </div>
+</div>
+
+<script type="text/javascript">
+    var j29_add_delete_fields_specs = {
+            run: true,
+            form_control_type: 'input',
+            items : [
+                {
+                    add_trigger_id: '{{ id_add }}', 
+                    fields_list_id: '{{ id_list }}'
+                }
+            ]
+    }
+</script>

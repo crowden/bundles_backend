@@ -15,6 +15,28 @@
 
 
 
-{# Prototype: General Text Field #}
+{# 
+    Prototype: Single Image
+    Required Fields:
+        - imageAlt
+        - image
+#}
 {% macro cpSingleImage(item) %}
+    <div class="dynamic-insert">
+        <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
+        <div class="form-controls-box">
+            {# Image Alt #}
+            <div class="form-row">
+                {{ form_label(item.imageAlt, 'Alt Description') }}
+                <div class="field-error-container">{{ form_errors(item.imageAlt) }}</div>
+                {{ form_widget(item.imageAlt, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            {# Image #}
+            <div class="form-row">
+                {{ form_label(item.image, 'Image to Upload') }}
+                <div class="field-error-container">{{ form_errors(item.image) }}</div>
+                {{ form_widget(item.image, {'attr': {'data-allow-event': '1'}}) }}
+            </div>
+        </div>
+    </div>
 {% endmacro %}
