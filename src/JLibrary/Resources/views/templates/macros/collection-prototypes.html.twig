@@ -1,14 +1,14 @@
 {# Prototype: General Text Field #}
 {% macro cpText(item) %}
-{# <li class="dynamic-insert">
-    <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
-    <div class="form-controls-box">
-        <div class="form-row">
-            <div class="field-error-container">{{ form_errors(item) }}</div>
-            {{ form_widget(item) }}
+    {# <li class="dynamic-insert">
+        <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
+        <div class="form-controls-box">
+            <div class="form-row">
+                <div class="field-error-container">{{ form_errors(item) }}</div>
+                {{ form_widget(item) }}
+            </div>
         </div>
-    </div>
-</li> #}
+    </li> #}
 <li class="dynamic-insert"><a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a><div class="form-controls-box"><div class="form-row"><div class="field-error-container">{{ form_errors(item) }}</div>{{ form_widget(item) }}</div></div></li>
 {% endmacro %}
 
@@ -22,21 +22,19 @@
         - image
 #}
 {% macro cpSingleImage(item) %}
-    <div class="dynamic-insert">
+    {# <div class="dynamic-insert">
         <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
         <div class="form-controls-box">
-            {# Image Alt #}
             <div class="form-row">
                 {{ form_label(item.imageAlt, 'Alt Description') }}
                 <div class="field-error-container">{{ form_errors(item.imageAlt) }}</div>
                 {{ form_widget(item.imageAlt, {'attr': {'class': 'form-control'}}) }}
             </div>
-            {# Image #}
             <div class="form-row">
                 {{ form_label(item.image, 'Image to Upload') }}
                 <div class="field-error-container">{{ form_errors(item.image) }}</div>
                 {{ form_widget(item.image, {'attr': {'data-allow-event': '1'}}) }}
             </div>
-        </div>
-    </div>
+        </div> #}
+</div><div class="dynamic-insert"><a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a><div class="form-controls-box"><div class="form-row">{{ form_label(item.imageAlt, 'Alt Description') }}<div class="field-error-container">{{ form_errors(item.imageAlt) }}</div>{{ form_widget(item.imageAlt, {'attr': {'class': 'form-control'}}) }}</div><div class="form-row">{{ form_label(item.image, 'Image to Upload') }}<div class="field-error-container">{{ form_errors(item.image) }}</div>{{ form_widget(item.image, {'attr': {'data-allow-event': '1'}}) }}</div></div></div>
 {% endmacro %}
