@@ -1,17 +1,5 @@
 {% import 'JLibrary:templates/macros:collection-prototypes.html.twig' as jmacs %}
 
-{# {% macro generalCL(item) %}
-<li class="dynamic-insert">
-    <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
-    <div class="form-controls-box">
-        <div class="form-row">
-            <div class="field-error-container">{{ form_errors(item) }}</div>
-            {{ form_widget(item) }}
-        </div>
-    </div>
-</li>
-{% endmacro %} #}
-
 {% set sublabel_class_present = (sublabel_class ?? false) ? sublabel_class : null %}
 {% set container_class = (row_class ?? false) ? 'form-row collection-add-delete' ~ row_class : 'form-row collection-add-delete' %}
 
