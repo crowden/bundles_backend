@@ -11,9 +11,9 @@
     {# Add button #}
     <div class="add-container"><a href="#" id="{{ id_add }}" class="add-trigger">add</a></div>
 
-    <div id="{{ id_list }}" data-prototype="{{ mac.fcsSingleImage(form_field.vars.prototype)|e('html_attr') }}">
+    <div id="{{ id_list }}" data-prototype="{{ jmacs.cpSingleImage(form_field.vars.prototype)|e('html_attr') }}">
         {% for item in form_field %}
-            {{ mac.fcsSingleImage(item) }}
+            {{ jmacs.cpSingleImage(item) }}
         {% else %}
             {% do form_field.setRendered %} 
         {% endfor %}
