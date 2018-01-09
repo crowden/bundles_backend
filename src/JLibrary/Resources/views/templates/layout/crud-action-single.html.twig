@@ -7,6 +7,9 @@
         
         {# New/Edit Form #}
         {{ form_start(form, {'attr': {'class': 'form-action ' ~ form_size}}) }}
+            <div class="form-global-errors-container">
+                {{ form_errors(form) }}
+            </div>
             <div class="form-controls">
                 {% block crud_form_controls %}{% endblock %}
             </div>
