@@ -37,8 +37,8 @@
             </div>
         </div>
         <div class="image-preview">
-            <img src="#" width="50">
-            {{ form_row(item.path.vars.value) }}
+            {{ form_row(item.path) }}
+            <img src="{{item.path.vars.value}}" width="50">
         </div>
     </div>
 {% endmacro %}
