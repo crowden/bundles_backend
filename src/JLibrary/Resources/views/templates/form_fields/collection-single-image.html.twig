@@ -13,7 +13,7 @@
 
     <div id="{{ id_list }}" data-prototype="{{ jmacs.cpSingleImage(form_field.vars.prototype)|e('html_attr') }}">
         {% for item in form_field %}
-            {{ item.WebPath }}
+            {{ item.getWebPath }}
             {{ jmacs.cpSingleImage(item) }}
         {% else %}
             {% do form_field.setRendered %} 
