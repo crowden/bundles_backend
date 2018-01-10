@@ -19,7 +19,13 @@ class Sanitizer
     }
 
     /**
-     * sanitize entity fields based on parameters
+     * sanitize entity fields based on parameters.
+     *
+     * @todo  Refactor other entities and controllers to refrain from using this to validate
+     * fields such as URL and email. Instead, rely on Symfony constraints to be the first level 
+     * of defense. If form is www-facing, for example, and greater validation is needed for say a
+     * URL, explicitly use PHP filter_var(value, FILTER_VALIDATE_URL) along with regex to make sure 
+     * user is explicitly giving a URL. In CMS, rely on user error being caught by constraints.
      * 
      * @param $options
      *        - type [string]
@@ -46,7 +52,7 @@ class Sanitizer
                     $refactored = $this->returnUrlValidated($field_value);
                     break;
                 case 'email_address':
-                    $refactored = $this->returnEmailAddress($field_value);
+                    $refactored = $this->returnEmailAddressValidated($field_value);
                     break;
                 case 'markdown_extra':
                     $refactored = $this->returnMarkdownExtra($field_value);
@@ -72,7 +78,7 @@ class Sanitizer
         }
     }
 
-    private function returnEmailAddress($value){
+    private function returnEmailAddressValidated($value){
         $validated = filter_var(trim($value), FILTER_VALIDATE_EMAIL);
         
         try {
@@ -87,14 +93,17 @@ class Sanitizer
     }
 
     private function returnMarkdownExtra($value){
+        // return markdown
         return $this->parser_extra->parse($value);
     }
 
     private function returnMarkdownGeneral($value){
+        // return markdown
         return $this->parser_general->parse($value);
     }
 
     private function returnMarkdownGithub($value){
+        // return markdown
         return $this->parser_github->parse($value);
     }
 
