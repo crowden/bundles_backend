@@ -5,17 +5,16 @@
     {% include 'JLibrary:templates/form_fields:_inc-crud-sublabel.html.twig' %}
     
     {# Erros #}
-    <div class="field-error-container">{{ form_errors(form_field) }}</div>
+    <div class="field-error-container">{{ form_errors(form.socialIcons) }}</div>
     
     {# Add button #}
     <div class="add-container"><a href="#" id="{{ id_add }}" class="add-trigger">add</a></div>
 
-    <div id="{{ id_list }}" data-prototype="{{ jmacs.cpSingleImage(form_field.vars.prototype)|e('html_attr') }}">
-        {% for item in form_field %}
-            {{ item.getWebPath() }}
+    <div id="{{ id_list }}" data-prototype="{{ jmacs.cpSingleImage(form.socialIcons.vars.prototype)|e('html_attr') }}">
+        {% for item in form.socialIcons %}
             {{ jmacs.cpSingleImage(item) }}
         {% else %}
-            {% do form_field.setRendered %} 
+            {% do form.socialIcons.setRendered %} 
         {% endfor %}
     </div>
 </div>

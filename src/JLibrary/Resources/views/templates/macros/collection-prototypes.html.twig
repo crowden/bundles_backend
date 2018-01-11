@@ -1,14 +1,14 @@
 {# Prototype: General Text Field #}
 {% macro cpText(item) %}
-    {# <li class="dynamic-insert">
-        <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
-        <div class="form-controls-box">
-            <div class="form-row">
-                <div class="field-error-container">{{ form_errors(item) }}</div>
-                {{ form_widget(item) }}
-            </div>
+{# <li class="dynamic-insert">
+    <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
+    <div class="form-controls-box">
+        <div class="form-row">
+            <div class="field-error-container">{{ form_errors(item) }}</div>
+            {{ form_widget(item) }}
         </div>
-    </li> #}
+    </div>
+</li> #}
 <li class="dynamic-insert"><a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a><div class="form-controls-box"><div class="form-row"><div class="field-error-container">{{ form_errors(item) }}</div>{{ form_widget(item) }}</div></div></li>
 {% endmacro %}
 
@@ -22,23 +22,30 @@
         - image
 #}
 {% macro cpSingleImage(item) %}
-    <div class="dynamic-insert single-image">
-        <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
-        <div class="form-controls-box">
-            <div class="form-row">
-                {{ form_label(item.imageAlt, 'Alt Description') }}
-                <div class="field-error-container">{{ form_errors(item.imageAlt) }}</div>
-                {{ form_widget(item.imageAlt, {'attr': {'class': 'form-control'}}) }}
-            </div>
-            <div class="form-row">
-                {{ form_label(item.image, 'Image to Upload') }}
-                <div class="field-error-container">{{ form_errors(item.image) }}</div>
-                {{ form_widget(item.image, {'attr': {'data-allow-event': '1'}}) }}
-            </div>
+{# <div class="dynamic-insert single-image">
+    <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
+    <div class="form-controls-box">
+        <div class="form-row">
+            {{ form_label(item.imageAlt, 'Alt Description') }}
+            <div class="field-error-container">{{ form_errors(item.imageAlt) }}</div>
+            {{ form_widget(item.imageAlt, {'attr': {'class': 'form-control'}}) }}
         </div>
-        <div class="image-preview">
-            {{ form_row(item.path) }}
-            <img src="{{asset(item.path.vars.value)}}" width="50">
+        <div class="form-row">
+            {{ form_label(item.imageLink, 'Link') }}
+            <div class="field-error-container">{{ form_errors(item.imageLink) }}</div>
+            {{ form_widget(item.imageLink, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-row">
+            {{ form_label(item.imageTemp, 'Image to Upload') }}
+            <div class="field-error-container">{{ form_errors(item.imageTemp) }}</div>
+            {{ form_widget(item.imageTemp, {'attr': {'data-allow-event': '1'}}) }}
         </div>
     </div>
+    <div class="image-preview">
+        {{ form_row(item.pathSet) }}
+        {% set path_value = (item.pathSet.vars.value is empty) ? 'images/image-missing.svg' : item.pathSet.vars.value %}
+        <img src="{{asset(path_value)}}" width="50">
+    </div>
+</div> #}
+<div class="dynamic-insert single-image"><a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a><div class="form-controls-box"><div class="form-row">{{ form_label(item.imageAlt, 'Alt Description') }}<div class="field-error-container">{{ form_errors(item.imageAlt) }}</div>{{ form_widget(item.imageAlt, {'attr': {'class': 'form-control'}}) }}</div><div class="form-row">{{ form_label(item.imageLink, 'Link') }}<div class="field-error-container">{{ form_errors(item.imageLink) }}</div>{{ form_widget(item.imageLink, {'attr': {'class': 'form-control'}}) }}</div><div class="form-row">{{ form_label(item.imageTemp, 'Image to Upload') }}<div class="field-error-container">{{ form_errors(item.imageTemp) }}</div>{{ form_widget(item.imageTemp, {'attr': {'data-allow-event': '1'}}) }}</div></div><div class="image-preview">{{ form_row(item.pathSet) }}{% set path_value = (item.pathSet.vars.value is empty) ? 'images/image-missing.svg' : item.pathSet.vars.value %}<img src="{{asset(path_value)}}" width="50"></div></div>
 {% endmacro %}
