@@ -50,7 +50,7 @@ trait PublicImageWithAlt {
     private $pathTemp;
 
     /**
-     * @Assert\Type(type="bool")
+     * @Assert\Type(type="integer")
      */
     private $delete_file = 0;
     
