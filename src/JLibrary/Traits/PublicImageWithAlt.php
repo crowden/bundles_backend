@@ -17,6 +17,38 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 
 trait PublicImageWithAlt {
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
+     */
+    private $imageAlt;
+
+    /**
+     * @Assert\File(
+     *     maxSize = "500k",
+     *     mimeTypes = {
+     *         "image/jpeg", 
+     *         "image/png",
+     *         "image/svg+xml"
+     *     },
+     *     binaryFormat = false,
+     *     mimeTypesMessage = "Please upload only .svg, .jpg and .png files"
+     * )
+     */
+    private $imageTemp;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pathSet;
+    
+    /**
+     * hold temporary reference for unlinking purposes
+     */
+    private $pathTemp;
+    
     public function getImageAlt()
     {
         // return imageAlt
@@ -64,6 +96,14 @@ trait PublicImageWithAlt {
         $this->pathSet = $path_set;
         return $this;
     }
+
+
+
+    ////////////////////////////////////
+    //            UTILITY             //
+    ////////////////////////////////////
+
+
 
     /**
      * @ORM\PrePersist()

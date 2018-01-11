@@ -71,6 +71,10 @@ trait DoctrineLifeCycleSanitizer
     }
 
     protected function returnMarkdownGeneral($value){
+        /**
+         * @todo Use dependency injection with Doctrine Event Subcriber
+         * on PreUpdate/Prepersist
+         */
         $parser = new Markdown();
         $parsed_data = $parser->parse($value);
         $parser = null;
