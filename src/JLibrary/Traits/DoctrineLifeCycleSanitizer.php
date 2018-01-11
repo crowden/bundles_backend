@@ -2,8 +2,16 @@
 
 namespace JLibrary\Traits;
 
+use cebe\markdown\Markdown;
+
 trait DoctrineLifeCycleSanitizer
 {
+    private $parser_general;
+
+    public function __construct(){
+        $this->parser_general = new Markdown();
+    }
+
     protected function sanitize(Array $options){
         foreach ($options as $key => $value){
             $field_value = call_user_func(array($this, 'get' . $key));

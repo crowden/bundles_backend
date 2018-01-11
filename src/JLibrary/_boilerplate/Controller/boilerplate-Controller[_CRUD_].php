@@ -27,21 +27,6 @@ class **Entity**Controller extends Controller
     const ROUTE_INDEX = 'j29.**ENTITY_TYPE**.***single_entity***.index';
     const ROUTE_DELETE = 'j29.**ENTITY_TYPE**.***single_entity***.delete';
 
-    /**
-     * types include:
-     *     - plain_text
-     *     - url
-     *     - url_validated
-     *     - email_address
-     *     - markdown_general
-     */
-    private $sanitize_options = array(
-        'EntityPrivateProperty' => [
-            'type' => 'plain_text',
-            'optional' => false,
-        ],
-    );
-
     private $template_vars = array(
         'form_size' => '###',
         'page_description' => 'Admin Page',
@@ -56,7 +41,7 @@ class **Entity**Controller extends Controller
 
         // template data
         $build = array_merge([
-            'page_title' => '**TITLE_ENTITITEIS_PLURAL**',
+            'page_title' => '**TITLE_ENTITITES_PLURAL**',
             'entities' => $entity_manager->getRepository(self::ENTITY_NAMESPACE)->findAll(),
         ], $this->template_vars);
 
@@ -68,6 +53,7 @@ class **Entity**Controller extends Controller
      */
     public function newAction(Request $request){
         $entity = new **Entity**();
+        $entity_manager = $this->getDoctrine()->getManager();
 
         // form creation
         $form = $this->createForm(**Entity**Type::class, $entity);
@@ -75,8 +61,10 @@ class **Entity**Controller extends Controller
 
         // form submission
         if ($form->isValid()){
-            // sanitize, persist, and redirect
-            $this->sanitizeAndPersist($entity, 'create');
+            // save entity
+            $entity_manager->persist($entity);
+            $entity_manager->flush();
+
             return $this->redirectToRoute(self::ROUTE_INDEX);
         } else {
             if ($form->isSubmitted()) $this->addFlash('warning', 'You have errors with your form.');
@@ -96,14 +84,16 @@ class **Entity**Controller extends Controller
      * @Route("/{id}/edit", name="j29.**ENTITY_TYPE**.***single_entity***.edit", requirements={"id" = "\d+"})
      */
     public function editAction(Request $request, **Entity** $entity){
+        $entity_manager = $this->getDoctrine()->getManager();
         $delete_form = $this->renderDeleteForm($entity);
         $form = $this->createForm(**Entity**Type::class, $entity);
         
         $form->handleRequest($request);
 
         if ($form->isValid()){
-            // sanitize, persist, and redirect
-            $this->sanitizeAndPersist($entity, 'edit');
+            // update entity
+            $entity_manager->flush();
+            
             return $this->redirectToRoute(self::ROUTE_INDEX);
         } else {
             if ($form->isSubmitted()) $this->addFlash('warning', 'You have errors with your form.');
@@ -125,6 +115,7 @@ class **Entity**Controller extends Controller
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, **Entity** $entity){
+        $entity_manager = $this->getDoctrine()->getManager();
         // form creation
         $form = $this->renderDeleteForm($entity);
         $form->handleRequest($request);
@@ -134,8 +125,9 @@ class **Entity**Controller extends Controller
             /*$allowed_to_delete = $this->entityDeletionAllowed($entity, 'dependant_entity_namespace', 'dependant_entity_join_property');*/
             
             if (true){
+                $entity_manager->remove($entity);
+                $entity_manager->flush();
                 $this->addFlash('success', 'Item successfully deleted');
-                $this->sanitizeAndPersist($entity, 'delete');
             } else {
                 $this->addFlash('danger', 'Cannont delete item: <strong><em>' . $entity->getTitle() . '</em></strong>');
                 $this->addFlash('warning', 'There are items that are using what you\'re trying to delete. If you want to delete this item, first go and disconnect it from the other items it is linked to. <br><br><strong>NOTE:</strong> Deleting this item could cause other areas of this site to break!');
@@ -151,7 +143,7 @@ class **Entity**Controller extends Controller
      */
     public function sort(Request $request, $sort_by, $order){
         $build_variables = [
-            'page_title' => '**TITLE_ENTITITEIS_PLURAL**',
+            'page_title' => '**TITLE_ENTITITES_PLURAL**',
             'page_description' => 'Admin Page',
         ];
 

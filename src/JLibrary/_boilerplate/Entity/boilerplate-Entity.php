@@ -4,6 +4,7 @@ namespace J29Bundle\Entity\**entity_type**;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JLibrary\Traits\DoctrineLifeCycleSanitizer;
 
 
 /**
@@ -11,10 +12,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity
  * @ORM\Table(name="**entity_type**_**entities**s")
+ * @ORM\HasLifecycleCallbacks()
  */
 
 class **Entity**
 {
+    use DoctrineLifeCycleSanitizer;
+    
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -26,6 +30,29 @@ class **Entity**
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $published;
+
+    /**
+     * types include:
+     *     - plain_text
+     *     - url
+     *     - markdown_general
+     */
+    private $properties_to_sanitize = [
+        'property' => [
+            'type' => 'plain_text',
+            'optional' => false,
+        ],
+    ];
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preSanitize(){
+        if (count($this->properties_to_sanitize) > 0) {
+            $this->sanitize($this->properties_to_sanitize);
+        }
+    }
 }
 
 
@@ -102,6 +129,7 @@ class **Entity**
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Choice(choices={"1","2","3","4","5","6","7","8","9","10",})
      */
     private $order;
 
