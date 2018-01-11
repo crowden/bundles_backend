@@ -2,8 +2,16 @@
 
 namespace JLibrary\Traits;
 
+use JLibrary\Service\MarkdownParser;
+
 trait DoctrineLifeCycleSanitizer
 {
+    private $md_parser;
+
+    public function __construct(MarkdownParser $md_parser){
+        $this->md_parser = $md_parser;
+    }
+
     protected function sanitize(Array $options){
         foreach ($options as $key => $value){
             $field_value = call_user_func(array($this, 'get' . $key));
@@ -70,6 +78,6 @@ trait DoctrineLifeCycleSanitizer
 
     protected function returnMarkdownGeneral($value){
         // return markdown
-        return $this->parser_general->parse($value);
+        return $this->md_parser->parse_md_general($value);
     }
 }
