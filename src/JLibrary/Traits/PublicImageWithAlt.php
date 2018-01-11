@@ -131,10 +131,11 @@ trait PublicImageWithAlt {
             } else {
                 die($extension->getErrorMessage());
             }
-        }/*
+        }
 
         // there is NOT a file chosen for upload and delete file == true
         if (null === $uploaded_file && $this->delete_file){
+            die('executing delete');
             // will be null or absolute path to file
             $current_file = $this->getAbsolutePath();
             // if there is a current file, delete it
@@ -145,7 +146,7 @@ trait PublicImageWithAlt {
             }
 
             $this->delete_file = 0;
-        }*/
+        }
     }
 
     /**
