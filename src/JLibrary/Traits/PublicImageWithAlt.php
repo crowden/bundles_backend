@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * PublicImageWithAlt [handles file uploading and setting image alt value]
  *     - accepts jpg, png, and svg images
+ *     - assumes images are public and live in public_html
  *     - required properties are:
  *         - imageTemp
  *         - imageAlt
@@ -18,6 +19,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 trait PublicImageWithAlt {
     public function getImageAlt()
     {
+        // return imageAlt
         return $this->imageAlt;
     }
 
@@ -29,6 +31,7 @@ trait PublicImageWithAlt {
 
      public function getImageTemp()
     {
+        // return imageTemp
         return $this->imageTemp;
     }
 
@@ -129,10 +132,12 @@ trait PublicImageWithAlt {
 
     protected function getUploadRootDir()
     {
-        if(!is_dir(self::UPLOAD_DIR)){
-            mkdir(self::UPLOAD_DIR, 0755, true);
+        $absolute_path = __DIR__ . '/../../../../../public_html/' . self::UPLOAD_DIR;
+
+        if(!is_dir($absolute_path)){
+            mkdir($absolute_path, 0755, true);
         }
         
-        return self::UPLOAD_DIR;
+        return $absolute_path;
     }
 }
