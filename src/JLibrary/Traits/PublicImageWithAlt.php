@@ -131,7 +131,7 @@ trait PublicImageWithAlt {
             } else {
                 die($extension->getErrorMessage());
             }
-        }
+        }/*
 
         // there is NOT a file chosen for upload and delete file == true
         if (null === $uploaded_file && $this->delete_file){
@@ -145,7 +145,7 @@ trait PublicImageWithAlt {
             }
 
             $this->delete_file = 0;
-        }
+        }*/
     }
 
     /**
@@ -159,22 +159,19 @@ trait PublicImageWithAlt {
         // there is NOT a file chosen for upload and delete file == false
         if (null === $uploaded_file) return;
 
-        // there is a file chosen for upload
-        if (null !== $uploaded_file){
-            // if there is an error in moving the file, this should prevent
-            // persistance to the database
-            $uploaded_file->move($this->getUploadRootDir(), $this->pathSet);
+        // if there is an error in moving the file, this should prevent
+        // persistance to the database
+        $uploaded_file->move($this->getUploadRootDir(), $this->pathSet);
 
-            // is there an old image to delete?
-            if (isset($this->pathTemp)) {
-                // delete old file
-                unlink($this->getUploadRootDir() . '/' . $this->pathTemp);
-                // clear the temp image path
-                $this->pathTemp = null;
-            }
-
-            $this->imageTemp = null;
+        // is there an old image to delete?
+        if (isset($this->pathTemp)) {
+            // delete old file
+            unlink($this->getUploadRootDir() . '/' . $this->pathTemp);
+            // clear the temp image path
+            $this->pathTemp = null;
         }
+
+        $this->imageTemp = null;
     }
 
     /**
