@@ -52,7 +52,12 @@ trait PublicImageWithAlt {
     /**
      * @Assert\Type(type="integer")
      */
-    private $delete_file = 0;
+    private $marked_for_deletion = 0;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $modificationDate;
     
     public function getImageAlt()
     {
@@ -119,6 +124,7 @@ trait PublicImageWithAlt {
      */
     public function preUpload()
     {
+        $this->modificationDate = new \DateTime();
         $uploaded_file = $this->getImageTemp();
 
         // user chose a file to upload
@@ -134,8 +140,7 @@ trait PublicImageWithAlt {
         }
 
         // there is NOT a file chosen for upload and delete file == true
-        if (null === $uploaded_file && $this->delete_file){
-            die('executing delete');
+        if (null === $uploaded_file && $this->marked_for_deletion){
             // will be null or absolute path to file
             $current_file = $this->getAbsolutePath();
             // if there is a current file, delete it
@@ -144,8 +149,6 @@ trait PublicImageWithAlt {
                 $this->pathTemp = null;
                 $this->pathSet = null;
             }
-
-            $this->delete_file = 0;
         }
     }
 
@@ -157,22 +160,29 @@ trait PublicImageWithAlt {
     {
         $uploaded_file = $this->getImageTemp();
 
-        // there is NOT a file chosen for upload and delete file == false
-        if (null === $uploaded_file) return;
+        if (null === $uploaded_file){
+            if(!$this->marked_for_deletion){
+                return;
+            } else {
+                $this->imageAlt = null;
+                $this->marked_for_deletion = 0;
+                return;
+            }
+        } else {
+            // if there is an error in moving the file, this should prevent
+            // persistance to the database
+            $uploaded_file->move($this->getUploadRootDir(), $this->pathSet);
 
-        // if there is an error in moving the file, this should prevent
-        // persistance to the database
-        $uploaded_file->move($this->getUploadRootDir(), $this->pathSet);
+            // is there an old image to delete?
+            if (isset($this->pathTemp)) {
+                // delete old file
+                unlink($this->getUploadRootDir() . '/' . $this->pathTemp);
+                // clear the temp image path
+                $this->pathTemp = null;
+            }
 
-        // is there an old image to delete?
-        if (isset($this->pathTemp)) {
-            // delete old file
-            unlink($this->getUploadRootDir() . '/' . $this->pathTemp);
-            // clear the temp image path
-            $this->pathTemp = null;
+            $this->imageTemp = null;
         }
-
-        $this->imageTemp = null;
     }
 
     /**
