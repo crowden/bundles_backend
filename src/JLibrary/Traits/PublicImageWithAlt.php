@@ -132,7 +132,7 @@ trait PublicImageWithAlt {
 
     protected function getUploadRootDir()
     {
-        $absolute_path = __DIR__ . '/../../../../../public_html/' . self::UPLOAD_DIR;
+        $absolute_path = __DIR__ . '/../../../../../../public_html/' . self::UPLOAD_DIR;
 
         if(!is_dir($absolute_path)){
             mkdir($absolute_path, 0755, true);
