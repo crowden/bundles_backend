@@ -52,7 +52,7 @@ trait PublicImageWithAlt {
     /**
      * @Assert\Type(type="integer")
      */
-    private $marked_for_deletion = 0;
+    private $markedForDeletion = 0;
 
     /**
      * @ORM\Column(type="datetime")
@@ -107,13 +107,38 @@ trait PublicImageWithAlt {
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getModificationDate()
+    {
+        return $this->modificationDate;
+    }
 
+    /**
+     * @param mixed $modificationDate
+     *
+     * @return self
+     */
+    public function setModificationDate($modificationDate)
+    {
+        $this->modificationDate = $modificationDate;
+
+        return $this;
+    }
 
     ////////////////////////////////////
     //            UTILITY             //
     ////////////////////////////////////
 
 
+
+    /*
+     * @ORM\PostLoad()
+     */
+    public function postEntityLoad(){
+        $this->modificationDate = new \DateTime();
+    }
 
     /**
      * @ORM\PrePersist()
@@ -140,7 +165,7 @@ trait PublicImageWithAlt {
         }
 
         // there is NOT a file chosen for upload and delete file == true
-        if (null === $uploaded_file && $this->marked_for_deletion){
+        if (null === $uploaded_file && $this->markedForDeletion){
             // will be null or absolute path to file
             $current_file = $this->getAbsolutePath();
             // if there is a current file, delete it
@@ -161,11 +186,11 @@ trait PublicImageWithAlt {
         $uploaded_file = $this->getImageTemp();
 
         if (null === $uploaded_file){
-            if(!$this->marked_for_deletion){
+            if(!$this->markedForDeletion){
                 return;
             } else {
                 $this->imageAlt = null;
-                $this->marked_for_deletion = 0;
+                $this->markedForDeletion = 0;
                 return;
             }
         } else {
