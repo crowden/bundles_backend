@@ -188,6 +188,7 @@ trait PublicImageWithAlt {
             if(!$this->markedForDeletion){
                 return;
             } else {
+                // might be able to move this to preLifeCycles
                 $this->imageAlt = null;
                 $this->markedForDeletion = 0;
                 return;
