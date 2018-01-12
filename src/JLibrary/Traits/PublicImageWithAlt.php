@@ -132,7 +132,6 @@ trait PublicImageWithAlt {
     ////////////////////////////////////
 
 
-
     /*
      * @ORM\PostLoad()
      */
