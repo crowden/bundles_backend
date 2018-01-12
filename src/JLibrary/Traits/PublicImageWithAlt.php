@@ -55,7 +55,7 @@ trait PublicImageWithAlt {
     private $markedForDeletion = 0;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string", length=255)
      */
     private $modificationDate;
     
@@ -137,7 +137,7 @@ trait PublicImageWithAlt {
      * @ORM\PostLoad()
      */
     public function postEntityLoad(){
-        $this->modificationDate = new \DateTime();
+        $this->modificationDate = date_format(new \DateTime(), 'Y-m-d H:i:s');
     }
 
     /**
@@ -149,7 +149,7 @@ trait PublicImageWithAlt {
      */
     public function preUpload()
     {
-        $this->modificationDate = new \DateTime();
+        $this->modificationDate = date_format(new \DateTime(), 'Y-m-d H:i:s');
         $uploaded_file = $this->getImageTemp();
 
         // user chose a file to upload
