@@ -42,6 +42,12 @@ class **Entity**
             'type' => 'plain_text',
             'optional' => false,
         ],
+        'contentRaw' => [
+            'type' => 'markdown_general',
+            'optional' => false,
+            'rawHandler' => 'contentRaw',
+            'htmlHandler' => 'contentHtml',
+        ],
     ];
 
     /**

@@ -26,6 +26,16 @@ trait PublicImageWithAlt {
     private $imageAlt;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pathSet;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $modificationDate;
+
+    /**
      * @Assert\File(
      *     maxSize = "500k",
      *     mimeTypes = {
@@ -38,11 +48,6 @@ trait PublicImageWithAlt {
      * )
      */
     private $imageTemp;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $pathSet;
     
     /**
      * hold temporary reference for unlinking purposes
@@ -53,11 +58,6 @@ trait PublicImageWithAlt {
      * @Assert\Type(type="integer")
      */
     private $markedForDeletion = 0;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $modificationDate;
     
     public function getImageAlt()
     {
@@ -149,6 +149,15 @@ trait PublicImageWithAlt {
     public function preUpload()
     {
         $this->modificationDate = date_format(new \DateTime(), 'Y-m-d H:i:s');
+        // sanitize here so that this property is not forgotten 
+        // when trait is included
+        $this->sanitize([
+            'imageAlt' => [
+                'type' => 'plain_text',
+                'optional' => false,
+            ],
+        ]);
+        
         $uploaded_file = $this->getImageTemp();
 
         // user chose a file to upload

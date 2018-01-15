@@ -24,21 +24,6 @@ class _***_Controller extends Controller
     const UNIQUE_NAME = 'block_**SINGLE_ENTITY**';
     const TEMPLATE = 'J29Bundle:^^ENTITY_TYPE^^:^^ENTITY_TYPE^^-__SINGLE-ENTITY__.html.twig';
 
-    /**
-     * types include:
-     *     - plain_text
-     *     - url
-     *     - url_validated
-     *     - email_address
-     *     - markdown_general
-     */
-    private $sanitize_options = array(
-        'EntityPrivateProperty' => [
-            'type' => 'plain_text',
-            'optional' => false,
-        ]
-    );
-
     private $template_vars = array(
         'form_size' => '###',
         'page_description' => 'Admin Page',

@@ -140,3 +140,19 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
         'minute' => 'minute',
     ]
 ])
+
+
+
+///////////////////////////////////////
+//         Image(trait)              //
+///////////////////////////////////////
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+->add('imageTemp')
+->add('imageAlt')
+->add('pathSet', HiddenType::class)
+->add('modificationDate', null, [
+    'label' => false,
+    'attr' => [
+        'disabled' => true,
+    ]
+])

@@ -3,14 +3,8 @@
 {% block main_content %}
     {% embed 'JLibrary:templates/layout:crud-action.html.twig' %}
         {% block crud_form_controls %}
+            {% import 'J29Bundle:macros:form-fields.html.twig' as jfields %}
             {# BEGIN - Form Fields #}
-            
-
-
-            <fieldset>
-                <legend>Published</legend>
-                {% include 'JLibrary:templates/form_fields:published.html.twig' %}
-            </fieldset>
             
 
 
