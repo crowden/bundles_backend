@@ -34,6 +34,22 @@ class **ENTITY_NAME**Type extends AbstractType
 }
 
 
+//////////////////////////////////////
+//         Collection               //
+//////////////////////////////////////
+
+->add('socialIcons', CollectionType::class, [
+    'entry_type' => SingleType::class,
+    'allow_add' => true,
+    'allow_delete' => true,
+    'by_reference' => false,
+    'delete_empty' => true,
+    'entry_options' => [
+        'required' => false,
+        'error_bubbling' => false,
+    ],
+])
+
 ///////////////////////////////////
 //         Honeypot              //
 ///////////////////////////////////
