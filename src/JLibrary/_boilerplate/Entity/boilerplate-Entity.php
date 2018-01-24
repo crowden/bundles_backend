@@ -14,7 +14,6 @@ use JLibrary\Traits\DoctrineLifeCycleSanitizer;
  * @ORM\Table(name="**entity_type**_**entities**s")
  * @ORM\HasLifecycleCallbacks()
  */
-
 class **Entity**
 {
     use DoctrineLifeCycleSanitizer;
@@ -382,3 +381,12 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
                 ->addViolation();
         }
     }
+
+/////////////////////////////////////
+//         UniqueEntity            //
+/////////////////////////////////////
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+// on class
+/**
+ * @UniqueEntity("service")
+ */

@@ -25,6 +25,7 @@ class **Entity**Controller extends Controller
     const TMPL_ACTION = 'J29Bundle:**ENTITY_TYPE**:**ENTITY_TYPE**-action-**single-entity**.html.twig';
 
     const ROUTE_INDEX = 'j29.**ENTITY_TYPE**.***single_entity***.index';
+    const ROUTE_EDIT = 'j29.**ENTITY_TYPE**.***single_entity***.edit';
     const ROUTE_DELETE = 'j29.**ENTITY_TYPE**.***single_entity***.delete';
 
     private $template_vars = array(
@@ -119,23 +120,24 @@ class **Entity**Controller extends Controller
         // form creation
         $form = $this->renderDeleteForm($entity);
         $form->handleRequest($request);
+
+        $entity_name = $entity->getName();
     
         // form submission
         if ($form->isValid()) {
-            /*$allowed_to_delete = $this->entityDeletionAllowed($entity, 'dependant_entity_namespace', 'dependant_entity_join_property');*/
-            
-            if (true){
+            try {
                 $entity_manager->remove($entity);
                 $entity_manager->flush();
                 $this->addFlash('success', 'Item successfully deleted');
-            } else {
-                $this->addFlash('danger', 'Cannont delete item: <strong><em>' . $entity->getTitle() . '</em></strong>');
+
+                return $this->redirectToRoute(self::ROUTE_INDEX);
+            } catch (\Doctrine\DBAL\DBALException $e) {
+                $this->addFlash('danger', 'Cannont delete item: <strong><em>' . $entity_name . '</em></strong>');
                 $this->addFlash('warning', 'There are items that are using what you\'re trying to delete. If you want to delete this item, first go and disconnect it from the other items it is linked to. <br><br><strong>NOTE:</strong> Deleting this item could cause other areas of this site to break!');
+
                 return $this->redirectToRoute(self::ROUTE_EDIT, ['id' => $entity->getId()]);
             }
         }
-    
-        return $this->redirectToRoute(self::ROUTE_INDEX);
     }
 
     /**

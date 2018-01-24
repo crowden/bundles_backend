@@ -4,7 +4,6 @@ namespace JLibrary\Traits;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-
 /**
  * PublicImageWithAlt [handles file uploading and setting image alt value]
  *     - accepts jpg, png, and svg images
