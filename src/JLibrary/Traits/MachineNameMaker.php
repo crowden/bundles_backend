@@ -43,7 +43,7 @@ trait MachineNameMaker {
         $spaces_made_underscores = preg_replace('/( |-)/', '_', $no_tags_trimmed_lowercase);
         $result = preg_replace('/[^a-z0-9_\-]/', '', $spaces_made_underscores);
 
-        if (null !== self::MACHINE_NAME_PREFIX) $result = $prefix . '_' . $result;
+        if (null !== self::MACHINE_NAME_PREFIX) $result = self::MACHINE_NAME_PREFIX . '_' . $result;
 
         $this->setMachineName($result);
 
