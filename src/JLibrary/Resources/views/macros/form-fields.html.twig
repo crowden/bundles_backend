@@ -1,0 +1,293 @@
+{#
+    Image [no delete]
+        - pathSet
+        - modificationDate
+        - imageTemp
+        - imageAlt
+        - creating_entity
+
+    {{ jfields.ffImage(
+        {
+            pathSet: form.pathSet,
+            modificationDate: form.modificationDate,
+            imageTemp: form.imageTemp,
+            imageAlt: form.imageAlt
+        }, creating_entity
+    ) }}
+#}
+{% macro ffImage(fields, creating) %}
+    <div class="flex file-container">
+        <div class="basis33 file-preview-container">
+            {{ form_row(fields.pathSet) }}
+
+            {% if fields.pathSet.vars.value is empty %}
+                <img src="{{asset('images/image-missing.svg')}}" width="50">
+            {% else %}
+                <img src="{{asset(fields.pathSet.vars.value)}}" width="50" class="thumbnail">
+            {% endif %}
+
+            <div class="modification-date-box">
+                {{ form_errors(fields.modificationDate) }}
+                {{ form_widget(fields.modificationDate, {'attr': {'class': 'modification-date'}}) }}
+            </div>
+        </div>
+        <div class="basis66">
+            <div class="error-container">
+                <div class="field-error-container">{{ form_errors(fields.imageTemp) }}</div>
+                <div class="field-error-container">{{ form_errors(fields.imageAlt) }}</div>
+            </div>
+            
+            <div class="alt-container">
+                {{ form_label(fields.imageAlt, 'Alt Description') }}
+                {{ form_widget(fields.imageAlt, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="control-container no-delete">
+                <label class="file-label">
+                    {{ form_widget(fields.imageTemp) }}
+                    {% if creating %}
+                        <span>upload</span>
+                    {% else %}
+                        <span>update</span>
+                    {% endif %}
+                </label>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+
+{#
+    [developing] General with Sublabel
+        - field
+        - label
+        - custom_sublabel
+        - row_class
+#}
+{% macro ffGeneralSublabel(params) %}
+    {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
+
+    <div class="{{ container_class }}">
+        {#------------ Label ------------#}
+        {% if (params.custom_sublabel ?? false) %}
+            <div class="js-wrapper-show-hide version-2">
+                <div class="trigger-with-label">
+                    <a href="#" class="js-trigger-show-hide">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    </a>
+                    {{ form_label(params.field, params.label ?? null, {'label_attr': {'class': 'js-trigger-label'}}) }}
+                </div>
+                <div class="js-toggle-show-hide">
+                    <p class="sublabel">{{ params.custom_sublabel }}</p>
+                </div>
+            </div>
+        {% else %}
+            {{ form_label(params.field, params.label ?? null) }}
+        {% endif %}
+        
+        {#------------ Errors ------------#}
+        <div class="field-error-container">{{ form_errors(params.field) }}</div>
+        
+        {#------------ Form Control ------------#}
+        {{ form_widget(params.field, {'attr': {'class': 'form-control'}}) }}
+    </div>
+{% endmacro %}
+
+
+{#
+    General Field
+        - field
+        - label
+        - row_class
+
+            {{ jfields.ffGeneral(
+                {
+                    field: form.###,
+                    label: '###'
+                }
+            ) }}
+#}
+{% macro ffGeneral(params) %}
+    {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
+
+    <div class="{{ container_class }}">
+        {#------------ Label ------------#}
+        {{ form_label(params.field, params.label ?? null) }}
+        
+        {#------------ Errors ------------#}
+        <div class="field-error-container">{{ form_errors(params.field) }}</div>
+        
+        {#------------ Form Control ------------#}
+        {{ form_widget(params.field, {'attr': {'class': 'form-control'}}) }}
+    </div>
+{% endmacro %}
+
+
+{#
+    Date/Time field
+        - field
+        - label
+        - row_class
+#}
+{% macro ffDateTime(params) %}
+    {% set container_class = (params.row_class ?? false) ? 'form-row date-picker ' ~ params.row_class : 'form-row date-picker' %}
+
+    <div class="{{ container_class }}">
+        <div class="basis100">
+            {#------------ Label ------------#}
+            {{ form_label(params.field, params.label ?? null) }}
+            
+            {#------------ Errors ------------#}
+            <div class="field-error-container">{{ form_errors(params.field) }}</div>
+        </div>
+        
+        {#------------ Form Control ------------#}
+        {% for item in params.field %}
+           <div class="pod basis33">
+               {{ form_errors(item) }}
+               {{ form_widget(item) }}
+           </div>
+        {% endfor %}
+    </div>
+{% endmacro %}
+
+
+{#
+    Checkbox[single]
+        - field
+        - label
+        - row_class
+#}
+{% macro ffCheckboxSingle(params) %}
+    {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
+
+    <div class="{{ container_class }}">
+        {#------------ Errors ------------#}
+        <div class="field-error-container">{{ form_errors(params.field) }}</div>
+        
+        {#------------ Label ------------#}
+        {{ form_label(params.field, params.label ?? null, {'label_attr' : {'class' : 'inline'}}) }}
+        
+        {#------------ Form Control ------------#}
+        {{ form_widget(params.field, {'attr' : {'class' : 'inline'}}) }}
+    </div>
+{% endmacro %}
+
+
+{#
+    Markdown
+        - field
+        - label
+        - row_class
+#}
+{% macro ffMarkdown(params) %}
+    {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
+    {% set row_height = (params.row_height ?? false) ? params.row_height : '8' %}
+
+    <div class="js-wrapper-show-hide">
+        <a href="#" class="js-trigger-show-hide"><span>+</span></a>
+        <div class="js-toggle-show-hide">
+            <div class="sublabel">
+                <p>This field will only accept markdown. Mardown is simply a way of writing plain text that will be turned into HTML markup. It allows the user to "create" HTML without having to know HTML. Click the options below to see examples of each.</p>
+                <section id="js-md-help-popovers"></section>
+            </div>
+        </div>
+    </div>
+
+    <div class="{{ container_class }}">
+        {#------------ Label ------------#}
+        {{ form_label(params.field, params.label ?? null) }}
+        
+        {#------------ Errors ------------#}
+        <div class="field-error-container">{{ form_errors(params.field) }}</div>
+        
+        {#------------ Form Control ------------#}
+        {{ form_widget(params.field, {'attr': {'class': 'form-control', 'rows': row_height}}) }}
+    </div>
+{% endmacro %}
+
+
+{#
+    Published
+        - field
+        - label
+        - row_class
+
+            <fieldset>
+                <legend>Publish</legend>
+                {{ jfields.ffPublished(
+                    {
+                        field: form.published,
+                        label: 'Publish this item?'
+                    }
+                ) }}
+            </fieldset>
+#}
+{% macro ffPublished(params) %}
+    {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
+
+    <div class="{{ container_class }}">
+        {#------------ Errors ------------#}
+        <div class="field-error-container">{{ form_errors(params.field) }}</div>
+        
+        {#------------ Label ------------#}
+        {{ form_label(params.field, params.label ?? null, {'label_attr' : {'class' : 'inline'}}) }}
+        
+        {#------------ Form Control ------------#}
+        {{ form_widget(params.field, {'attr' : {'class' : 'inline'}}) }}
+    </div>
+{% endmacro %}
+
+{#
+    Collection[text]
+        - field
+        - label
+        - row_class
+        - id_add
+        - id_list
+
+            {{ jfields.ffCollection_text(
+                {
+                    field: form.###,
+                    label: '###',
+                    id_add: '###-item-add',
+                    id_list: '###-collection'
+                }
+            ) }}
+#}
+{% macro ffCollection_text(params) %}
+    {% import 'JLibrary:macros:collection-prototypes.html.twig' as jprotos %}
+    {% set container_class = (params.row_class ?? false) ? 'form-row collection-add-delete' ~ params.row_class : 'form-row collection-add-delete' %}
+
+    <div class="{{ container_class }}">
+        {#------------ Label ------------#}
+        {{ form_label(params.field, params.label ?? null) }}
+        
+        {#------------ Errors ------------#}
+        <div class="field-error-container">{{ form_errors(params.field) }}</div>
+
+        <div class="add-container">
+            <a href="#" id="{{ params.id_add }}" class="add-trigger">add</a>
+        </div>
+
+        <ul id="{{ params.id_list }}" data-prototype="{{ jprotos.cpText(params.field.vars.prototype)|e('html_attr') }}">
+            {% for item in params.field %}
+                {{ jprotos.cpText(item) }}
+            {% else %}
+                {% do params.field.setRendered %} 
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        var j29_add_delete_fields_specs = {
+                run: true,
+                form_control_type: 'input',
+                items : [
+                    {
+                        add_trigger_id: '{{ params.id_add }}', 
+                        fields_list_id: '{{ params.id_list }}'
+                    }
+                ]
+        }
+    </script>    
+{% endmacro %}
