@@ -19,7 +19,6 @@ trait PublicImageWithAlt {
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
      * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
      */
     private $imageAlt;
@@ -153,7 +152,7 @@ trait PublicImageWithAlt {
         $this->sanitize([
             'imageAlt' => [
                 'type' => 'plain_text',
-                'optional' => false,
+                'optional' => true,
             ],
         ]);
         

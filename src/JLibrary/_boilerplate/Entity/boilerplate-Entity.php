@@ -31,32 +31,23 @@ class **Entity**
     private $published;
 
     /**
-     * types include:
-     *     - plain_text
-     *     - url
-     *     - markdown_general
-     */
-    private $properties_to_sanitize = [
-        'property' => [
-            'type' => 'plain_text',
-            'optional' => false,
-        ],
-        'contentRaw' => [
-            'type' => 'markdown_general',
-            'optional' => false,
-            'rawHandler' => 'contentRaw',
-            'htmlHandler' => 'contentHtml',
-        ],
-    ];
-
-    /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
     public function preSanitize(){
-        if (count($this->properties_to_sanitize) > 0) {
-            $this->sanitize($this->properties_to_sanitize);
-        }
+        // types include: plain_text, url, markdown_general
+        $this->sanitize([
+            'property' => [
+                'type' => 'plain_text',
+                'optional' => false,
+            ],
+            'contentRaw' => [
+                'type' => 'markdown_general',
+                'optional' => false,
+                'rawHandler' => 'contentRaw',
+                'htmlHandler' => 'contentHtml',
+            ],
+        ]);
     }
 }
 
