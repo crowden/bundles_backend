@@ -1,10 +1,6 @@
 {#
     Image [no delete]
-        - pathSet
-        - modificationDate
-        - imageTemp
-        - imageAlt
-        - creating_entity
+        - pathSet, modificationDate, imageTemp, imageAlt, creating_entity
 
     {{ jfields.ffImage(
         {
@@ -58,10 +54,7 @@
 
 {#
     [developing] General with Sublabel
-        - field
-        - label
-        - custom_sublabel
-        - row_class
+        - field, label, custom_sublabel, row_class
 #}
 {% macro ffGeneralSublabel(params) %}
     {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
@@ -95,9 +88,7 @@
 
 {#
     General Field
-        - field
-        - label
-        - row_class
+        - field, label, row_class
 
             {{ jfields.ffGeneral(
                 {
@@ -124,9 +115,7 @@
 
 {#
     Date/Time field
-        - field
-        - label
-        - row_class
+        - field, label, row_class
 #}
 {% macro ffDateTime(params) %}
     {% set container_class = (params.row_class ?? false) ? 'form-row date-picker ' ~ params.row_class : 'form-row date-picker' %}
@@ -153,9 +142,7 @@
 
 {#
     Checkbox[single]
-        - field
-        - label
-        - row_class
+        - field, label, row_class
 #}
 {% macro ffCheckboxSingle(params) %}
     {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
@@ -175,9 +162,7 @@
 
 {#
     Markdown
-        - field
-        - label
-        - row_class
+        - field, label, row_class
 #}
 {% macro ffMarkdown(params) %}
     {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
@@ -208,9 +193,7 @@
 
 {#
     Published
-        - field
-        - label
-        - row_class
+        - field, label, row_class
 
             <fieldset>
                 <legend>Publish</legend>
@@ -239,11 +222,7 @@
 
 {#
     Collection[text]
-        - field
-        - label
-        - row_class
-        - id_add
-        - id_list
+        - field, label, row_class, id_add, id_list
 
             {{ jfields.ffCollection_text(
                 {
@@ -290,4 +269,23 @@
                 ]
         }
     </script>    
+{% endmacro %}
+
+{#
+    Collection Defined[text]
+#}
+{% macro ffCollectionDefined_text(params) %}
+    <ul>
+        {% for item in params.field %}
+            <li class="dynamic-insert">
+                <div class="form-controls-box">
+                    <div class="form-row">
+                        <div class="field-error-container">{{ form_errors(item) }}</div>
+                        {{ form_label(item) }}
+                        {{ form_widget(item) }}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
 {% endmacro %}

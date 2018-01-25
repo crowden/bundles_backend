@@ -139,31 +139,6 @@ class **Entity**
     private $order;
 
     /**
-     * @ORM\Column(type="string", length=14)
-     * 
-     * @Assert\Length(
-     *     max=14,
-     *     maxMessage="This field can only contain 14 characters"
-     * )
-     * 
-     * @Assert\Regex(
-     *     pattern="/^\(?\d{3}\)?[- \.]?\d{3}[- \.]?\d{4}$/",
-     *     message="Please format phone/fax numbers as (###) ###-#### with no spaces at the beginning or end."
-     * )
-     */
-    private $phoneNumber;
-
-    /**
-     * @ORM\Column(type="string", length=2)
-     * 
-     * @Assert\Length(
-     *     max=2, 
-     *     maxMessage="This field can only contain 2 characters. Please format states as 2 uppercase letters only."
-     * )
-     */
-    private $state;
-
-    /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
@@ -192,6 +167,110 @@ class **Entity**
      * )
      */
     private $urlSlug;
+
+///////////////////////////////
+//         Address           //
+///////////////////////////////
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
+     */
+    private $address1;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
+     */
+    private $address2;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
+     */
+    private $city;
+
+    /**
+     * @ORM\Column(type="string", length=2)
+     * 
+     * @Assert\Length(
+     *     max=2, 
+     *     maxMessage="This field can only contain 2 characters. Please format states as 2 uppercase letters only."
+     * )
+     */
+    private $state;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\Type(type="integer")
+     * @Assert\NotBlank()
+     */
+    private $zip;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type(type="integer")
+     */
+    private $zipRegion;
+
+//////////////////////////////////
+//         Phone/Fax            //
+//////////////////////////////////
+
+    /**
+     * @ORM\Column(type="string", length=14)
+     * 
+     * @Assert\Length(
+     *     max=14,
+     *     maxMessage="This field can only contain 14 characters"
+     * )
+     * 
+     * @Assert\Regex(
+     *     pattern="/^\(?\d{3}\)?[- \.]?\d{3}[- \.]?\d{4}$/",
+     *     message="Please format phone/fax numbers as (###) ###-#### with no spaces at the beginning or end."
+     * )
+     */
+    private $phoneNumber;  
+
+    /**
+     * @ORM\Column(type="string", length=14)
+     * 
+     * @Assert\Length(
+     *     max=14,
+     *     maxMessage="This field can only contain 14 characters"
+     * )
+     * 
+     * @Assert\Regex(
+     *     pattern="/^\(?\d{3}\)?[- \.]?\d{3}[- \.]?\d{4}$/",
+     *     message="Please format phone/fax numbers as (###) ###-#### with no spaces at the beginning or end."
+     * )
+     */
+    private $faxNumber;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\Type(type="integer")
+     */
+    private $phoneExtension;
+
+////////////////////////////////////////
+//         GeoCoordinates             //
+////////////////////////////////////////
+
+    /**
+     * @ORM\Column(type="decimal", nullable=true, precision=20, scale=6)
+     * @Assert\Type("numeric")
+     */
+    private $geoLat;
+
+    /**
+     * @ORM\Column(type="decimal", nullable=true, precision=20, scale=6)
+     * @Assert\Type("numeric")
+     */
+    private $geoLong;
+
 
 ///////////////////////////////
 //         Blocks            //
