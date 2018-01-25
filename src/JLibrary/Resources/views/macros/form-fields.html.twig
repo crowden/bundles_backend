@@ -275,6 +275,7 @@
     Collection Defined[text]
 #}
 {% macro ffCollectionDefined_text(params) %}
+    <div class="field-error-container">{{ form_errors(params.field) }}</div>
     <ul>
         {% for item in params.field %}
             <li class="dynamic-insert">
