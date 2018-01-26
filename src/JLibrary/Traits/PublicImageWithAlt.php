@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 trait PublicImageWithAlt {
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
      */
     private $imageAlt;

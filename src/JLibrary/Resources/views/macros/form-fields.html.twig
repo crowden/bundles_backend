@@ -143,6 +143,13 @@
 {#
     Checkbox[single]
         - field, label, row_class
+
+            {{ jfields.ffCheckboxSingle(
+                {
+                    field: form.###,
+                    label: '###'
+                }
+            ) }}
 #}
 {% macro ffCheckboxSingle(params) %}
     {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}

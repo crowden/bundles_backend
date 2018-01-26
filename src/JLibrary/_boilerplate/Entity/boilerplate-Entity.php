@@ -297,24 +297,21 @@ class **Entity**
 /////////////////////////////
 //         Joins           //
 /////////////////////////////
-
-    use J29Bundle\Entity\category\EntityNotInCurrentDir;
-
+    
     /**
-     * @ORM\ManyToOne(targetEntity="ENTITY_IN_CURRENT_DIR")
-     * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotNull(message="value required")
-     */
-    private $join_IN_DIR;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="\ENITY\NOT\IN_CURRENT\DIR")
+     * @ORM\ManyToOne(targetEntity="\")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotNull(message="This value cannont be empty.")
      */
-    private $join_NOT_IN_DIR;
+    private $joinManyToOne;
 
-    public function notNullEntityJoin(ENTITY $entity = null){}
+    /**
+     * Inverse side, read only. CAN'T use setter.
+     * 
+     * @ORM\OneToMany(targetEntity="\", mappedBy="prop", cascade={"persist"})
+     * @Assert\Valid()
+     */
+    private $joinOneToMany;
 
 ////////////////////////////////
 //         Markdown           //
@@ -460,3 +457,24 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @UniqueEntity("service")
  */
+
+
+/////////////////////////////////////
+//         Collections             //
+/////////////////////////////////////
+    public function add***SINGLE***(***TypeHint*** $collection_single_element)
+    {
+        $this->**property**->add($collection_single_element);
+        $collection_single_element->setFcsBlock($this);
+
+        return $this;
+    }
+
+    public function remove***SINGLE***(***TypeHint*** $collection_single_element)
+    {
+        if ($this->**property**->contains($collection_single_element)) {
+            $this->**property**->removeElement($collection_single_element);
+        }
+
+        return $this;
+    }

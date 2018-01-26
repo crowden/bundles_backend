@@ -42,10 +42,7 @@ class **ENTITY**Controller extends Controller
 
         if ($form->isValid()){
             // persist and sanitize
-            if($data['persist']){
-                $em->persist($data['entity']);
-            }
-            
+            if($data['persist']) $em->persist($data['entity']);
             $em->flush();
             
             $request->getSession()->getFlashBag()->add('success', 'Successfully saved');
