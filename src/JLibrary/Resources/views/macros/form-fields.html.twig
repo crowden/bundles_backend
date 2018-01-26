@@ -55,20 +55,20 @@
     Image [no delete]
         - pathSet, modificationDate, imageTemp, imageAlt, creating_entity
 
-    {{ jfields.ffBackgroundImage(
+    {{ jfields.ffEmbBackgroundImage(
         {
-            pathSet: form.pathSet,
-            modificationDate: form.modificationDate,
-            imageTemp: form.imageTemp,
-            imageAlt: form.imageAlt,
-            positionDesktop: form.imageBackgroundPosition,
-            positionMobile: form.imageMobileBackgroundPosition,
-            labelPositionDesktop: '###',
-            labelPositionMobile: '###',
+            pathSet: form.**prop**.pathSet,
+            modificationDate: form.**prop**.modificationDate,
+            imageTemp: form.**prop**.imageTemp,
+            imageAlt: form.**prop**.imageAlt,
+            positionDesktop: form.**prop**.imageBackgroundPosition,
+            positionMobile: form.**prop**.imageMobileBackgroundPosition,
+            labelPositionDesktop: 'Position (Desktop)',
+            labelPositionMobile: 'Position (Mobile)',
         }, creating_entity
     ) }}
 #}
-{% macro ffBackgroundImage(fields, creating) %}
+{% macro ffEmbBackgroundImage(fields, creating) %}
     <div class="flex">
         <div class="form-row basis50">
             {#------------ Label ------------#}
