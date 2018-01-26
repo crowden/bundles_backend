@@ -51,6 +51,85 @@
     </div>
 {% endmacro %}
 
+{#
+    Image [no delete]
+        - pathSet, modificationDate, imageTemp, imageAlt, creating_entity
+
+    {{ jfields.ffBackgroundImage(
+        {
+            pathSet: form.pathSet,
+            modificationDate: form.modificationDate,
+            imageTemp: form.imageTemp,
+            imageAlt: form.imageAlt,
+            positionDesktop: form.imageBackgroundPosition,
+            positionMobile: form.imageMobileBackgroundPosition,
+            labelPositionDesktop: '###',
+            labelPositionMobile: '###',
+        }, creating_entity
+    ) }}
+#}
+{% macro ffBackgroundImage(fields, creating) %}
+    <div class="flex">
+        <div class="form-row basis50">
+            {#------------ Label ------------#}
+            {{ form_label(params.positionDesktop, params.labelPositionDesktop ?? null) }}
+            
+            {#------------ Errors ------------#}
+            <div class="field-error-container">{{ form_errors(params.positionDesktop) }}</div>
+            
+            {#------------ Form Control ------------#}
+            {{ form_widget(params.positionDesktop, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-row basis50">
+            {#------------ Label ------------#}
+            {{ form_label(params.positionMobile, params.labelPositionMobile ?? null) }}
+            
+            {#------------ Errors ------------#}
+            <div class="field-error-container">{{ form_errors(params.positionMobile) }}</div>
+            
+            {#------------ Form Control ------------#}
+            {{ form_widget(params.positionMobile, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="flex file-container">
+        <div class="basis33 file-preview-container">
+            {{ form_row(fields.pathSet) }}
+
+            {% if fields.pathSet.vars.value is empty %}
+                <img src="{{asset('images/image-missing.svg')}}" width="50">
+            {% else %}
+                <img src="{{asset(fields.pathSet.vars.value)}}" width="50" class="thumbnail">
+            {% endif %}
+
+            <div class="modification-date-box">
+                {{ form_errors(fields.modificationDate) }}
+                {{ form_widget(fields.modificationDate, {'attr': {'class': 'modification-date'}}) }}
+            </div>
+        </div>
+        <div class="basis66">
+            <div class="error-container">
+                <div class="field-error-container">{{ form_errors(fields.imageTemp) }}</div>
+                <div class="field-error-container">{{ form_errors(fields.imageAlt) }}</div>
+            </div>
+            
+            <div class="alt-container">
+                {{ form_label(fields.imageAlt, 'Alt Description') }}
+                {{ form_widget(fields.imageAlt, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="control-container no-delete">
+                <label class="file-label">
+                    {{ form_widget(fields.imageTemp) }}
+                    {% if creating %}
+                        <span>upload</span>
+                    {% else %}
+                        <span>update</span>
+                    {% endif %}
+                </label>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
 
 {#
     [developing] General with Sublabel
