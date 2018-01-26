@@ -61,10 +61,8 @@
             modificationDate: form.**prop**.modificationDate,
             imageTemp: form.**prop**.imageTemp,
             imageAlt: form.**prop**.imageAlt,
-            positionDesktop: form.**prop**.imageBackgroundPosition,
-            positionMobile: form.**prop**.imageMobileBackgroundPosition,
-            labelPositionDesktop: 'Position (Desktop)',
-            labelPositionMobile: 'Position (Mobile)',
+            bgPosition: form.**prop**.backgroundPosition,
+            labelBgPosition: 'Background Position',
         }, creating_entity
     ) }}
 #}
@@ -109,23 +107,13 @@
     <div class="flex">
         <div class="form-row basis50">
             {#------------ Label ------------#}
-            {{ form_label(fields.positionDesktop, fields.labelPositionDesktop ?? null) }}
+            {{ form_label(fields.bgPosition, fields.labelBgPosition ?? null) }}
             
             {#------------ Errors ------------#}
-            <div class="field-error-container">{{ form_errors(fields.positionDesktop) }}</div>
+            <div class="field-error-container">{{ form_errors(fields.bgPosition) }}</div>
             
             {#------------ Form Control ------------#}
-            {{ form_widget(fields.positionDesktop, {'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-row basis50">
-            {#------------ Label ------------#}
-            {{ form_label(fields.positionMobile, fields.labelPositionMobile ?? null) }}
-            
-            {#------------ Errors ------------#}
-            <div class="field-error-container">{{ form_errors(fields.positionMobile) }}</div>
-            
-            {#------------ Form Control ------------#}
-            {{ form_widget(fields.positionMobile, {'attr': {'class': 'form-control'}}) }}
+            {{ form_widget(fields.bgPosition, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
 {% endmacro %}
