@@ -69,28 +69,6 @@
     ) }}
 #}
 {% macro ffEmbBackgroundImage(fields, creating) %}
-    <div class="flex">
-        <div class="form-row basis50">
-            {#------------ Label ------------#}
-            {{ form_label(fields.positionDesktop, fields.labelPositionDesktop ?? null) }}
-            
-            {#------------ Errors ------------#}
-            <div class="field-error-container">{{ form_errors(fields.positionDesktop) }}</div>
-            
-            {#------------ Form Control ------------#}
-            {{ form_widget(fields.positionDesktop, {'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-row basis50">
-            {#------------ Label ------------#}
-            {{ form_label(fields.positionMobile, fields.labelPositionMobile ?? null) }}
-            
-            {#------------ Errors ------------#}
-            <div class="field-error-container">{{ form_errors(fields.positionMobile) }}</div>
-            
-            {#------------ Form Control ------------#}
-            {{ form_widget(fields.positionMobile, {'attr': {'class': 'form-control'}}) }}
-        </div>
-    </div>
     <div class="flex file-container">
         <div class="basis33 file-preview-container">
             {{ form_row(fields.pathSet) }}
@@ -126,6 +104,28 @@
                     {% endif %}
                 </label>
             </div>
+        </div>
+    </div>
+    <div class="flex">
+        <div class="form-row basis50">
+            {#------------ Label ------------#}
+            {{ form_label(fields.positionDesktop, fields.labelPositionDesktop ?? null) }}
+            
+            {#------------ Errors ------------#}
+            <div class="field-error-container">{{ form_errors(fields.positionDesktop) }}</div>
+            
+            {#------------ Form Control ------------#}
+            {{ form_widget(fields.positionDesktop, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-row basis50">
+            {#------------ Label ------------#}
+            {{ form_label(fields.positionMobile, fields.labelPositionMobile ?? null) }}
+            
+            {#------------ Errors ------------#}
+            <div class="field-error-container">{{ form_errors(fields.positionMobile) }}</div>
+            
+            {#------------ Form Control ------------#}
+            {{ form_widget(fields.positionMobile, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
 {% endmacro %}
