@@ -92,6 +92,16 @@
                 {{ form_label(fields.imageAlt, 'Alt Description') }}
                 {{ form_widget(fields.imageAlt, {'attr': {'class': 'form-control'}}) }}
             </div>
+            <div class="form-row">
+                {#------------ Label ------------#}
+                {{ form_label(fields.bgPosition, fields.labelBgPosition ?? null) }}
+                
+                {#------------ Errors ------------#}
+                <div class="field-error-container">{{ form_errors(fields.bgPosition) }}</div>
+                
+                {#------------ Form Control ------------#}
+                {{ form_widget(fields.bgPosition, {'attr': {'class': 'form-control'}}) }}
+            </div>
             <div class="control-container no-delete">
                 <label class="file-label">
                     {{ form_widget(fields.imageTemp) }}
@@ -102,18 +112,6 @@
                     {% endif %}
                 </label>
             </div>
-        </div>
-    </div>
-    <div class="flex">
-        <div class="form-row basis50">
-            {#------------ Label ------------#}
-            {{ form_label(fields.bgPosition, fields.labelBgPosition ?? null) }}
-            
-            {#------------ Errors ------------#}
-            <div class="field-error-container">{{ form_errors(fields.bgPosition) }}</div>
-            
-            {#------------ Form Control ------------#}
-            {{ form_widget(fields.bgPosition, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
 {% endmacro %}
