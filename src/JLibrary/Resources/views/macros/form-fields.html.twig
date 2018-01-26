@@ -72,23 +72,23 @@
     <div class="flex">
         <div class="form-row basis50">
             {#------------ Label ------------#}
-            {{ form_label(params.positionDesktop, params.labelPositionDesktop ?? null) }}
+            {{ form_label(fields.positionDesktop, fields.labelPositionDesktop ?? null) }}
             
             {#------------ Errors ------------#}
-            <div class="field-error-container">{{ form_errors(params.positionDesktop) }}</div>
+            <div class="field-error-container">{{ form_errors(fields.positionDesktop) }}</div>
             
             {#------------ Form Control ------------#}
-            {{ form_widget(params.positionDesktop, {'attr': {'class': 'form-control'}}) }}
+            {{ form_widget(fields.positionDesktop, {'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="form-row basis50">
             {#------------ Label ------------#}
-            {{ form_label(params.positionMobile, params.labelPositionMobile ?? null) }}
+            {{ form_label(fields.positionMobile, fields.labelPositionMobile ?? null) }}
             
             {#------------ Errors ------------#}
-            <div class="field-error-container">{{ form_errors(params.positionMobile) }}</div>
+            <div class="field-error-container">{{ form_errors(fields.positionMobile) }}</div>
             
             {#------------ Form Control ------------#}
-            {{ form_widget(params.positionMobile, {'attr': {'class': 'form-control'}}) }}
+            {{ form_widget(fields.positionMobile, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
     <div class="flex file-container">
