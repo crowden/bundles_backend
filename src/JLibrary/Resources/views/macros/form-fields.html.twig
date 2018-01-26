@@ -1,7 +1,4 @@
 {#
-    Image [no delete]
-        - pathSet, modificationDate, imageTemp, imageAlt, creating_entity
-
     {{ jfields.ffImage(
         {
             pathSet: form.pathSet,
@@ -52,10 +49,7 @@
 {% endmacro %}
 
 {#
-    Image [no delete]
-        - pathSet, modificationDate, imageTemp, imageAlt, creating_entity
-
-    {{ jfields.ffEmbBackgroundImage(
+    {{ jfields.ffBackgroundImage(
         {
             pathSet: form.**prop**.pathSet,
             modificationDate: form.**prop**.modificationDate,
@@ -66,7 +60,7 @@
         }, creating_entity
     ) }}
 #}
-{% macro ffEmbBackgroundImage(fields, creating) %}
+{% macro ffBackgroundImage(fields, creating) %}
     <div class="flex file-container">
         <div class="basis33 file-preview-container">
             {{ form_row(fields.pathSet) }}
@@ -117,11 +111,7 @@
 {% endmacro %}
 
 
-{#
-    [developing] General with Sublabel
-        - field, label, custom_sublabel, row_class
-#}
-{% macro ffGeneralSublabel(params) %}
+{% macro [DEVELOPING]ffGeneralSublabel(params) %}
     {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
 
     <div class="{{ container_class }}">
@@ -152,15 +142,12 @@
 
 
 {#
-    General Field
-        - field, label, row_class
-
-            {{ jfields.ffGeneral(
-                {
-                    field: form.###,
-                    label: '###'
-                }
-            ) }}
+    {{ jfields.ffGeneral(
+        {
+            field: form.###,
+            label: '###'
+        }
+    ) }}
 #}
 {% macro ffGeneral(params) %}
     {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
@@ -178,10 +165,6 @@
 {% endmacro %}
 
 
-{#
-    Date/Time field
-        - field, label, row_class
-#}
 {% macro ffDateTime(params) %}
     {% set container_class = (params.row_class ?? false) ? 'form-row date-picker ' ~ params.row_class : 'form-row date-picker' %}
 
@@ -206,15 +189,12 @@
 
 
 {#
-    Checkbox[single]
-        - field, label, row_class
-
-            {{ jfields.ffCheckboxSingle(
-                {
-                    field: form.###,
-                    label: '###'
-                }
-            ) }}
+    {{ jfields.ffCheckboxSingle(
+        {
+            field: form.###,
+            label: '###'
+        }
+    ) }}
 #}
 {% macro ffCheckboxSingle(params) %}
     {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
@@ -232,10 +212,6 @@
 {% endmacro %}
 
 
-{#
-    Markdown
-        - field, label, row_class
-#}
 {% macro ffMarkdown(params) %}
     {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
     {% set row_height = (params.row_height ?? false) ? params.row_height : '8' %}
@@ -264,18 +240,15 @@
 
 
 {#
-    Published
-        - field, label, row_class
-
-            <fieldset>
-                <legend>Publish</legend>
-                {{ jfields.ffPublished(
-                    {
-                        field: form.published,
-                        label: 'Publish this item?'
-                    }
-                ) }}
-            </fieldset>
+    <fieldset>
+        <legend>Publish</legend>
+        {{ jfields.ffPublished(
+            {
+                field: form.published,
+                label: 'Publish this item?'
+            }
+        ) }}
+    </fieldset>
 #}
 {% macro ffPublished(params) %}
     {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
@@ -293,17 +266,14 @@
 {% endmacro %}
 
 {#
-    Collection[text]
-        - field, label, row_class, id_add, id_list
-
-            {{ jfields.ffCollection_text(
-                {
-                    field: form.###,
-                    label: '###',
-                    id_add: '###-item-add',
-                    id_list: '###-collection'
-                }
-            ) }}
+    {{ jfields.ffCollection_text(
+        {
+            field: form.###,
+            label: '###',
+            id_add: '###-item-add',
+            id_list: '###-collection'
+        }
+    ) }}
 #}
 {% macro ffCollection_text(params) %}
     {% import 'JLibrary:macros:collection-prototypes.html.twig' as jprotos %}
@@ -343,9 +313,7 @@
     </script>    
 {% endmacro %}
 
-{#
-    Collection Defined[text]
-#}
+
 {% macro ffCollectionDefined_text(params) %}
     <div class="form-row">
         <div class="field-error-container">{{ form_errors(params.field) }}</div>
