@@ -61,7 +61,7 @@
     ) }}
 #}
 {% macro ffBackgroundImage(fields, creating) %}
-    <div class="flex file-container">
+    <div class="flex file-container ff-background-image">
         <div class="basis33 file-preview-container">
             {{ form_row(fields.pathSet) }}
 
@@ -86,7 +86,7 @@
                 {{ form_label(fields.imageAlt, 'Alt Description') }}
                 {{ form_widget(fields.imageAlt, {'attr': {'class': 'form-control'}}) }}
             </div>
-            <div class="form-row">
+            <div class="form-row fr-background-position">
                 {#------------ Label ------------#}
                 {{ form_label(fields.bgPosition, fields.labelBgPosition ?? null) }}
                 

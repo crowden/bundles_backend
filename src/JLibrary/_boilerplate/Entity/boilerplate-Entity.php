@@ -465,7 +465,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
     public function add***SINGLE***(***TypeHint*** $collection_single_element)
     {
         $this->**property**->add($collection_single_element);
-        $collection_single_element->setFcsBlock($this);
+        $collection_single_element->**inversedSetMethod**($this);
 
         return $this;
     }
