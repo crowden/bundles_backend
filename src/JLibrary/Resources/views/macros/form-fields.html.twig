@@ -195,7 +195,7 @@
     }) }}
 #}
 {% macro ffRadio(params) %}
-    <div class="form-row linear-radio">
+    <div class="form-row radio-linear">
         <div class="basis100">
             {#------------ Errors ------------#}
             <div class="field-error-container">{{ form_errors(params.field) }}</div>
@@ -209,7 +209,7 @@
            <div class="pod {{params.pod_class}}">
                {{ form_errors(item) }}
                {{ form_widget(item) }}
-               <span class="label">{{ item.vars.label }}</span>
+               <span class="j-label">{{ item.vars.label }}</span>
            </div>
         {% endfor %}
     </div>
