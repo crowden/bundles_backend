@@ -4,6 +4,7 @@ namespace J29Bundle\Entity\**entity_type**;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+
 use JLibrary\Traits\DoctrineLifeCycleSanitizer;
 
 
@@ -306,8 +307,6 @@ class **Entity**
     private $joinManyToOne;
 
     /**
-     * Inverse side, read only. CAN'T use setter.
-     * 
      * @ORM\OneToMany(targetEntity="\", mappedBy="prop", cascade={"persist"})
      * @Assert\Valid()
      */
