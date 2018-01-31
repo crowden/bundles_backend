@@ -1,5 +1,3 @@
-{% import _self as selfFields %}
-
 {#
     {{ jfields.ffImage(
         {
@@ -58,7 +56,7 @@
         {% if item.isMobile.vars.value == 1 %}
             <fieldset>
                 <legend>Mobile</legend>
-                {{ selfFields.ffImage(
+                {{ jfields.ffImage(
                     {
                         pathSet: item.pathSet,
                         modificationDate: item.modificationDate,
@@ -70,7 +68,7 @@
         {% else %}
             <fieldset>
                 <legend>Desktop</legend>
-                {{ selfFields.ffImage(
+                {{ jfields.ffImage(
                     {
                         pathSet: item.pathSet,
                         modificationDate: item.modificationDate,
