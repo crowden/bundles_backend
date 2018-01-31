@@ -1,4 +1,4 @@
-{% import _self as jfields %}
+{% import _self as selfFields %}
 
 {#
     {{ jfields.ffImage(
@@ -50,12 +50,15 @@
     </div>
 {% endmacro %}
 
+{#
+    {{ jfields.ffImageResponsive(form.collection_field, creating_entity) }}
+#}
 {% macro ffImageResponsive(collection_field, creating_entity) %}
     {% for item in collection_field %}
         {% if item.isMobile.vars.value == 1 %}
             <fieldset>
                 <legend>Mobile</legend>
-                {{ jfields.ffImage(
+                {{ selfFields.ffImage(
                     {
                         pathSet: item.pathSet,
                         modificationDate: item.modificationDate,
@@ -67,7 +70,7 @@
         {% else %}
             <fieldset>
                 <legend>Desktop</legend>
-                {{ jfields.ffImage(
+                {{ selfFields.ffImage(
                     {
                         pathSet: item.pathSet,
                         modificationDate: item.modificationDate,
