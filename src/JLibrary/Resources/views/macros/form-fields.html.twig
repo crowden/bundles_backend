@@ -1,3 +1,5 @@
+{% import _self as jfields %}
+
 {#
     {{ jfields.ffImage(
         {
@@ -46,6 +48,36 @@
             </div>
         </div>
     </div>
+{% endmacro %}
+
+{% macro ffImageResponsive(collection_field, creating_entity) %}
+    {% for item in collection_field %}
+        {% if item.isMobile.vars.value == 1 %}
+            <fieldset>
+                <legend>Mobile</legend>
+                {{ jfields.ffImage(
+                    {
+                        pathSet: item.pathSet,
+                        modificationDate: item.modificationDate,
+                        imageTemp: item.imageTemp,
+                        imageAlt: item.imageAlt
+                    }, creating_entity
+                ) }}
+            </fieldset>
+        {% else %}
+            <fieldset>
+                <legend>Desktop</legend>
+                {{ jfields.ffImage(
+                    {
+                        pathSet: item.pathSet,
+                        modificationDate: item.modificationDate,
+                        imageTemp: item.imageTemp,
+                        imageAlt: item.imageAlt
+                    }, creating_entity
+                ) }}
+            </fieldset>
+        {% endif %}
+    {% endfor %}
 {% endmacro %}
 
 {#
@@ -215,6 +247,14 @@
 {% endmacro %}
 
 
+{#
+    {{ jfields.ffMarkdown(
+        {
+            field: form.contentRaw,
+            label: '###'
+        }
+    ) }}
+#}
 {% macro ffMarkdown(params) %}
     {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
     {% set row_height = (params.row_height ?? false) ? params.row_height : '8' %}
