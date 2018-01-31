@@ -52,6 +52,7 @@
     {{ jfields.ffImageResponsive(form.collection_field, creating_entity) }}
 #}
 {% macro ffImageResponsive(collection_field, creating_entity) %}
+    {% import _self as jfields %}
     {% for item in collection_field %}
         {% if item.isMobile.vars.value == 1 %}
             <fieldset>
