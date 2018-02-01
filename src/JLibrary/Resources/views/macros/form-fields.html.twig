@@ -83,6 +83,53 @@
 {% endmacro %}
 
 {#
+    {{ jfields.ffImageResponsive(form.collection_field, creating_entity) }}
+#}
+{% macro ffImageResponsiveWithPreview(collection_field, creating_entity) %}
+    {% import _self as jfields %}
+    {% for item in collection_field %}
+        {% if item.isMobile.vars.value == 1 %}
+            <fieldset>
+                <legend>Mobile</legend>
+                {{ jfields.ffImage(
+                    {
+                        pathSet: item.pathSet,
+                        modificationDate: item.modificationDate,
+                        imageTemp: item.imageTemp,
+                        imageAlt: item.imageAlt
+                    }, creating_entity
+                ) }}
+            </fieldset>
+        {% else %}
+            {% if item.isPreview.vars.value == 0 %}
+                <fieldset>
+                    <legend>Desktop</legend>
+                    {{ jfields.ffImage(
+                        {
+                            pathSet: item.pathSet,
+                            modificationDate: item.modificationDate,
+                            imageTemp: item.imageTemp,
+                            imageAlt: item.imageAlt
+                        }, creating_entity
+                    ) }}
+                </fieldset>                
+            {% endif %}
+                <fieldset>
+                    <legend>Preview</legend>
+                    {{ jfields.ffImage(
+                        {
+                            pathSet: item.pathSet,
+                            modificationDate: item.modificationDate,
+                            imageTemp: item.imageTemp,
+                            imageAlt: item.imageAlt
+                        }, creating_entity
+                    ) }}
+                </fieldset>
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{#
     {{ jfields.ffBackgroundImage(
         {
             pathSet: form.**prop**.pathSet,

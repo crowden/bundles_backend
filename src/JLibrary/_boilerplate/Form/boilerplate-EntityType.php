@@ -50,6 +50,16 @@ class **ENTITY_NAME**Type extends AbstractType
     ],
 ])
 
+->add('manualCollection', CollectionType::class, [
+    'entry_type' => SingleType::class,
+    'by_reference' => false,
+    'error_bubbling' => false,
+    'entry_options' => [
+        'required' => false,
+        'error_bubbling' => false,
+    ],
+])
+
 ///////////////////////////////////
 //         Honeypot              //
 ///////////////////////////////////

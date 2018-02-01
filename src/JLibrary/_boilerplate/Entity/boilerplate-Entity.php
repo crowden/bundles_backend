@@ -312,6 +312,12 @@ class **Entity**
      */
     private $joinOneToMany;
 
+    /**
+     * @ORM\OneToMany(targetEntity="\J29Bundle\Entity\crud\ContactCard", mappedBy="department", cascade={"remove"}, orphanRemoval=true)
+     * @Assert\Valid()
+     */
+    private $joinOneToManyOrphanRemoval;
+
 ////////////////////////////////
 //         Markdown           //
 ////////////////////////////////
