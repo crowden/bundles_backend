@@ -101,7 +101,8 @@
                 ) }}
             </fieldset>
         {% else %}
-            {% if item.isPreview.vars.value == 0 and item.isMobile.vars.value == 0 %}
+            {# if isMobile is false, it can only be either desktop or preview #}
+            {% if item.isPreview.vars.value == 0 %}
                 <fieldset>
                     <legend>Desktop</legend>
                     {{ jfields.ffImage(
@@ -112,8 +113,9 @@
                             imageAlt: item.imageAlt
                         }, creating_entity
                     ) }}
-                </fieldset>                
-            {% endif %}
+                </fieldset>
+            {% else %}
+                {# if isPreview is true, it can only be preview #}
                 <fieldset>
                     <legend>Preview</legend>
                     {{ jfields.ffImage(
@@ -125,6 +127,7 @@
                         }, creating_entity
                     ) }}
                 </fieldset>
+            {% endif %}
         {% endif %}
     {% endfor %}
 {% endmacro %}
