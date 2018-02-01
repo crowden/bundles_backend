@@ -83,7 +83,7 @@
 {% endmacro %}
 
 {#
-    {{ jfields.ffImageResponsive(form.collection_field, creating_entity) }}
+    {{ jfields.ffImageResponsiveWithPreview(form.collection_field, creating_entity) }}
 #}
 {% macro ffImageResponsiveWithPreview(collection_field, creating_entity) %}
     {% import _self as jfields %}
@@ -101,7 +101,7 @@
                 ) }}
             </fieldset>
         {% else %}
-            {% if item.isPreview.vars.value == 0 %}
+            {% if item.isPreview.vars.value == 0 and item.isMobile.vars.value == 0 %}
                 <fieldset>
                     <legend>Desktop</legend>
                     {{ jfields.ffImage(
