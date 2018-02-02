@@ -298,6 +298,29 @@
     </div>
 {% endmacro %}
 
+{#
+    {{ jfields.ffCheckboxSingle(
+        {
+            field: form.###,
+            label: '###'
+        }
+    ) }}
+#}
+{% macro ffCheckboxSingleFloating(params) %}
+    {% set container_class = (params.row_class ?? false) ? 'form-row floating-checkbox ' ~ params.row_class : 'form-row floating-checkbox' %}
+
+    <div class="{{ container_class }}">
+        {#------------ Errors ------------#}
+        <div class="field-error-container">{{ form_errors(params.field) }}</div>
+        
+        {#------------ Label ------------#}
+        {{ form_label(params.field, params.label ?? null, {'label_attr' : {'class' : 'inline'}}) }}
+        
+        {#------------ Form Control ------------#}
+        {{ form_widget(params.field, {'attr' : {'class' : 'inline'}}) }}
+    </div>
+{% endmacro %}
+
 
 {#
     {{ jfields.ffMarkdown(
