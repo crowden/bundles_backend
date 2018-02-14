@@ -19,7 +19,6 @@
 #}
 {% macro cpLink(item) %}
     <li class="dynamic-insert single-link">
-        <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
         <div class="form-controls-box">
             <div class="form-row link-text">
                 {{ form_label(item.linkText, 'Link Text') }}
@@ -32,6 +31,7 @@
                 {{ form_widget(item.link, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
+        <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
     </li>
 {% endmacro %}
 
