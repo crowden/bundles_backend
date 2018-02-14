@@ -24,12 +24,12 @@
             <div class="form-row">
                 {{ form_label(item.linkText, 'Link Text') }}
                 <div class="field-error-container">{{ form_errors(item.linkText) }}</div>
-                {{ form_widget(item.linkText) }}
+                {{ form_widget(item.linkText, {'attr': {'class': 'form-control'}}) }}
             </div>
             <div class="form-row">
                 {{ form_label(item.link, 'URL (absolute or relative') }}
                 <div class="field-error-container">{{ form_errors(item.link) }}</div>
-                {{ form_widget(item.link) }}
+                {{ form_widget(item.link, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
     </li>
