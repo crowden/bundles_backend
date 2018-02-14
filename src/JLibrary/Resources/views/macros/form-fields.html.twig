@@ -404,10 +404,6 @@
         {#------------ Errors ------------#}
         <div class="field-error-container">{{ form_errors(params.field) }}</div>
 
-        <div class="add-container">
-            <a href="#" id="{{ params.id_add }}" class="add-trigger">add</a>
-        </div>
-
         <ul id="{{ params.id_list }}" data-prototype="{{ jprotos.cpLink(params.field.vars.prototype)|e('html_attr') }}">
             {% for item in params.field %}
                 {{ jprotos.cpLink(item) }}
@@ -415,6 +411,10 @@
                 {% do params.field.setRendered %} 
             {% endfor %}
         </ul>
+
+        <div class="add-container">
+            <a href="#" id="{{ params.id_add }}" class="add-trigger">add</a>
+        </div>
     </div>
 
     <script type="text/javascript">
