@@ -116,7 +116,7 @@ class **Entity**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(max=255, maxMessage="This field can only contain 255 characters")
      */
-    private $machineName;
+    private $machineName(USE_TRAIT and SET_PREFIX_CONST);
 
     /**
      * @ORM\Column(type="decimal")

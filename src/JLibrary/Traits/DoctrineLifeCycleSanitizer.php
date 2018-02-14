@@ -53,20 +53,40 @@ trait DoctrineLifeCycleSanitizer
     }
 
     protected function returnUrl($value){
+        // whether value is array or not, everthing is checked for tags
         $value_no_tags = $this->returnPlainText($value);
-        $sanitized = filter_var(trim($value_no_tags), FILTER_SANITIZE_URL);
-
-        try {
-            if ($sanitized === false){
-                throw new Exception('Problem handling URL');
-            } else {
-                return $sanitized;
+        
+        // value is array
+        if (is_array($value_no_tags)){
+            try {
+                foreach($value_no_tags as $key => $single){
+                    $value_no_tags[$key] = filter_var($single, FILTER_SANITIZE_URL);
+                    
+                    // throw exception if can sanitized URL
+                    if ($value_no_tags[$key] === false) throw new \Exception('Problem handling URL');
+                }
+                // return sanitized array
+                return $value_no_tags;
+            } catch (\Exception $e){
+                /*echo $e->getMessage();*/
+                return 'ERROR: Link Not Valid';
             }
-        }
-        // catch sanitization error
-        catch (Exception $e){
-            echo $e->getMessage();        
-            return 'ERROR: Link Not Valid';
+        // value is scalar
+        } else {
+            $sanitized = filter_var($value_no_tags, FILTER_SANITIZE_URL);
+
+            try {
+                if ($sanitized === false){
+                    throw new \Exception('Problem handling URL');
+                } else {
+                    return $sanitized;
+                }
+            }
+            // catch sanitization error
+            catch (\Exception $e){
+                /*echo $e->getMessage();*/
+                return 'ERROR: Link Not Valid';
+            }
         }
     }
 
