@@ -11,6 +11,30 @@
     </li>
 {% endmacro %}
 
+{# 
+    Prototype: Link with link text 
+    Required Fields:
+        - linkText
+        - link
+#}
+{% macro cpLink(item) %}
+    <li class="dynamic-insert">
+        <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
+        <div class="form-controls-box">
+            <div class="form-row">
+                {{ form_label(item.linkText, 'Link Text') }}
+                <div class="field-error-container">{{ form_errors(item.linkText) }}</div>
+                {{ form_widget(item.linkText) }}
+            </div>
+            <div class="form-row">
+                {{ form_label(item.link, 'URL (absolute or relative') }}
+                <div class="field-error-container">{{ form_errors(item.link) }}</div>
+                {{ form_widget(item.link) }}
+            </div>
+        </div>
+    </li>
+{% endmacro %}
+
 
 
 

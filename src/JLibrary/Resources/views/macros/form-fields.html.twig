@@ -384,6 +384,54 @@
 {% endmacro %}
 
 {#
+    {{ jfields.ffCollection_link(
+        {
+            field: form.###,
+            label: '###',
+            id_add: '###-item-add',
+            id_list: '###-collection'
+        }
+    ) }}
+#}
+{% macro ffCollection_link(params) %}
+    {% import 'JLibrary:macros:collection-prototypes.html.twig' as jprotos %}
+    {% set container_class = (params.row_class ?? false) ? 'form-row collection-add-delete' ~ params.row_class : 'form-row collection-add-delete' %}
+
+    <div class="{{ container_class }}">
+        {#------------ Label ------------#}
+        {{ form_label(params.field, params.label ?? null) }}
+        
+        {#------------ Errors ------------#}
+        <div class="field-error-container">{{ form_errors(params.field) }}</div>
+
+        <div class="add-container">
+            <a href="#" id="{{ params.id_add }}" class="add-trigger">add</a>
+        </div>
+
+        <ul id="{{ params.id_list }}" data-prototype="{{ jprotos.cpLink(params.field.vars.prototype)|e('html_attr') }}">
+            {% for item in params.field %}
+                {{ jprotos.cpLink(item) }}
+            {% else %}
+                {% do params.field.setRendered %} 
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        var j29_add_delete_fields_specs = {
+                run: true,
+                form_control_type: 'input',
+                items : [
+                    {
+                        add_trigger_id: '{{ params.id_add }}', 
+                        fields_list_id: '{{ params.id_list }}'
+                    }
+                ]
+        }
+    </script>    
+{% endmacro %}
+
+{#
     {{ jfields.ffCollection_text(
         {
             field: form.###,
