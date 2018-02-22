@@ -493,7 +493,7 @@
 {% endmacro %}
 
 {#
-    {{ jfields.ffCollection_text(
+    {{ jfields.ffCollection_imageCaption(
         {
             field: form.###,
             label: '###',
@@ -512,9 +512,9 @@
         {{ form_label(params.field, params.label ?? null) }}
         
         {# Add button #}
-        <div class="add-container"><a href="#" id="{{ id_add }}" class="add-trigger">add</a></div>
+        <div class="add-container"><a href="#" id="{{ params.id_add }}" class="add-trigger">add</a></div>
 
-        <div id="{{ id_list }}" data-prototype="{{ jmacs.cpImage_caption(params.field.vars.prototype)|e('html_attr') }}">
+        <div id="{{ params.id_list }}" data-prototype="{{ jmacs.cpImage_caption(params.field.vars.prototype)|e('html_attr') }}">
             {% for item in params.field %}
                 {{ jmacs.cpImage_caption(item) }}
             {% else %}
@@ -529,8 +529,8 @@
                 form_control_type: 'input',
                 items : [
                     {
-                        add_trigger_id: '{{ id_add }}', 
-                        fields_list_id: '{{ id_list }}'
+                        add_trigger_id: '{{ params.id_add }}', 
+                        fields_list_id: '{{ params.id_list }}'
                     }
                 ]
         }
