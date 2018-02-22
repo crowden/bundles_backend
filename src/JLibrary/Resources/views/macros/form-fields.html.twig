@@ -510,9 +510,6 @@
         <div class="field-error-container">{{ form_errors(params.field) }}</div>
 
         {{ form_label(params.field, params.label ?? null) }}
-        
-        {# Add button #}
-        <div class="add-container"><a href="#" id="{{ params.id_add }}" class="add-trigger">add</a></div>
 
         <div id="{{ params.id_list }}" data-prototype="{{ jmacs.cpImage_caption(params.field.vars.prototype)|e('html_attr') }}">
             {% for item in params.field %}
@@ -521,6 +518,9 @@
                 {% do params.field.setRendered %} 
             {% endfor %}
         </div>
+        
+        {# Add button #}
+        <div class="add-container"><a href="#" id="{{ params.id_add }}" class="add-trigger">add</a></div>
     </div>
 
     <script type="text/javascript">
