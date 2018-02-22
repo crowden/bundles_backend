@@ -36,12 +36,9 @@
 {% endmacro %}
 
 
-
-
 {# 
     Prototype: Single Image
     Required Fields:
-        - image
         - imageAlt
         - imageLink
         - pathSet.vars
@@ -60,6 +57,53 @@
                 {{ form_label(item.imageLink, 'Link') }}
                 <div class="field-error-container">{{ form_errors(item.imageLink) }}</div>
                 {{ form_widget(item.imageLink, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-row">
+                {{ form_label(item.imageTemp, 'Image to Upload') }}
+                <div class="field-error-container">{{ form_errors(item.imageTemp) }}</div>
+                {{ form_widget(item.imageTemp, {'attr': {'data-allow-event': '1'}}) }}
+            </div>
+        </div>
+        <div class="image-preview">
+            {{ form_row(item.pathSet) }}
+
+            {% if item.pathSet.vars.value is empty %}
+                <img src="{{asset('images/image-missing.svg')}}" width="50">
+            {% else %}
+                <img src="{{asset(item.pathSet.vars.value)}}" width="50" class="thumbnail">
+            {% endif %}
+
+            <div class="modification-date-box">
+                {{ form_errors(item.modificationDate) }}
+                {{ form_widget(item.modificationDate, {'attr': {'class': 'modification-date'}}) }}
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+
+{# 
+    Prototype: Single Image
+    Required Fields:
+        - caption
+        - imageAlt
+        - imageLink
+        - pathSet.vars
+        - modificationDate
+#}
+{% macro cpImage_caption(item) %}
+    <div class="dynamic-insert single-image">
+        <a class="close js-collection-item-delete"><i class="fa fa-times-circle icon" aria-hidden="true"></i></a>
+        <div class="form-controls-box">
+            <div class="form-row">
+                {{ form_label(item.imageAlt, 'Alt Description') }}
+                <div class="field-error-container">{{ form_errors(item.imageAlt) }}</div>
+                {{ form_widget(item.imageAlt, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-row">
+                {{ form_label(item.caption, 'Image Caption') }}
+                <div class="field-error-container">{{ form_errors(item.caption) }}</div>
+                {{ form_widget(item.caption, {'attr': {'class': 'form-control'}}) }}
             </div>
             <div class="form-row">
                 {{ form_label(item.imageTemp, 'Image to Upload') }}

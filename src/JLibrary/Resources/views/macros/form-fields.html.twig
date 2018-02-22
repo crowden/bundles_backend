@@ -1,4 +1,28 @@
 {#
+    {{ jfields.ffGeneral(
+        {
+            field: form.###,
+            label: '###'
+        }
+    ) }}
+#}
+{% macro ffGeneral(params) %}
+    {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
+
+    <div class="{{ container_class }}">
+        {#------------ Label ------------#}
+        {{ form_label(params.field, params.label ?? null) }}
+        
+        {#------------ Errors ------------#}
+        <div class="field-error-container">{{ form_errors(params.field) }}</div>
+        
+        {#------------ Form Control ------------#}
+        {{ form_widget(params.field, {'attr': {'class': 'form-control'}}) }}
+    </div>
+{% endmacro %}
+
+
+{#
     {{ jfields.ffImage(
         {
             pathSet: form.pathSet,
@@ -48,6 +72,64 @@
     </div>
 {% endmacro %}
 
+
+{#
+    {{ jfields.ffImageCaption(
+        {
+            pathSet: form.pathSet,
+            modificationDate: form.modificationDate,
+            imageTemp: form.imageTemp,
+            imageAlt: form.imageAlt
+            caption: form.caption
+        }, creating_entity
+    ) }}
+#}
+{% macro ffImageCaption(fields, creating) %}
+    <div class="flex file-container">
+        <div class="basis33 file-preview-container">
+            {{ form_row(fields.pathSet) }}
+
+            {% if fields.pathSet.vars.value is empty %}
+                <img src="{{asset('images/image-missing.svg')}}" width="50">
+            {% else %}
+                <img src="{{asset(fields.pathSet.vars.value)}}" width="50" class="thumbnail">
+            {% endif %}
+
+            <div class="modification-date-box">
+                {{ form_errors(fields.modificationDate) }}
+                {{ form_widget(fields.modificationDate, {'attr': {'class': 'modification-date'}}) }}
+            </div>
+        </div>
+        <div class="basis66">
+            <div class="error-container">
+                <div class="field-error-container">{{ form_errors(fields.imageTemp) }}</div>
+                <div class="field-error-container">{{ form_errors(fields.imageAlt) }}</div>
+            </div>
+            
+            <div class="caption-container">
+                {{ form_label(fields.caption, 'Image Caption') }}
+                {{ form_widget(fields.caption, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            
+            <div class="alt-container">
+                {{ form_label(fields.imageAlt, 'Alt Description') }}
+                {{ form_widget(fields.imageAlt, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            
+            <div class="control-container no-delete">
+                <label class="file-label">
+                    {{ form_widget(fields.imageTemp) }}
+                    {% if creating %}
+                        <span>upload</span>
+                    {% else %}
+                        <span>update</span>
+                    {% endif %}
+                </label>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
 {#
     {{ jfields.ffImageResponsive(form.collection_field, creating_entity) }}
 #}
@@ -83,7 +165,10 @@
 {% endmacro %}
 
 {#
-    {{ jfields.ffImageResponsiveWithPreview(form.collection_field, creating_entity) }}
+    <fieldset>
+        <legend>Images</legend>
+        {{ jfields.ffImageResponsiveWithPreview(form.**col_prop**, creating_entity) }}
+    </fieldset>
 #}
 {% macro ffImageResponsiveWithPreview(collection_field, creating_entity) %}
     {% import _self as jfields %}
@@ -195,29 +280,6 @@
 {% endmacro %}
 
 {#
-    {{ jfields.ffGeneral(
-        {
-            field: form.###,
-            label: '###'
-        }
-    ) }}
-#}
-{% macro ffGeneral(params) %}
-    {% set container_class = (params.row_class ?? false) ? 'form-row ' ~ params.row_class : 'form-row' %}
-
-    <div class="{{ container_class }}">
-        {#------------ Label ------------#}
-        {{ form_label(params.field, params.label ?? null) }}
-        
-        {#------------ Errors ------------#}
-        <div class="field-error-container">{{ form_errors(params.field) }}</div>
-        
-        {#------------ Form Control ------------#}
-        {{ form_widget(params.field, {'attr': {'class': 'form-control'}}) }}
-    </div>
-{% endmacro %}
-
-{#
     {{ jfields.ffDateTime(
         {
             field: form.###,
@@ -320,7 +382,6 @@
         {{ form_widget(params.field, {'attr' : {'class' : 'inline'}}) }}
     </div>
 {% endmacro %}
-
 
 {#
     {{ jfields.ffMarkdown(

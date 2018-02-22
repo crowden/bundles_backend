@@ -186,6 +186,8 @@ class **Entity**
 
     /**
      * @ORM\Column(type="string", length=2)
+     *
+     * @Assert\NotBlank()
      * 
      * @Assert\Length(
      *     max=2, 
@@ -224,7 +226,7 @@ class **Entity**
      *     message="Please format phone/fax numbers as (###) ###-#### with no spaces at the beginning or end."
      * )
      */
-    private $phoneNumber;  
+    private $phoneNumber;
 
     /**
      * @ORM\Column(type="string", length=14)
@@ -313,7 +315,7 @@ class **Entity**
     private $joinOneToMany;
 
     /**
-     * @ORM\OneToMany(targetEntity="\J29Bundle\Entity\crud\ContactCard", mappedBy="department", cascade={"remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="\", mappedBy="prop", cascade={"remove"}, orphanRemoval=true)
      * @Assert\Valid()
      */
     private $joinOneToManyOrphanRemoval;
@@ -438,18 +440,9 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
      * @Assert\Callback
      */
     public function validateTicketLinkText(ExecutionContextInterface $context){
-        $this->checkTetheredFields(
-            $context, 
-            $field_not_null, 
-            $field_null, 
-            $property
-        );
-    }
-
-    private function checkTetheredFields($context, $field_not_null, $field_null, $property){
-        if(($field_not_null !== null) && ($field_null === null)){
+        if(condition){
             $context->buildViolation('You must provide a value for this field.')
-                ->atPath('$property')
+                ->atPath('property')
                 ->addViolation();
         }
     }

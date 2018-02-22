@@ -33,6 +33,20 @@ class **ENTITY_NAME**Type extends AbstractType
     }
 }
 
+/////////////////////////////////////
+//         Entities                //
+/////////////////////////////////////
+
+->add('prop', null, [
+    'class' => CLASS::class,
+    'choice_label' => 'entity_prop',
+    'placeholder' => '--  --',
+    'query_builder' => function (EntityRepository $er){
+        return $er->createQueryBuilder('serv')
+            ->orderBy('serv.title', 'ASC');
+    },
+])
+
 
 //////////////////////////////////////
 //         Collection               //
