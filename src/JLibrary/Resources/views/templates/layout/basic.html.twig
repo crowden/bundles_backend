@@ -8,6 +8,7 @@
         <title>{% block title_tag %}{{ page_title }}{% endblock %} | {{ page_title_suffix }}</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         {% block stylesheets %}<link href="{{ asset(global_stylesheet) }}" rel="stylesheet">{% endblock %}
+        {% block page_styles %}{% endblock %}
     </head>
     <body>
         {% block header %}{% endblock %}

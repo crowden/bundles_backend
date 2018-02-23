@@ -15,7 +15,7 @@ use JLibrary\Traits\ControllerTraits;
 /**
  * **ENTITY**
  * 
- * @Route("/admin")
+ * @Route("/admin/^^ENTITY_TYPE^^s")
  */
 class **ENTITY**Controller extends Controller
 {
@@ -31,7 +31,7 @@ class **ENTITY**Controller extends Controller
     );
     
     /**
-     * @Route("/^^ENTITY_TYPE^^s/__SINGLE-ENTITY__", name="j29.^^ENTITY_TYPE^^.**SINGLE_ENTITY**.manage")
+     * @Route("/__SINGLE-ENTITY__", name="j29.^^ENTITY_TYPE^^.**SINGLE_ENTITY**.manage")
      */
     public function manageAction(Request $request){
         $em = $this->getDoctrine()->getManager();
