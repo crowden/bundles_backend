@@ -131,6 +131,23 @@ use J29Bundle\Entity\category\DocumentCategory;
 //         Ordering              //
 ///////////////////////////////////
 
+->add('weight', ChoiceType::class, [
+    'required' => false,
+    'placeholder' => '-- placement --',
+    'choices' => [
+        "1" => "1",
+        "2" => "2",
+        "3" => "3",
+        "4" => "4",
+        "5" => "5",
+        "6" => "6",
+        "7" => "7",
+        "8" => "8",
+        "9" => "9",
+        "10" => "10",
+    ],
+])
+
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 ->add('levels', ChoiceType::class, [

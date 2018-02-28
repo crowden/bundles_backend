@@ -160,6 +160,11 @@ class **Entity**
      */
     private $urlSlug;
 
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $weight;
+
 ///////////////////////////////
 //         Address           //
 ///////////////////////////////

@@ -53,9 +53,9 @@ trait PublicImageWithAlt {
     private $pathTemp;
 
     /**
-     * @Assert\Type(type="integer")
+     * @Assert\Type(type="boolean")
      */
-    private $markedForDeletion = 0;
+    private $markedForDeletion = false;
     
     public function getImageAlt()
     {
@@ -197,7 +197,7 @@ trait PublicImageWithAlt {
             } else {
                 // might be able to move this to preLifeCycles
                 $this->imageAlt = null;
-                $this->markedForDeletion = 0;
+                $this->markedForDeletion = false;
                 return;
             }
         } else {
