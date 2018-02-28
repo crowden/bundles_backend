@@ -67,6 +67,15 @@
                         <span>update</span>
                     {% endif %}
                 </label>
+                {% if fields.imageDelete ?? false %}
+                    {% import _self as jfields %}
+                        {{ jfields.ffCheckboxSingleFloating(
+                            {
+                                field: fields.imageDelete,
+                                label: 'reset'
+                            }
+                        ) }}
+                {% endif %}
             </div>
         </div>
     </div>
