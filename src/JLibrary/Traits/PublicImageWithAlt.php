@@ -244,4 +244,24 @@ trait PublicImageWithAlt {
         
         return $absolute_path;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMarkedForDeletion()
+    {
+        return $this->markedForDeletion;
+    }
+
+    /**
+     * @param mixed $markedForDeletion
+     *
+     * @return self
+     */
+    public function setMarkedForDeletion($markedForDeletion)
+    {
+        $this->markedForDeletion = $markedForDeletion;
+
+        return $this;
+    }
 }
