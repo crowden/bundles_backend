@@ -174,14 +174,15 @@ trait PublicImageWithAlt {
         if (null === $uploaded_file && $this->markedForDeletion){
             // will be null or absolute path to file
             $current_file = $this->getAbsolutePath();
+            
             // if there is a current file, delete it
-            if (null !== $current_file){
-                unlink($current_file);
-                $this->pathTemp = null;
-                $this->pathSet = null;
-                $this->imageAlt = null;
-                $this->markedForDeletion = false;
-            }
+            if (null !== $current_file) unlink($current_file);
+            
+            // completely reset all other properties
+            $this->pathTemp = null;
+            $this->pathSet = null;
+            $this->imageAlt = null;
+            $this->markedForDeletion = false;
         }
     }
 
