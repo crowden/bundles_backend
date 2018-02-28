@@ -179,6 +179,8 @@ trait PublicImageWithAlt {
                 unlink($current_file);
                 $this->pathTemp = null;
                 $this->pathSet = null;
+                $this->imageAlt = null;
+                $this->markedForDeletion = false;
             }
         }
     }
@@ -191,16 +193,7 @@ trait PublicImageWithAlt {
     {
         $uploaded_file = $this->getImageTemp();
 
-        if (null === $uploaded_file){
-            if(!$this->markedForDeletion){
-                return;
-            } else {
-                // might be able to move this to preLifeCycles
-                $this->imageAlt = null;
-                $this->markedForDeletion = false;
-                return;
-            }
-        } else {
+        if (null !== $uploaded_file){
             // if there is an error in moving the file, this should prevent
             // persistance to the database
             $uploaded_file->move($this->getUploadRootDir(), $this->pathSet);

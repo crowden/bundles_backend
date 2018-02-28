@@ -95,10 +95,8 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 ->add('file', null, [
     'label' => false,
 ])
-->add('delete_file', CheckboxType::class, [
+->add('removeImages', CheckboxType::class, [
     'mapped' => false,
-    'label' => false,
-    'disabled' => $options['disable_file_delete'],
     'required' => false,
 ])
 
