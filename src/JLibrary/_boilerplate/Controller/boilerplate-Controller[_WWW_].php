@@ -6,7 +6,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Twig\Environment;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use JLibrary\Traits\PublicTemplateRendering;
 
 use J29Bundle\Entity\**ENTITY_TYPE**\**ENTITY**;

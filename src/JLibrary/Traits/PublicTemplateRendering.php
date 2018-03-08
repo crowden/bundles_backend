@@ -2,6 +2,8 @@
 
 namespace JLibrary\Traits;
 
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+
 trait PublicTemplateRendering
 {
     protected function renderByPublishedStatus($entity, $template, $build){
