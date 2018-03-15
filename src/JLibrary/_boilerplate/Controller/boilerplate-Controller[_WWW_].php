@@ -10,7 +10,7 @@ use JLibrary\Traits\PublicTemplateRendering;
 
 use J29Bundle\Entity\**ENTITY_TYPE**\**ENTITY**;
 
-class InteriorBasicController extends Controller
+class @@NAME@@Controller extends Controller
 {
     use PublicTemplateRendering;
     
