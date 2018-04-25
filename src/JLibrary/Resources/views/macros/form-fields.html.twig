@@ -467,6 +467,27 @@
 {% endmacro %}
 
 {#
+    {{ jfields.ffJ29Code(
+        {
+            field: form.###,
+            label: '###'
+        }
+    ) }}
+#}
+{% macro ffJ29Code(params) %}
+    <div class="j29-form-code">
+        {#------------ Label ------------#}
+        {{ form_label(params.field, params.label ?? null) }}
+        
+        {#------------ Errors ------------#}
+        <div class="field-error-container">{{ form_errors(params.field) }}</div>
+        
+        {#------------ Form Control ------------#}
+        {{ form_widget(params.field, {'attr': {'class': 'form-control'}}) }}
+    </div>
+{% endmacro %}
+
+{#
     {{ jfields.ffCollection_link(
         {
             field: form.###,
