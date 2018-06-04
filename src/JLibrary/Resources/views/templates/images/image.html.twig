@@ -1,0 +1,1 @@
+<img class="image" width="150" src="{{ pathSet ? asset('uploads/images/' ~ pathSet) : asset('images/image-missing.svg') }}"{% if imageAlt ?? false %} alt="{{ imageAlt }}" title="{{ imageAlt }}"{% endif %}>
