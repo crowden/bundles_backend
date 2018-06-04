@@ -1,1 +1,1 @@
-<img class="image{{ class is defined ? ' ' ~ class : '' }}" width="150" src="{{ pathSet ? asset('uploads/images/' ~ pathSet) : asset('images/image-missing.svg') }}"{% if imageAlt ?? false %} alt="{{ imageAlt }}" title="{{ imageAlt }}"{% endif %}>
+<img class="image{{ class is defined ? ' ' ~ class : '' }}" width="150" src="{{ pathSet ? (from_db is defined ? asset('uploads/images/' ~ pathSet) : asset(pathSet)) : asset('images/image-missing.svg') }}"{% if imageAlt ?? false %} alt="{{ imageAlt }}" title="{{ imageAlt }}"{% endif %}>
